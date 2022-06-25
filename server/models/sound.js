@@ -15,7 +15,7 @@ const schema = new mongoose.Schema(
       type: String,
       trim: true,
       maxlength: 400
-    }
+    },
 
     tags: [
       {
@@ -53,24 +53,24 @@ const schema = new mongoose.Schema(
     price: {
       type: Number,
       required: true,
-      min: 0,
+      min: 0
     },
 
     postition: {
       type: String,
-      default:'Point',
-      coordinates: [number]
+      default: 'Point',
+      coordinates: [Number]
     },
-  
+
     published: {
       type: Boolean,
       required: true
     },
 
     owner: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true
     },
 
     soundFile: {
@@ -80,14 +80,9 @@ const schema = new mongoose.Schema(
 
     quality: {
       type: String,
-      enum: [
-       'high',
-        'medium',
-        'low'
-      ],
+      enum: ['high', 'medium', 'low'],
       required: true
     }
-    
   },
   { timestamps: true }
 );
