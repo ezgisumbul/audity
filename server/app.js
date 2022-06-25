@@ -10,9 +10,15 @@ const logger = require('morgan');
 const serveFavicon = require('serve-favicon');
 const basicAuthenticationDeserializer = require('./middleware/basic-authentication-deserializer.js');
 const bindUserToViewLocals = require('./middleware/bind-user-to-view-locals.js');
+
 const baseRouter = require('./routes/base');
 const authenticationRouter = require('./routes/authentication');
+<<<<<<< HEAD
 const libraryRouter = require('./routes/library');
+=======
+const soundRouter = require('./routes/sound');
+const profileRouter = require('./routers/profile');
+>>>>>>> f93278cfe6e563f8b25aca76d0bddde8fd4f468c
 
 const app = express();
 
@@ -49,8 +55,10 @@ app.use(
 app.use(basicAuthenticationDeserializer);
 app.use(bindUserToViewLocals);
 
+app.use('/sound', soundRouter);
 app.use('/', baseRouter);
 app.use('/authentication', authenticationRouter);
+app.use('/profile', profileRouter);
 
 app.use('/library', libraryRouter);
 // Catch missing routes and forward to error handler
