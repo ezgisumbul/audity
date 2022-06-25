@@ -12,6 +12,7 @@ const basicAuthenticationDeserializer = require('./middleware/basic-authenticati
 const bindUserToViewLocals = require('./middleware/bind-user-to-view-locals.js');
 const baseRouter = require('./routes/base');
 const authenticationRouter = require('./routes/authentication');
+const soundRouter = require('./routes/sound');
 
 const app = express();
 
@@ -48,6 +49,7 @@ app.use(
 app.use(basicAuthenticationDeserializer);
 app.use(bindUserToViewLocals);
 
+app.use('/sound', soundRouter);
 app.use('/', baseRouter);
 app.use('/authentication', authenticationRouter);
 
