@@ -1,6 +1,7 @@
 'use strict';
 
 const { Router } = require('express');
+const Library = require('../models/library');
 
 const Sound = require('./../models/sound');
 
@@ -8,6 +9,40 @@ const router = new Router();
 
 router.get('/list', (req, res, next) => {
   Sound.find()
+    .then((sounds) => {
+      res.json({ data: sounds });
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+router.get('/search', (req, res, next) => {
+  const { tags, quality } = req.query;
+  let queryObj = {};
+
+  if (req.user) {
+    queryObj = {
+      $and: [
+        { published: true },
+        //{ owner: { $ne: { _id: req.user.id } } },
+        { tags: { $in: tags } },
+        { quality } // to do: change so that it is minimum this quality
+      ]
+    };
+  } else {
+    queryObj = {
+      $and: [
+        { published: true },
+        { tags: { $in: tags } },
+        { quality } // to do: change so that it is minimum this quality
+      ]
+    };
+  }
+
+  Sound.find(queryObj)
+    .sort({ createdAt: -1 })
+    .populate('owner')
     .then((sounds) => {
       res.json({ data: sounds });
     })
@@ -109,5 +144,16 @@ router.get('/:id', (req, res, next) => {
       next(error);
     });
 });
+
+// router.post('/:id/bookmark', (req, res, next) => {
+//   const { id } = req.params;
+
+//   Library.findOne({ sound: id }).then((sound) => {
+//     if (!sound) {
+//     }
+//   });
+// });
+
+// router.delete('/:id/bookmark', (req, res, next) => {});
 
 module.exports = router;

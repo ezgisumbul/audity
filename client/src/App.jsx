@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage';
 import RegisterPage from './pages/RegisterPage';
 import LogInPage from './pages/LogInPage';
 import ProfileEdit from './pages/ProfileEdit';
+import SoundCreatePage from './pages/SoundCreatePage';
 
 import Navbar from './components/Navbar';
 import AuthenticationContext from './context/authentication';
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/log-in" element={<LogInPage />} />
           <Route path="/profile/edit" element={<ProfileEdit />} />
           <Route path="/profile/:id" element={<ProfilePage />} />
+          <Route path="/sound-create" element={<SoundCreatePage />} />
         </Routes>
       </BrowserRouter>
     </AuthenticationContext.Provider>

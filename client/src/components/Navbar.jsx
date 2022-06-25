@@ -18,6 +18,7 @@ const Navbar = () => {
       <Link to="/">Home</Link>
       {(user && (
         <>
+          <Link to="/sound-create">Upload New Sound</Link>
           <span>Welcome {user.name}</span>
           <button onClick={handleSignOut}>Sign Out</button>
         </>
