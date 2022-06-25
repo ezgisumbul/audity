@@ -10,6 +10,7 @@ const logger = require('morgan');
 const serveFavicon = require('serve-favicon');
 const basicAuthenticationDeserializer = require('./middleware/basic-authentication-deserializer.js');
 const bindUserToViewLocals = require('./middleware/bind-user-to-view-locals.js');
+
 const baseRouter = require('./routes/base');
 const authenticationRouter = require('./routes/authentication');
 
