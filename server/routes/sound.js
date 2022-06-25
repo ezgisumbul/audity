@@ -1,6 +1,7 @@
 'use strict';
 
 const { Router } = require('express');
+const Library = require('../models/library');
 
 const Sound = require('./../models/sound');
 
@@ -109,5 +110,16 @@ router.get('/:id', (req, res, next) => {
       next(error);
     });
 });
+
+// router.post('/:id/bookmark', (req, res, next) => {
+//   const { id } = req.params;
+
+//   Library.findOne({ sound: id }).then((sound) => {
+//     if (!sound) {
+//     }
+//   });
+// });
+
+// router.delete('/:id/bookmark', (req, res, next) => {});
 
 module.exports = router;
