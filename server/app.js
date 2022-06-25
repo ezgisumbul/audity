@@ -14,7 +14,7 @@ const bindUserToViewLocals = require('./middleware/bind-user-to-view-locals.js')
 const baseRouter = require('./routes/base');
 const authenticationRouter = require('./routes/authentication');
 const soundRouter = require('./routes/sound');
-const profileRouter = require('./routers/profile');
+const profileRouter = require('./routes/profile');
 
 const app = express();
 

@@ -16,6 +16,40 @@ router.get('/list', (req, res, next) => {
     });
 });
 
+router.get('/search', (req, res, next) => {
+  const { tags, quality } = req.query;
+  let queryObj = {};
+
+  if (req.user) {
+    queryObj = {
+      $and: [
+        { published: true },
+        //{ owner: { $ne: { _id: req.user.id } } },
+        { tags: { $in: tags } },
+        { quality } // to do: change so that it is minimum this quality
+      ]
+    };
+  } else {
+    queryObj = {
+      $and: [
+        { published: true },
+        { tags: { $in: tags } },
+        { quality } // to do: change so that it is minimum this quality
+      ]
+    };
+  }
+
+  Sound.find(queryObj)
+    .sort({ createdAt: -1 })
+    .populate('owner')
+    .then((sounds) => {
+      res.json({ data: sounds });
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
 router.post('/create', (req, res, next) => {
   const {
     title,
