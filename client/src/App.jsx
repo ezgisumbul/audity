@@ -9,6 +9,7 @@ import SoundCreatePage from './pages/SoundCreatePage';
 import Navbar from './components/Navbar';
 import AuthenticationContext from './context/authentication';
 import { loadUserInformation } from './services/authentication';
+import ItemCreate from './pages/ItemCreate';
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/log-in" element={<LogInPage />} />
           <Route path="/sound-create" element={<SoundCreatePage />} />
+          <Route path="/item-create" element={<ItemCreate />} />
         </Routes>
       </BrowserRouter>
     </AuthenticationContext.Provider>
