@@ -36,7 +36,7 @@ const schema = new mongoose.Schema(
           'noisy',
           'artificial',
           'melodic',
-          'funnny',
+          'funny',
           'rare',
           'nature',
           'strange',

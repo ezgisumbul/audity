@@ -6,6 +6,8 @@ import RegisterPage from './pages/RegisterPage';
 import LogInPage from './pages/LogInPage';
 import ProfileEdit from './pages/ProfileEdit';
 import SoundCreatePage from './pages/SoundCreatePage';
+import SoundEditPage from './pages/SoundEditPage';
+import SoundDetailPage from './pages/SoundDetailPage';
 
 import Navbar from './components/Navbar';
 import AuthenticationContext from './context/authentication';
@@ -43,6 +45,8 @@ const App = () => {
           <Route path="/library-create" element={<LibraryCreate />} />
           <Route path="/library/:id" element={<LibraryDetailPage />} />
           <Route path="/libraries" element={<LibrariesHubPage />} />
+          <Route path="/sound/:id/edit" element={<SoundEditPage />} />
+          <Route path="/sound/:id" element={<SoundDetailPage />} />
         </Routes>
       </BrowserRouter>
     </AuthenticationContext.Provider>

@@ -27,7 +27,7 @@ router.get('/search', (req, res, next) => {
         { published: true },
         //{ owner: { $ne: { _id: req.user.id } } },
         { tags: { $in: tags } },
-        { quality } // to do: change so that it is minimum this quality
+        { quality } // todo: change so that it is minimum this quality
       ]
     };
   } else {
@@ -59,7 +59,6 @@ router.post('/create', (req, res, next) => {
     price,
     position,
     published,
-    owner,
     soundFile,
     quality
   } = req.body;
@@ -71,7 +70,7 @@ router.post('/create', (req, res, next) => {
     price,
     position,
     published,
-    owner,
+    owner: req.user._id,
     soundFile,
     quality
   })
@@ -84,7 +83,7 @@ router.post('/create', (req, res, next) => {
     .catch((error) => {
       next(error);
     });
-  console.log('create');
+  console.log(req.user);
 });
 
 router.patch('/:id/edit', (req, res, next) => {
@@ -101,7 +100,7 @@ router.patch('/:id/edit', (req, res, next) => {
     quality
   } = req.body;
   Sound.findByIdAndUpdate(
-    { id },
+    { _id: id, owner },
     {
       title,
       description,
@@ -137,6 +136,7 @@ router.delete('/:id/delete', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
   const { id } = req.params;
   Sound.findById(id)
+    .populate('owner')
     .then((sound) => {
       res.json({ sound });
     })
