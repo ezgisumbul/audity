@@ -8,14 +8,16 @@ const User = require('./../models/user');
 const router = new Router();
 
 router.post('/sign-up', (req, res, next) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, picture, sound } = req.body;
   bcryptjs
     .hash(password, 10)
     .then((hash) => {
       return User.create({
         name,
         email,
-        passwordHashAndSalt: hash
+        passwordHashAndSalt: hash,
+        picture,
+        sound
       });
     })
     .then((user) => {

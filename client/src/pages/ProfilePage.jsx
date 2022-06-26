@@ -6,32 +6,43 @@ import { profileLoad } from '../services/profile';
 const ProfilePage = () => {
   const { id } = useParams();
 
-  const [profile, setProfile] = useState(null);
-  const [sounds, setSounds] = useState([]);
+  // Uploaded image, user name etc. wasn't displayed due to setUser being set
+  // to data and not data.profile. Also profile state wasn't needed as user can be
+  // accessed throughout the app with context
+
+  // const [profile, setProfile] = useState(null);
+  // const [sounds, setSounds] = useState([]);
+  const { user, setUser } = useContext(AuthenticationContext);
 
   useEffect(() => {
     profileLoad(id).then((data) => {
       console.log(data.profile);
-      setProfile(data);
+      setUser(data.profile);
 
       /* setSounds(data.sounds); */
     });
-  }, [id]);
+  }, [id, setUser]);
 
-  const { user } = useContext(AuthenticationContext);
+  // const { user } = useContext(AuthenticationContext);
 
   return (
     <div>
-      {profile && (
+      {user && (
         <header>
           <img
             src={
-              profile.picture ||
+              user.picture ||
               'https://images.unsplash.com/photo-1617994355731-5724cb5af3f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80'
             }
-            alt={profile.name}
+            alt={user.name}
           />
-          <h1>{profile.name}</h1>
+          <h1>{user.name}</h1>
+          <audio controls>
+            <source
+              src={user.audio}
+              // type="mp3"
+            />
+          </audio>
         </header>
       )}
     </div>

@@ -11,3 +11,11 @@ export const loadItems = (id) => {
 export const setBookmark = (id) => {
   return api.post(`/${id}/bookmark`).then((response) => response.data);
 };
+
+export const loadLibraries = () => {
+  return api.get('/libraries').then((response) => response.data);
+};
+
+export const libraryCreate = (library) => {
+  return api.post('/libraries', library).then((response) => response.data);
+};

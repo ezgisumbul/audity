@@ -24,7 +24,7 @@ const RegisterPage = () => {
 
   return (
     <div>
-      <form onSubmit={handleRegistration}>
+      <form onSubmit={handleRegistration} encType="multipart/form-data">
         <label htmlFor="input-name">Name</label>
         <input
           id="input-name"

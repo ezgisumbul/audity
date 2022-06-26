@@ -29,21 +29,36 @@ router.post('/item', (req, res, next) => {
   Item.create({ name, owner: req.user._id }).then((item) => res.json({ item }));
 });
 
+router.get('/libraries', (req, res, next) => {
+  Library.find()
+    .then((libraries) => {
+      res.json({ libraries });
+    })
+    .catch((err) => next(err));
+});
+
+router.post('/libraries', (req, res, next) => {
+  const { title } = req.body;
+  Library.create({ title, item: id, user: req.user._id }).then((library) =>
+    res.json({ library })
+  );
+});
+
 router.post('/:id/bookmark', (req, res, next) => {
   // res.json({ type: 'success', data: { title: 'Hello World' } });
   const { id } = req.params;
   Library.findOne({ item: id })
-    .then((result) => {
-      if (!result) {
-        // maybe not create but rather push to the library list
-        return Library.create({ item: id, user: req.user._id });
+    .then((library) => {
+      // console.log(library);
+      if (!library) {
+        //   // maybe not create but rather push to the library list
+        Library.create({ item: id, user: req.user._id });
+      } else {
+        //   //   // the button should be remove in this case
+        console.log('Library exists with this item' + library);
       }
-      // else {
-      //   // the button should be remove in this case
-      // }
-
-      console.log(result);
     })
+    // .then((library) => {})
     .then(() => {
       res.json({});
     })

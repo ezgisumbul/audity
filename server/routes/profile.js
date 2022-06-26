@@ -6,6 +6,10 @@ const routeGuard = require('./../middleware/route-guard');
 const User = require('./../models/user');
 const Sound = require('./../models/sound');
 
+// I think we should rename "profile" object here to "user" for consistency
+// throughout the app. This will also affect the ProfilePage, ProfileEdit,
+// maybe renaming the service as well but not necessarily.
+
 router.get('/search', (req, res, next) => {
   const { term } = req.query;
 

@@ -14,19 +14,21 @@ const schema = new mongoose.Schema(
     //   required: true,
     //   ref: 'Sound'
     // }]
-    // title: {
-    //   type: String
-    // }
+    title: {
+      type: String
+    },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: 'User'
     },
-    item: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: 'Item'
-    }
+    item: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'Item'
+      }
+    ]
   },
   { timestamps: true }
 );
