@@ -1,44 +1,39 @@
-import {useState } from 'react'
+import { useState } from 'react'
+import { soundCreate } from './../services/sound'
+import  SoundForm from './../components/SoundForm'
+import { useNavigate } from 'react-router-dom';
 
 const SoundCreatePage = () => {
 
-    const [ sound, setSound ] = useState(null)
+    const navigate = useNavigate()
 
-    const handleFormSubmit = (event) => {
-        event.preventDefault();
-        console.log('create sound')
+    const [ sound, setSound ] = useState({
+        title: '',
+      description: '',
+      tags: [],
+      price: 0,
+    //   position,
+      published: true,
+      soundFile: '',
+      quality: 'medium'
+    })
+
+    const handleSoundCreation = () => {
+        soundCreate(sound).then((data) => {
+            console.log(data)
+            const id = data.sound._id;
+            navigate(`/sound/${id}`);
+          });
     }
 
   return (
     <div>
         <h1>Add a new sound to your Archive</h1>
-        <form onSubmit={(event) => handleFormSubmit(event)}>
-            <label htmlFor="titleInput">Title</label>
-            <input id="titleInput" onChange={(event)=> setSound(...sound, {title: event.target.value})} value="" />
-
-            <label htmlFor="descriptionInput">Description</label>
-            <input id="descriptionInput" onChange={(event)=> setSound(...sound, {description: event.target.value})} value="" />
-
-            <label htmlFor="uploadInput">Upload Sound File</label>
-            <input id="uploadInput" onChange={(event)=> setSound(...sound, {soundFile: event.target.value})} value="" />
-            
-            <label htmlFor="tagsInput">Add Tags</label>
-            <input id="tagsInput" onChange={(event)=> setSound(...sound, {tags: event.target.value})} value="" />
-
-            <label htmlFor="qualityInput">Quality of the Recording</label>
-            <input id="qualityInput" onChange={(event)=> setSound(...sound, {quality: event.target.value})} value="" />
-
-            <label htmlFor="positionInput">Location of Recording</label>
-            <input id="positionInput" onChange={(event)=> setSound(...sound, {position: event.target.value})} value="" />
-
-            <label htmlFor="priceInput">Price</label>
-            <input id="priceInput" onChange={(event)=> setSound(...sound, {price: event.target.value})} value="" />
-
-            <label>Private?</label>
-            <input onChange={(event)=> setSound(...sound, {bublished: event.target.value})} value="" />
-
-            <button>Create new sound</button>
-        </form>
+        <SoundForm 
+            sound={sound}
+            onSoundChange={setSound}
+            onSoundSubmit={handleSoundCreation}
+            buttonLabel="Add Sound"/>
     </div>
   )
 }
