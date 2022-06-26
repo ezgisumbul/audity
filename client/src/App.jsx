@@ -4,12 +4,16 @@ import { useEffect, useState } from 'react';
 import HomePage from './pages/HomePage';
 import RegisterPage from './pages/RegisterPage';
 import LogInPage from './pages/LogInPage';
+import ProfileEdit from './pages/ProfileEdit';
 import SoundCreatePage from './pages/SoundCreatePage';
 
 import Navbar from './components/Navbar';
 import AuthenticationContext from './context/authentication';
 import { loadUserInformation } from './services/authentication';
 import ItemCreate from './pages/ItemCreate';
+import ItemPage from './pages/ItemPage';
+
+import ProfilePage from './pages/ProfilePage';
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -28,8 +32,11 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/log-in" element={<LogInPage />} />
+          <Route path="/profile/edit" element={<ProfileEdit />} />
+          <Route path="/profile/:id" element={<ProfilePage />} />
           <Route path="/sound-create" element={<SoundCreatePage />} />
           <Route path="/item-create" element={<ItemCreate />} />
+          <Route path="/item/:id" element={<ItemPage />} />
         </Routes>
       </BrowserRouter>
     </AuthenticationContext.Provider>
