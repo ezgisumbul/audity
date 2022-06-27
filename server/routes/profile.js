@@ -39,8 +39,12 @@ router.get('/:id', routeGuard, (req, res, next) => {
 });
 
 router.patch('/', routeGuard, (req, res, next) => {
-  const { name, email, picture } = req.body;
-  UserfindByIdAndUpdate(req.user._id, { name, email, picture }, { next: true })
+  const { name, email, description, picture, sound } = req.body;
+  User.findByIdAndUpdate(
+    req.user._id,
+    { name, email, description, picture, sound },
+    { new: true }
+  )
     .then((user) => {
       res.json({ profile: user });
     })

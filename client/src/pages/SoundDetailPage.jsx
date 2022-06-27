@@ -12,7 +12,7 @@ const SoundDetailPage = () => {
 
     useEffect(() => {
         soundLoad(id).then((response) => setSound(response.sound))
-    }, [])
+    }, [id])
 
   return (
     <div>
@@ -29,13 +29,22 @@ const SoundDetailPage = () => {
         </>}
         Map Component
         <br></br>
-        Player Component
-        <br></br>
+        {sound &&
+        <>
+        <audio controls>
+            <source
+              src={sound.soundFile}
+              // type="mp3"
+            />
+        </audio>
+
         <small>{sound.price===0 ? 'you can use it for free' : 'price: '+formatPrice(sound.price)}</small>
+        </>}
         <br></br>
         Link to similar Sounds?
         <br></br>
         <button>add to sound library</button> 
+        <Link to={`./edit`}>Edit</Link>
 
     </div>
   )

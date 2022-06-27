@@ -8,7 +8,7 @@ const SoundCreatePage = () => {
     const navigate = useNavigate()
 
     const [ sound, setSound ] = useState({
-        title: '',
+      title: '',
       description: '',
       tags: [],
       price: 0,
@@ -20,12 +20,11 @@ const SoundCreatePage = () => {
 
     const handleSoundCreation = () => {
         soundCreate(sound).then((data) => {
-            console.log(data)
             const id = data.sound._id;
             navigate(`/sound/${id}`);
           });
-    }
-
+        }
+ 
   return (
     <div>
         <h1>Add a new sound to your Archive</h1>
