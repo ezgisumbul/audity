@@ -2,6 +2,8 @@ import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import AuthenticationContext from '../context/authentication';
 import { profileLoad } from '../services/profile';
+import { Link } from 'react-router-dom';
+import './ProfilePage.scss';
 
 const ProfilePage = () => {
   const { id } = useParams();
@@ -28,7 +30,7 @@ const ProfilePage = () => {
   return (
     <div>
       {user && (
-        <header>
+        <header className="profile-header">
           <img
             src={
               user.picture ||
@@ -37,12 +39,14 @@ const ProfilePage = () => {
             alt={user.name}
           />
           <h1>{user.name}</h1>
+          <p>{user.description}</p>
           <audio controls>
             <source
               src={user.audio}
               // type="mp3"
             />
           </audio>
+          <Link to="/profile/edit">Edit Profile</Link>
         </header>
       )}
     </div>

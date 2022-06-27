@@ -4,7 +4,9 @@ import { useEffect, useState } from 'react';
 import HomePage from './pages/HomePage';
 import RegisterPage from './pages/RegisterPage';
 import LogInPage from './pages/LogInPage';
-import ProfileEdit from './pages/ProfileEdit';
+import ProfilePage from './pages/ProfilePage';
+import ProfileSearchPage from './pages/ProfileSearchPage';
+import ProfileEditPage from './pages/ProfileEditPage';
 import SoundCreatePage from './pages/SoundCreatePage';
 import SoundEditPage from './pages/SoundEditPage';
 import SoundDetailPage from './pages/SoundDetailPage';
@@ -15,7 +17,6 @@ import { loadUserInformation } from './services/authentication';
 import ItemCreate from './pages/ItemCreate';
 import ItemPage from './pages/ItemPage';
 
-import ProfilePage from './pages/ProfilePage';
 import LibraryCreate from './pages/LibraryCreate';
 import LibraryDetailPage from './pages/LibraryDetailPage';
 import LibrariesHubPage from './pages/LibrariesHubPage';
@@ -37,8 +38,9 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/log-in" element={<LogInPage />} />
-          <Route path="/profile/edit" element={<ProfileEdit />} />
+          <Route path="/profile/edit" element={<ProfileEditPage />} />
           <Route path="/profile/:id" element={<ProfilePage />} />
+          <Route path="/profile/search" element={<ProfileSearchPage />} />
           <Route path="/sound-create" element={<SoundCreatePage />} />
           <Route path="/item-create" element={<ItemCreate />} />
           <Route path="/item/:id" element={<ItemPage />} />
