@@ -8,8 +8,10 @@ export const loadItems = (id) => {
   return api.get(`/item/${id}`).then((response) => response.data);
 };
 
-export const setBookmark = (id) => {
-  return api.post(`/${id}/bookmark`).then((response) => response.data);
+export const addBookmark = (id, selectedLibraryName) => {
+  return api
+    .post(`/${id}/bookmark`, { selectedLibraryName })
+    .then((response) => console.log(response.data));
 };
 
 export const loadLibraries = () => {
