@@ -2,8 +2,8 @@
 
 const { Router } = require('express');
 const Library = require('../models/library');
-
 const Sound = require('./../models/sound');
+const { cloudinary } = require('./../utils/cloudinary');
 
 const router = new Router();
 
@@ -63,6 +63,18 @@ router.post('/create', (req, res, next) => {
     quality
   } = req.body;
 
+  // const fileStr = soundFile; // <-- works: there is this long file string stored in sound File
+  // console.log(req.body); // <-- undefined - why? when i console loged the str it starts with: 'data:audio/mpeg;base64....'
+
+  // cloudinary.uploader
+  //   .upload(fileStr, { resource_type: 'video' })
+  //   .then((sound) => {
+  //     console.log(sound);
+  //   })
+  //   .catch((error) => {
+  //     next(error);
+  //   });
+
   Sound.create({
     title,
     description,
@@ -74,16 +86,12 @@ router.post('/create', (req, res, next) => {
     soundFile,
     quality
   })
-
-    // Sound.create(example) // put example here and make t a get route to create an example sound
-
     .then((sound) => {
       res.json({ sound });
     })
     .catch((error) => {
       next(error);
     });
-  console.log(req.user);
 });
 
 router.patch('/:id/edit', (req, res, next) => {

@@ -15,15 +15,28 @@ const SoundForm = ({sound, onSoundChange, onSoundSubmit, buttonLabel}) => {
         setCheckedState(updatedCheckedState);
     
         let soundArray = sound.tags
+
         if(!sound.tags.includes(tags[position])) 
             {
                 soundArray.push(tags[position])
             } else {
-                soundArray = soundArray.filter(item => item !== tags[position]) //problem: item is not removed from array - dont get it
+                soundArray = sound.tags.filter(item => item !== tags[position])
             }
         onSoundChange({...sound, tags: soundArray})
-
     };
+
+    const handleFileInputChange = (event) => {
+
+      // const file = event.target.files[0];
+      // const reader = new FileReader()
+      // reader.readAsDataURL(file) // <-- new / result os a base64 encoded audio file / problem: creation does not work
+      // reader.onloadend = () => {
+      //   onSoundChange({...sound, soundFile: reader.result})
+      //   //console.log(reader.result)
+      // }
+     
+      onSoundChange({...sound, soundFile: event.target.value}) // <-- muss wieder gelöscht werden
+    }
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
@@ -42,16 +55,24 @@ const SoundForm = ({sound, onSoundChange, onSoundSubmit, buttonLabel}) => {
         })
     }
   return (
+    <div>
     <form onSubmit={(event) => handleFormSubmit(event)}>
     <label htmlFor="titleInput">Title</label>
     <input id="titleInput" onChange={(event)=> onSoundChange({...sound, title: event.target.value})} value={sound.title} placeholder="A title for your sound"/>
 
     <label htmlFor="descriptionInput">Description</label>
     <textarea id="descriptionInput" onChange={(event)=> onSoundChange({...sound, description: event.target.value})} value={sound.description} placeholder="A short description"/>
-
-    <label htmlFor="uploadInput">Upload Sound File</label>
-    <input id="uploadInput" onChange={(event)=> onSoundChange({...sound, soundFile: event.target.value})} value={sound.soundFile} placeholder="Select a file"/>
     
+    <label htmlFor="uploadInput">Upload Sound File</label>
+        <input
+          id="uploadInput"
+          type="file"
+          accept="audio/*"
+          name="soundFile"
+          //value={sound.soundFile}
+          onChange={handleFileInputChange}
+        />
+
     <h3>Add Tags</h3>
     <ul className="tags-list">
         {tags.map(( name , index) => {
@@ -90,6 +111,7 @@ const SoundForm = ({sound, onSoundChange, onSoundSubmit, buttonLabel}) => {
 
     <button>{buttonLabel}</button>
 </form>
+</div>
   )
 }
 
