@@ -1,0 +1,12 @@
+.profile-search-form {
+  flex-direction: row;
+  input {
+    flex: 1;
+  }
+  label {
+    opacity: 0;
+    font-size: 1px;
+    position: absolute;
+    z-index: -9999;
+  }
+}

@@ -1,0 +1,18 @@
+$profile-image-size: 6rem;
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+  img {
+    width: $profile-image-size;
+    height: $profile-image-size;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  span {
+    font-size: 1.25rem;
+    font-weight: 400;
+  }
+}

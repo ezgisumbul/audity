@@ -8,7 +8,7 @@ const User = require('./../models/user');
 const router = new Router();
 
 router.post('/sign-up', (req, res, next) => {
-  const { name, email, password, picture, sound } = req.body;
+  const { name, email, password, description, picture, sound } = req.body;
   bcryptjs
     .hash(password, 10)
     .then((hash) => {
@@ -16,6 +16,7 @@ router.post('/sign-up', (req, res, next) => {
         name,
         email,
         passwordHashAndSalt: hash,
+        description,
         picture,
         sound
       });

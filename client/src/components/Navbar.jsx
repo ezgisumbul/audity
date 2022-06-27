@@ -16,6 +16,7 @@ const Navbar = () => {
   return (
     <nav>
       <Link to="/">Home</Link>
+      <Link to="/profile/search">Search for Profiles</Link>
       {(user && (
         <>
           <Link to="/sound-create">Upload New Sound</Link>
