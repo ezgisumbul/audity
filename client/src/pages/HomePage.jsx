@@ -1,9 +1,7 @@
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import SoundMap from './SoundMap';
 import { soundList } from '../services/sound';
-import GenericMap from './GenericMap';
-import { Marker } from '@react-google-maps/api';
 import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
@@ -33,20 +31,7 @@ const HomePage = () => {
 
       <div>
         {/* <div className="map-container">MAP</div> */}
-        <SoundMap
-          sounds={sounds}
-          onMove={handleMapMove}
-          /* {sounds.map((sound) => (
-            <Marker
-              key={sound._id}
-              position={{
-                lat: sound.position.coordinates[1],
-                lng: sound.position.coordinates[0]
-              }}
-              onClick={() => navigate(`/sound/${sound._id}`)}
-            />
-          ))}  */
-        />
+        <SoundMap sounds={sounds} onMove={handleMapMove} />
       </div>
       <div>PLAYER</div>
       <h2>Welcome to Audity. Create an account and listen to your city.</h2>

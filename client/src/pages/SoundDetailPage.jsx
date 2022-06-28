@@ -5,50 +5,58 @@ import formatPrice from '../utils/format-price';
 
 import React from 'react';
 import SoundMap from './SoundMap';
-import GenericMap from './GenericMap';
 
 const SoundDetailPage = () => {
   const [sound, setSound] = useState(null);
 
   const { id } = useParams();
 
+  //const [sounds, setSounds] = useState();
+
   useEffect(() => {
-    soundLoad(id).then((response) => setSound(response.sound));
+    soundLoad(id).then((response) => {
+      const arr = [];
+      arr.push(response.sound);
+      setSound(arr);
+      console.log(response.sound.position.coordinates);
+    });
   }, [id]);
 
   return (
     <div>
       {sound && (
         <>
-          <h1>{sound.title}</h1>
-          <span>{sound.createdAt}</span> {/* todo: format date */}
+          <h1>{sound[0].title}</h1>
+          <span>{sound[0].createdAt}</span> {/* todo: format date */}
           <h2>
             A sound by{' '}
-            <Link to={`/profile/${sound.owner._id}`}>{sound.owner.name}</Link>
+            <Link to={`/profile/${sound[0].owner._id}`}>
+              {sound[0].owner.name}
+            </Link>
           </h2>
-          <p>{sound.description}</p>
+          <p>{sound[0].description}</p>
           <ul>
-            {sound.tags.map((item) => (
+            {sound[0].tags.map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>
+          <SoundMap sounds={sound} />
         </>
       )}
       <br></br>
-      {/* <SoundMap />  // This is still not working*/}
       {sound && (
         <>
           <audio controls>
             <source
-              src={sound.soundFile}
+              src={sound[0].soundFile}
               // type="mp3"
             />
           </audio>
 
           <small>
-            {sound.price === 0
+            {sound[0].price === 0
               ? 'you can use it for free'
-              : 'price: ' + formatPrice(sound.price)}
+              : 'price: ' + formatPrice(sound[0].price)}
           </small>
         </>
       )}

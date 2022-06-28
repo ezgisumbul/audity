@@ -2,13 +2,9 @@ import { Marker } from '@react-google-maps/api';
 import GenericMap from './GenericMap';
 
 const SoundInputMap = ({ position, onPositionChange }) => {
-  console.log(position);
-
   const handleSoundLocationSetting = (event) => {
     const lat = event.latLng.lat();
     const lng = event.latLng.lng();
-
-    console.log(lat, lng);
 
     onPositionChange({ type: 'Point', coordinates: [lat, lng] });
   };
