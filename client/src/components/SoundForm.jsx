@@ -76,25 +76,6 @@ const SoundForm = ({sound, onSoundChange, onSoundSubmit, buttonLabel}) => {
         />
 
     <h3>Add Tags</h3>
-    {/* <ul className="tags-list">
-        {tags.map(( name , index) => {
-          return (
-            <li key={index}>
-              <div className="tags-list-item">
-                  <input
-                    type="checkbox"
-                    id={`custom-checkbox-${index}`}
-                    name={name}
-                    value={name}
-                    checked={checkedState[index]}
-                    onChange={() => handleTagListChange(index)}
-                  />
-                  <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
-              </div>
-            </li>
-          );
-        })}
-      </ul> */}
 
     <TagsCheckboxComponent checkedStateArray={checkedState} onhandleTagListChange={handleTagListChange}/>
 

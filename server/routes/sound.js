@@ -19,24 +19,23 @@ router.get('/list', (req, res, next) => {
 
 router.get('/search', (req, res, next) => {
   const { tags, quality } = req.query;
+
   let queryObj = {};
 
-  if (req.user) {
+  let tagsArray = tags.split(',');
+  let qualityArray = quality.split(',');
+
+  if (quality) {
     queryObj = {
       $and: [
         { published: true },
-        //{ owner: { $ne: { _id: req.user.id } } },
-        { tags: { $in: tags } },
-        { quality } // todo: change so that it is minimum this quality
+        { tags: { $in: tagsArray } },
+        { quality: { $in: qualityArray } } // todo: change so that it is minimum this quality??
       ]
     };
   } else {
     queryObj = {
-      $and: [
-        { published: true },
-        { tags: { $in: tags } },
-        { quality } // to do: change so that it is minimum this quality
-      ]
+      $and: [{ published: true }, { tags: { $in: tagsArray } }]
     };
   }
 
