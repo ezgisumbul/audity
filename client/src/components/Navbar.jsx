@@ -17,6 +17,7 @@ const Navbar = () => {
     <nav>
       <Link to="/">Home</Link>
       <Link to="/profile/search">Search for Profiles</Link>
+      <Link to="/sound/search">Search for Sound</Link>
       {(user && (
         <>
           <Link to="/sound-create">Upload New Sound</Link>

@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { tags } from './../utils/tags'
+import TagsCheckboxComponent from './TagsCheckboxComponent';
 
 const SoundForm = ({sound, onSoundChange, onSoundSubmit, buttonLabel}) => {
-
+    
     const [checkedState, setCheckedState] = useState(
-        new Array(tags.length).fill(false)
+      //new Array(tags.length).fill(false)
+      new Array(tags.length).fill(false).map((item, index) => { return sound.tags.includes(tags[index]) ? !item : item})
       );
 
     const  handleTagListChange = (position) => {
@@ -74,7 +76,7 @@ const SoundForm = ({sound, onSoundChange, onSoundSubmit, buttonLabel}) => {
         />
 
     <h3>Add Tags</h3>
-    <ul className="tags-list">
+    {/* <ul className="tags-list">
         {tags.map(( name , index) => {
           return (
             <li key={index}>
@@ -92,7 +94,9 @@ const SoundForm = ({sound, onSoundChange, onSoundSubmit, buttonLabel}) => {
             </li>
           );
         })}
-      </ul>
+      </ul> */}
+
+    <TagsCheckboxComponent checkedStateArray={checkedState} onhandleTagListChange={handleTagListChange}/>
 
     <label htmlFor="qualityInput">Quality of the Recording</label>
     <select id="qualityInput" onChange={(event)=> onSoundChange({...sound, quality: event.target.value})} value={sound.quality} >
