@@ -1,30 +1,24 @@
-import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
+import { Marker } from '@react-google-maps/api';
 import { useNavigate } from 'react-router-dom';
+import GenericMap from './GenericMap';
 
-const SoundMap = ({ sounds }) => {
-  const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
-  });
-
+const SoundMap = ({ sounds, onMove }) => {
   const navigate = useNavigate();
+  console.log(sounds);
 
   return (
-    (isLoaded && (
-      <GoogleMap
-        mapContainerStyle={{ width: '100vw', height: '400px' }}
-        center={{ lat: 52.520008, lng: 13.404954 }}
-        zoom={10}
-        options={{ fullscreenControl: false, streetViewControl: false }}
-      >
-        {sounds.map((sound) => (
-          <Marker
-            key={sound._id}
-            position={{ lat: 52.520008, lng: 13.404954 }}
-            onClick={() => navigate(`/sound/${sound._id}`)}
-          />
-        ))}
-      </GoogleMap>
-    )) || <></>
+    <GenericMap onMove={onMove}>
+      {sounds.map((sound) => (
+        <Marker
+          key={sound._id}
+          position={{
+            lat: sound.position.coordinates[0],
+            lng: sound.position.coordinates[1]
+          }}
+          onClick={() => navigate(`/sound/${sound._id}`)}
+        />
+      ))}
+    </GenericMap>
   );
 };
 

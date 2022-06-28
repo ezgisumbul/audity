@@ -10,6 +10,7 @@ import ProfileEditPage from './pages/ProfileEditPage';
 import SoundCreatePage from './pages/SoundCreatePage';
 import SoundEditPage from './pages/SoundEditPage';
 import SoundDetailPage from './pages/SoundDetailPage';
+import SoundSearchPage from './pages/SoundSearchPage';
 
 import Navbar from './components/Navbar';
 import AuthenticationContext from './context/authentication';
@@ -49,6 +50,7 @@ const App = () => {
           <Route path="/libraries" element={<LibrariesHubPage />} />
           <Route path="/sound/:id/edit" element={<SoundEditPage />} />
           <Route path="/sound/:id" element={<SoundDetailPage />} />
+          <Route path="/sound/search" element={<SoundSearchPage />} />
         </Routes>
       </BrowserRouter>
     </AuthenticationContext.Provider>
