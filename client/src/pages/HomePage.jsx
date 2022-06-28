@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import SoundMap from './SoundMap';
+import SoundMap from './../components/SoundMap';
 import { soundList } from '../services/sound';
 import { useNavigate } from 'react-router-dom';
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import SoundInputMap from '../pages/SoundInputMap';
+import SoundInputMap from './SoundInputMap';
 import { tags } from './../utils/tags';
 import TagsCheckboxComponent from './TagsCheckboxComponent';
 
