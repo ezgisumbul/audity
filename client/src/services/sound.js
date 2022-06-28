@@ -12,11 +12,6 @@ export const soundLoad = (id) =>
 export const soundList = () =>
   api.get("/sound/list").then((response) => response.data);
 
-export const houseSearch = (filters) =>
-  api
-    .get(`/house/search?${new URLSearchParams(filters).toString()}`)
-    .then((response) => response.data);
-
 export const soundSearch = (query) =>
   api
     .get(`/sound/search?${new URLSearchParams(query).toString()}`)

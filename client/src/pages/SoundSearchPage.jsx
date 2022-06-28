@@ -6,10 +6,9 @@ import { soundSearch } from './../services/sound'
 const qualities = ['high', 'medium', 'low']
 
 const SoundSearchPage = () => {
-
   const [checkedState, setCheckedState] = useState(
     new Array(tags.length).fill(false)
-  )
+  );
 
   const [checkedQualitiesState, setCheckedQualitiesState] = useState(
     new Array(qualities.length).fill(false)
@@ -116,7 +115,7 @@ const onhandleQualitiesChange = (position) => {
       </div>
 
     </div>
-  )
-}
+  );
+};
 
-export default SoundSearchPage
+export default SoundSearchPage;
