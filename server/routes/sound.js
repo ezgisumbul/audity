@@ -83,7 +83,7 @@ router.post('/create', (req, res, next) => {
     position,
     published,
     owner: req.user._id,
-    soundFile,
+    soundFile: 'test.mp3',
     quality
   })
     .then((sound) => {
@@ -132,7 +132,7 @@ router.patch('/:id/edit', (req, res, next) => {
 
 router.delete('/:id/delete', (req, res, next) => {
   const { id } = req.params;
-  Pet.findByIdAndDelete(id)
+  Sound.findByIdAndDelete(id)
     .then(() => {
       res.json({});
     })
