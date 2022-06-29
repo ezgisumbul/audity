@@ -4,7 +4,7 @@ import { useParams, Link } from 'react-router-dom';
 import formatPrice from '../utils/format-price';
 
 import React from 'react';
-import SoundMap from './SoundMap';
+import SoundMap from './../components/SoundMap';
 
 const SoundDetailPage = () => {
   const [sound, setSound] = useState(null);
