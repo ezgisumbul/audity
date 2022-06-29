@@ -8,13 +8,13 @@ const Sound = require('./../models/sound');
 const Item = require('../models/item');
 const Library = require('./../models/library');
 
-router.get('/', (req, res, next) => {
-  // res.json({ type: 'success', data: { title: 'Hello World' } });
-  console.log('HALLO');
-  Sound.find().then((sounds) => {
-    res.json({ sounds });
-  });
-});
+// router.get('/', (req, res, next) => {
+//   // res.json({ type: 'success', data: { title: 'Hello World' } });
+//   console.log('HALLO');
+//   Sound.find().then((sounds) => {
+//     res.json({ sounds });
+//   });
+// });
 
 router.get('/item/:id', (req, res, next) => {
   const { id } = req.params;
@@ -27,21 +27,6 @@ router.post('/item', (req, res, next) => {
   // res.json({ type: 'success', data: { title: 'Hello World' } });
   const { name } = req.body;
   Item.create({ name, owner: req.user._id }).then((item) => res.json({ item }));
-});
-
-router.get('/libraries', (req, res, next) => {
-  Library.find()
-    .then((libraries) => {
-      res.json({ libraries });
-    })
-    .catch((err) => next(err));
-});
-
-router.post('/libraries', (req, res, next) => {
-  const { title } = req.body;
-  Library.create({ title, user: req.user._id }).then((library) =>
-    res.json({ library })
-  );
 });
 
 // Here instead of create we will have push to library array. we need library id.

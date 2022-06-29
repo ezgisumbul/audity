@@ -20,7 +20,7 @@ import ItemPage from './pages/ItemPage';
 
 import LibraryCreate from './pages/LibraryCreate';
 import LibraryDetailPage from './pages/LibraryDetailPage';
-import LibrariesHubPage from './pages/LibrariesHubPage';
+import LibraryListPage from './pages/LibraryListPage';
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -43,11 +43,11 @@ const App = () => {
           <Route path="/profile/:id" element={<ProfilePage />} />
           <Route path="/profile/search" element={<ProfileSearchPage />} />
           <Route path="/sound-create" element={<SoundCreatePage />} />
-          <Route path="/item-create" element={<ItemCreate />} />
+          <Route path="/item/create" element={<ItemCreate />} />
           <Route path="/item/:id" element={<ItemPage />} />
-          <Route path="/library-create" element={<LibraryCreate />} />
+          <Route path="/library/create" element={<LibraryCreate />} />
           <Route path="/library/:id" element={<LibraryDetailPage />} />
-          <Route path="/libraries" element={<LibrariesHubPage />} />
+          <Route path="/library/list" element={<LibraryListPage />} />
           <Route path="/sound/:id/edit" element={<SoundEditPage />} />
           <Route path="/sound/:id" element={<SoundDetailPage />} />
           <Route path="/sound/search" element={<SoundSearchPage />} />
