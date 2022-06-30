@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { loadItems, addBookmark, loadLibraries } from '../services/item';
+import { loadItems, addBookmark } from '../services/item';
+import { listLibraries } from '../services/library';
 
 const ItemPage = () => {
   const [item, setItem] = useState(null);
@@ -24,7 +25,7 @@ const ItemPage = () => {
   };
 
   useEffect(() => {
-    loadLibraries().then((data) => {
+    listLibraries().then((data) => {
       //   console.log(data);
       setLibraries(data.libraries);
     });

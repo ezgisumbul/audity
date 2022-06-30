@@ -13,11 +13,3 @@ export const addBookmark = (id, selectedLibraryName) => {
     .post(`/${id}/bookmark`, { selectedLibraryName })
     .then((response) => console.log(response.data));
 };
-
-export const loadLibraries = () => {
-  return api.get('/libraries').then((response) => response.data);
-};
-
-export const libraryCreate = (library) => {
-  return api.post('/libraries', library).then((response) => response.data);
-};
