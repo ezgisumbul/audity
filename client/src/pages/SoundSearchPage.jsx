@@ -3,6 +3,7 @@ import { tags } from './../utils/tags';
 import TagsCheckboxComponent from './../components/TagsCheckboxComponent';
 import { soundSearch } from './../services/sound'
 import SoundCardList from './../components/SoundCardList';
+import SoundMap from './../components/SoundMap';
 
 const qualities = ['high', 'medium', 'low'];
 
@@ -16,11 +17,12 @@ const SoundSearchPage = () => {
   );
 
   const [query, setQuery] = useState({
+    term: '',
     tags: [],
     quality: []
   });
 
-  const [sounds, setSounds] = useState(['some']);
+  const [sounds, setSounds] = useState([]);
 
   useEffect(() => {
     soundSearch(query).then((response) => {
@@ -69,10 +71,24 @@ const SoundSearchPage = () => {
     setQuery({ ...query, quality: qualityArray });
   };
 
+  const handleTermInputChange = (event) => {
+    setQuery({...query, term: event.target.value})
+    console.log(event.target.value)
+  }
+
   return (
     <div>
+
       <h1>Search for Sounds</h1>
-      <input type="text" />
+      <label htmlFor="input-search-term">Search by Name</label>
+        <input
+          id="input-search-term"
+          type="text"
+          placeholder="Search for User's Profiles ..."
+          value={query.term}
+          onChange={handleTermInputChange}
+        />
+
       <h1>Filter by Tags</h1>
       <form onSubmit={(event) => handleFormSubmit(event)}>
         <TagsCheckboxComponent
@@ -105,7 +121,10 @@ const SoundSearchPage = () => {
       <div>
         <ul>
         {sounds && 
+          (<>
           <SoundCardList sounds={sounds} />
+          <SoundMap sounds={sounds} />
+          </>)
         }
         </ul>
       </div>

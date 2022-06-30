@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import SoundMap from './../components/SoundMap';
 import { soundList } from '../services/sound';
-import { useNavigate } from 'react-router-dom';
+import SoundCardList from './../components/SoundCardList';
 
 const HomePage = () => {
   const [filters, setFilters] = useState({

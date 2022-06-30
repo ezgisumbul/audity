@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
-import formateDate from '../utils/format-date';
-import './SoundCard.scss';
+import { Link } from "react-router-dom";
+import formateDate from "../utils/format-date";
+import "./SoundCard.scss";
 
 const SoundCard = ({ sound }) => {
   console.log(sound);
@@ -8,7 +8,7 @@ const SoundCard = ({ sound }) => {
   return (
     <div className="sound-card">
       <div>{sound.title}</div>
-      <span>{formateDate(sound.createdAt)}</span>
+      <span>{formateDate(sound.recordedAt)}</span>
       <span>{sound.owner && sound.owner.name}</span>
       <Link to={`/sound/${sound._id}`}>Details</Link>
       <audio controls>
