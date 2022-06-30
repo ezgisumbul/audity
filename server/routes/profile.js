@@ -28,7 +28,7 @@ router.get('/:id', routeGuard, (req, res, next) => {
   User.findById(id)
     .then((document) => {
       user = document;
-      return Sound.find({ owner: id });
+      return Sound.find({ owner: id }).populate('owner');
     })
     .then((sounds) => {
       res.json({ profile: user, sounds });
