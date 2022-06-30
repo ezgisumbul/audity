@@ -1,5 +1,6 @@
 import { soundLoad } from './../services/sound';
-import { useState, useEffect } from 'react';
+import { useContext, useState, useEffect } from 'react';
+import AuthenticationContext from '../context/authentication';
 import { useParams, Link } from 'react-router-dom';
 import formatPrice from '../utils/format-price';
 
@@ -22,6 +23,8 @@ const SoundDetailPage = () => {
     });
   }, [id]);
 
+  const { user } = useContext(AuthenticationContext);
+
   return (
     <div>
       {sound && (
@@ -41,11 +44,8 @@ const SoundDetailPage = () => {
             ))}
           </ul>
           <SoundMap sounds={sound} />
-        </>
-      )}
-      <br></br>
-      {sound && (
-        <>
+       
+
           <audio controls>
             <source
               src={sound[0].soundFile}
@@ -58,13 +58,18 @@ const SoundDetailPage = () => {
               ? 'you can use it for free'
               : 'price: ' + formatPrice(sound[0].price)}
           </small>
-        </>
-      )}
+    
       <br></br>
       Link to similar Sounds?
       <br></br>
       <button>add to sound library</button>
-      <Link to={`./edit`}>Edit</Link>
+      {sound[0].owner._id === user._id && (
+                  <Link to={`/sound/${id}/edit`}>
+                    Edit Sound
+                  </Link>
+                )}
+      </>
+      )}
     </div>
   );
 };

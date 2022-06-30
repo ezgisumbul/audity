@@ -22,21 +22,25 @@ router.get('/search', (req, res, next) => {
 
   let queryObj = {};
 
-  let tagsArray = tags.split(',');
-  let qualityArray = quality.split(',');
+  if (tags || quality) {
+    // serach in case user searches on SerachSoundPage for sounds with specific tags/quality
 
-  if (quality) {
-    queryObj = {
-      $and: [
-        { published: true },
-        { tags: { $in: tagsArray } },
-        { quality: { $in: qualityArray } } // todo: change so that it is minimum this quality??
-      ]
-    };
-  } else {
-    queryObj = {
-      $and: [{ published: true }, { tags: { $in: tagsArray } }]
-    };
+    let tagsArray = tags.split(',');
+    let qualityArray = quality.split(',');
+
+    if (quality) {
+      queryObj = {
+        $and: [
+          { published: true },
+          { tags: { $in: tagsArray } },
+          { quality: { $in: qualityArray } } // todo: change so that it is minimum this quality??
+        ]
+      };
+    } else {
+      queryObj = {
+        $and: [{ published: true }, { tags: { $in: tagsArray } }]
+      };
+    }
   }
 
   Sound.find(queryObj)
@@ -102,10 +106,11 @@ router.patch('/:id/edit', (req, res, next) => {
     price,
     position,
     published,
-    owner,
     soundFile,
     quality
   } = req.body;
+  const owner = req.user._id;
+  console.log(owner); // problem
   Sound.findByIdAndUpdate(
     { _id: id, owner },
     {
@@ -115,7 +120,6 @@ router.patch('/:id/edit', (req, res, next) => {
       price,
       position,
       published,
-      owner,
       soundFile,
       quality
     },

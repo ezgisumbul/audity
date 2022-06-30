@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { tags } from './../utils/tags'
 import TagsCheckboxComponent from './../components/TagsCheckboxComponent';
 import { soundSearch } from './../services/sound'
+import SoundCardList from './../components/SoundCardList';
 
 const qualities = ['high', 'medium', 'low']
 
@@ -102,14 +103,7 @@ const onhandleQualitiesChange = (position) => {
       <div>
         <ul>
         {sounds && (
-          sounds.map((sound, index) => {
-            return (
-              // SoundCard component would be nice here
-              <li key={index}>
-                <h3>{sound.title}</h3>
-              </li>
-            )
-          })
+          <SoundCardList sounds={sounds} />
         )}
         </ul>
       </div>
