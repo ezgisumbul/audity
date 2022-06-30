@@ -21,6 +21,8 @@ import ItemPage from './pages/ItemPage';
 import LibraryCreate from './pages/LibraryCreate';
 import LibraryDetailPage from './pages/LibraryDetailPage';
 import LibrariesHubPage from './pages/LibrariesHubPage';
+import MessageThreadPage from './pages/MessageThreadPage';
+import MessageDetailPage from './pages/MessageDetailPage';
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -51,6 +53,8 @@ const App = () => {
           <Route path="/sound/:id/edit" element={<SoundEditPage />} />
           <Route path="/sound/:id" element={<SoundDetailPage />} />
           <Route path="/sound/search" element={<SoundSearchPage />} />
+          <Route path="/message/list" element={<MessageThreadPage />} />
+          <Route path="/message/:id" element={<MessageDetailPage />} />
         </Routes>
       </BrowserRouter>
     </AuthenticationContext.Provider>
