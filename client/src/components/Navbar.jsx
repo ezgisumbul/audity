@@ -26,7 +26,7 @@ const Navbar = () => {
         <>
           <Link to="/message/list">Messages</Link>
           <Link to="/sound-create">Upload New Sound</Link>
-          <span>Welcome {user.name}</span>
+          <span>Welcome<Link to={`/profile/${user._id}`}>{user.name}</Link></span>
           <button onClick={handleSignOut}>Sign Out</button>
         </>
       )) || (

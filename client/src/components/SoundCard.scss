@@ -1,0 +1,14 @@
+$primary-color: #cbcbcb;
+
+.sound-card {
+  width: 100vw;
+  height: 80px;
+  background-color: $primary-color;
+
+  margin-bottom: 1rem;
+  a {
+    padding: 1rem;
+    border: 1px solid black;
+    margin-left: 1rem;
+  }
+}

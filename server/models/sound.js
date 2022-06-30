@@ -81,6 +81,10 @@ const schema = new mongoose.Schema(
       type: String,
       enum: ['high', 'medium', 'low'],
       required: true
+    },
+
+    recordedAt: {
+      type: String
     }
   },
   { timestamps: true }

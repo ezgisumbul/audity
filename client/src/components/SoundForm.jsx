@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import SoundInputMap from './SoundInputMap';
-import { tags } from './../utils/tags';
-import TagsCheckboxComponent from './TagsCheckboxComponent';
+import { useState } from "react";
+import SoundInputMap from "./SoundInputMap";
+import { tags } from "./../utils/tags";
+import TagsCheckboxComponent from "./TagsCheckboxComponent";
 
 const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
   const [checkedState, setCheckedState] = useState(
@@ -46,14 +46,15 @@ const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
 
     setCheckedState(new Array(tags.length).fill(false));
     onSoundChange({
-      title: '',
-      description: '',
+      title: "",
+      description: "",
       tags: [],
       price: 0,
-      position: '',
+      position: "",
       published: true,
-      soundFile: '',
-      quality: 'medium'
+      soundFile: "",
+      quality: "medium",
+      recordedAt: "",
     });
   };
 
@@ -67,6 +68,17 @@ const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
             onSoundChange({ ...sound, title: event.target.value })
           }
           value={sound.title}
+          placeholder="A title for your sound"
+        />
+
+        <label htmlFor="dateInput">Recorded at</label>
+        <input
+          type="date"
+          id="dateInput"
+          onChange={(event) =>
+            onSoundChange({ ...sound, recordedAt: event.target.value })
+          }
+          value={sound.recordedAt}
           placeholder="A title for your sound"
         />
 
@@ -91,12 +103,12 @@ const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
           type="file"
           accept="audio/*"
           name="soundFile"
-          //value={sound.soundFile}
+          //value={sound.soundFile}  // <-- when I uncomment this it throws in error: Has to do with type: file (but there is a string stored in the db still)
           onChange={handleFileInputChange}
         />
 
-    <h3>Add Tags</h3>
-        
+        <h3>Add Tags</h3>
+
         <TagsCheckboxComponent
           checkedStateArray={checkedState}
           onhandleTagListChange={handleTagListChange}
@@ -129,7 +141,7 @@ const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
         />
 
         <label htmlFor="publishInput">
-          {sound.published ? 'set private' : 'set public'}
+          {sound.published ? "set private" : "set public"}
         </label>
         <input
           type="checkbox"

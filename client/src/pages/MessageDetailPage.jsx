@@ -6,17 +6,25 @@ import {
   messageThreadList,
   messageThreadLoad
 } from '../services/message';
+import { profileLoad } from '../services/profile';
+import formateDate from '../utils/format-date';
 import './MessageDetailPage.scss';
 
 const MessageDetailPage = () => {
   const { id } = useParams();
 
+  const [profile, setProfile] = useState(null);
   const [messages, setMessages] = useState([]);
   const [content, setContent] = useState('');
   const [threads, setThreads] = useState([]);
 
   useEffect(() => {
-    messageThreadLoad(id).then((data) => setMessages(data.messages));
+    profileLoad(id)
+      .then((data) => {
+        setProfile(data.profile);
+        return messageThreadLoad(id);
+      })
+      .then((data) => setMessages(data.messages));
   }, [id]);
 
   useEffect(() => {
@@ -45,10 +53,10 @@ const MessageDetailPage = () => {
   return (
     <div>
       {/* //Shows  ALL users the person has threads with. I just want to show the onbe who is owner of the thread */}
-      {threads.length && (
+      {profile && (
         <div className="message-user">
-          <img src={threads[0].picture} alt="" width="100px" />
-          <span>{threads[0].name}</span>
+          <img src={profile.picture} alt="" width="100px" />
+          <span>{profile.name}</span>
         </div>
       )}
       <div className="message-list">
@@ -59,7 +67,7 @@ const MessageDetailPage = () => {
               message.sender === user._id ? 'message-sent' : 'message-received'
             }
           >
-            <small>{new Date(message.createdAt).toLocaleString()}</small>
+            <small>{formateDate(message.createdAt)}</small>
             <br />
             <span>{message.content}</span>
           </div>

@@ -18,24 +18,80 @@ router.get('/list', (req, res, next) => {
 });
 
 router.get('/search', (req, res, next) => {
-  const { tags, quality } = req.query;
+  const { term, tags, quality } = req.query;
 
   let queryObj = {};
 
   let tagsArray = tags.split(',');
   let qualityArray = quality.split(',');
 
-  if (quality) {
+  if (quality && tags && term) {
     queryObj = {
       $and: [
         { published: true },
         { tags: { $in: tagsArray } },
-        { quality: { $in: qualityArray } } // todo: change so that it is minimum this quality??
+        { quality: { $in: qualityArray } },
+        {
+          $or: [
+            { title: { $regex: new RegExp(term, 'i') } },
+            { description: { $regex: new RegExp(term, 'i') } }
+          ]
+        }
       ]
+    };
+  } else if (quality && tags) {
+    queryObj = {
+      $and: [
+        { published: true },
+        { tags: { $in: tagsArray } },
+        { quality: { $in: qualityArray } }
+      ]
+    };
+  } else if (quality && term) {
+    queryObj = {
+      $and: [
+        { published: true },
+        { quality: { $in: qualityArray } },
+        {
+          $or: [
+            { title: { $regex: new RegExp(term, 'i') } },
+            { description: { $regex: new RegExp(term, 'i') } }
+          ]
+        }
+      ]
+    };
+  } else if (tags && term) {
+    queryObj = {
+      $and: [
+        { published: true },
+        { tags: { $in: tagsArray } },
+        {
+          $or: [
+            { title: { $regex: new RegExp(term, 'i') } },
+            { description: { $regex: new RegExp(term, 'i') } }
+          ]
+        }
+      ]
+    };
+  } else if (term) {
+    queryObj = {
+      $and: [
+        { published: true },
+        {
+          $or: [
+            { title: { $regex: new RegExp(term, 'i') } },
+            { description: { $regex: new RegExp(term, 'i') } }
+          ]
+        }
+      ]
+    };
+  } else if (tags) {
+    queryObj = {
+      $and: [{ published: true }, { tags: { $in: tagsArray } }]
     };
   } else {
     queryObj = {
-      $and: [{ published: true }, { tags: { $in: tagsArray } }]
+      $and: [{ published: true }, { quality: { $in: qualityArray } }]
     };
   }
 
@@ -59,7 +115,8 @@ router.post('/create', (req, res, next) => {
     position,
     published,
     soundFile,
-    quality
+    quality,
+    recordedAt
   } = req.body;
 
   // const fileStr = soundFile; // <-- works: there is this long file string stored in sound File
@@ -83,7 +140,8 @@ router.post('/create', (req, res, next) => {
     published,
     owner: req.user._id,
     soundFile: 'test.mp3', // <--- for dev as long sound upload does not work
-    quality
+    quality,
+    recordedAt
   })
     .then((sound) => {
       res.json({ sound });
@@ -102,10 +160,12 @@ router.patch('/:id/edit', (req, res, next) => {
     price,
     position,
     published,
-    owner,
     soundFile,
-    quality
+    quality,
+    recordedAt
   } = req.body;
+  const owner = req.user._id;
+  console.log(owner); // problem
   Sound.findByIdAndUpdate(
     { _id: id, owner },
     {
@@ -115,9 +175,9 @@ router.patch('/:id/edit', (req, res, next) => {
       price,
       position,
       published,
-      owner,
       soundFile,
-      quality
+      quality,
+      recordedAt
     },
     { new: true }
   )
