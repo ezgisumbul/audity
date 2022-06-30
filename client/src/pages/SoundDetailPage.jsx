@@ -18,7 +18,7 @@ const SoundDetailPage = () => {
       const arr = [];
       arr.push(response.sound);
       setSound(arr);
-      console.log(response.sound.position.coordinates);
+      /*       console.log(response.sound.position.coordinates); */
     });
   }, [id]);
 
