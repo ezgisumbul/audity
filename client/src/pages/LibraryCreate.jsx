@@ -9,7 +9,10 @@ const LibraryCreate = () => {
   });
 
   const handleFormSubmission = () => {
-    libraryCreate(library).then((data) => setLibrary(data));
+    libraryCreate(library).then((data) => {
+      setLibrary(data);
+      console.log(data);
+    });
   };
 
   return (
