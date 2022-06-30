@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import SoundMap from './../components/SoundMap';
 import { soundList } from '../services/sound';
 import { useNavigate } from 'react-router-dom';
-import SoundCard from '../components/SoundCard';
 
 const HomePage = () => {
   const [filters, setFilters] = useState({

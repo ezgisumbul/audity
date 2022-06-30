@@ -104,9 +104,9 @@ const SoundSearchPage = () => {
 
       <div>
         <ul>
-        {sounds && (
+        {sounds && 
           <SoundCardList sounds={sounds} />
-        )}
+        }
         </ul>
       </div>
     </div>
