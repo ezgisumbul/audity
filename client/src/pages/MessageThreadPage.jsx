@@ -13,7 +13,7 @@ const MessageThreadPage = () => {
   }, []);
 
   return (
-    <div>
+    <div className="message-thread-list">
       {threads.map((thread) => (
         <li key={thread._id}>
           <Link to={`/message/${thread._id}`}>

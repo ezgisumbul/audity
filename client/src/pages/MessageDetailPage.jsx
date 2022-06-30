@@ -6,6 +6,7 @@ import {
   messageThreadList,
   messageThreadLoad
 } from '../services/message';
+import formateDate from '../utils/format-date';
 import './MessageDetailPage.scss';
 
 const MessageDetailPage = () => {
@@ -59,7 +60,7 @@ const MessageDetailPage = () => {
               message.sender === user._id ? 'message-sent' : 'message-received'
             }
           >
-            <small>{new Date(message.createdAt).toLocaleString()}</small>
+            <small>{formateDate(message.createdAt)}</small>
             <br />
             <span>{message.content}</span>
           </div>
