@@ -16,6 +16,7 @@ const authenticationRouter = require('./routes/authentication');
 const libraryRouter = require('./routes/library');
 const soundRouter = require('./routes/sound');
 const profileRouter = require('./routes/profile');
+const messageRouter = require('./routes/message');
 
 const app = express();
 
@@ -56,6 +57,7 @@ app.use('/sound', soundRouter);
 app.use('/', baseRouter);
 app.use('/authentication', authenticationRouter);
 app.use('/profile', profileRouter);
+app.use('/message', messageRouter);
 
 app.use('/library', libraryRouter);
 // Catch missing routes and forward to error handler

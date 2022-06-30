@@ -18,7 +18,7 @@ const ProfilePage = () => {
 
   useEffect(() => {
     profileLoad(id).then((data) => {
-      console.log(data.profile);
+      /*       console.log(data.profile); */
       setUser(data.profile);
 
       /* setSounds(data.sounds); */
