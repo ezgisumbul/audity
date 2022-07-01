@@ -13,7 +13,7 @@ const LibraryDetailPage = () => {
       setLibrary(data.library);
       console.log(library);
     });
-  }, []);
+  }, [id, library]);
 
   // useEffect(() => {
   //   console.log('this is the second useEffect');
