@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { libraryEdit, libraryLoad } from '../services/library';
+import { libraryEdit, loadLibrary } from '../services/library';
 
 const LibraryEditPage = () => {
   const { id } = useParams();
@@ -9,27 +9,33 @@ const LibraryEditPage = () => {
 
   const navigate = useNavigate();
 
-  const handleFormSubmission = () => {
-    libraryEdit(id, library).then((data) => setLibrary(data));
+  const handleFormSubmission = (event) => {
+    event.preventDefault();
+    libraryEdit(id, library).then(() => {
+      navigate(`/library/${id}`);
+    });
   };
 
   useEffect(() => {
-    libraryLoad(id).then((data) => setLibrary(data.library));
+    loadLibrary(id).then((data) => setLibrary(data.library));
   }, [id]);
 
   return (
     <div>
-      <form onSubmit={handleFormSubmission}>
-        <label htmlFor="input-title">Title</label>
-        <input
-          id="input-title"
-          value={library.title}
-          onChange={(event) =>
-            setLibrary({ ...library, title: event.target.value })
-          }
-        />
-        <button>Submit</button>
-      </form>
+      <h1>Edit library name</h1>
+      {library && (
+        <form onSubmit={handleFormSubmission}>
+          <label htmlFor="input-title">Title</label>
+          <input
+            id="input-title"
+            value={library.title}
+            onChange={(event) =>
+              setLibrary({ ...library, title: event.target.value })
+            }
+          />
+          <button>Submit</button>
+        </form>
+      )}
     </div>
   );
 };

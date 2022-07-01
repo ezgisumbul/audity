@@ -212,14 +212,23 @@ router.get('/:id', (req, res, next) => {
     });
 });
 
-// router.post('/:id/bookmark', (req, res, next) => {
-//   const { id } = req.params;
+router.post('/:id/bookmark', (req, res, next) => {
+  const { id } = req.params;
+  // console.log('id:' + id);
+  const { selectedLibraryName } = req.body;
 
-//   Library.findOne({ sound: id }).then((sound) => {
-//     if (!sound) {
-//     }
-//   });
-// });
+  Library.findOneAndUpdate(
+    { title: selectedLibraryName, user: req.user._id, sound: { $ne: id } },
+    { $push: { sound: id } }
+  )
+
+    .then(() => {
+      res.json({});
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
 
 // router.delete('/:id/bookmark', (req, res, next) => {});
 
