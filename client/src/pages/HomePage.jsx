@@ -1,13 +1,13 @@
-import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import SoundMap from './../components/SoundMap';
-import { soundList } from '../services/sound';
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import SoundMap from "./../components/SoundMap";
+import { soundList } from "../services/sound";
 
 const HomePage = () => {
   const [filters, setFilters] = useState({
     lat: 38.75,
     lng: -9.25,
-    distance: 1
+    distance: 1,
   });
 
   const [sounds, setSounds] = useState([]);
@@ -22,10 +22,6 @@ const HomePage = () => {
 
   return (
     <div>
-      <header>
-        <h1>Audity</h1>
-      </header>
-
       <div>
         {/* <div className="map-container">MAP</div> */}
         <SoundMap sounds={sounds} onMove={handleMapMove} />
@@ -34,8 +30,8 @@ const HomePage = () => {
 
       <div>PLAYER</div>
       <h2>Welcome to Audity. Create an account and listen to your city.</h2>
-      <Link to={'/register'}>Register</Link>
-      <Link to={'/log-in'}>Sign in</Link>
+      <Link to={"/register"}>Register</Link>
+      <Link to={"/log-in"}>Sign in</Link>
       <footer>Lorem ipsum dolor sit amet</footer>
     </div>
   );

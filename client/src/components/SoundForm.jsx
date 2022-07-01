@@ -97,7 +97,7 @@ const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
           onPositionChange={(position) => onSoundChange({ ...sound, position })}
         />
 
-        <label htmlFor="uploadInput">Upload Sound File</label>
+        <label htmlFor="uploadInput">Upload file</label>
         <input
           id="uploadInput"
           type="file"

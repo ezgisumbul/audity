@@ -1,40 +1,40 @@
-import { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import './Navbar.scss';
-import AuthenticationContext from '../context/authentication';
-import { signOutUser } from './../services/authentication';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import "./Navbar.scss";
+import { MdClose } from "react-icons/md";
+import { FiMenu } from "react-icons/fi";
+import NavContent from "./NavContent";
 
 const Navbar = () => {
-  const { user, setUser } = useContext(AuthenticationContext);
+  const [navbarOpen, setNavbarOpen] = useState(false);
 
-  const navigate = useNavigate();
-
-  const handleSignOut = () => {
-    signOutUser().then(() => {
-      setUser(null);
-      navigate('/');
-    });
+  const handleToggleMenu = () => {
+    setNavbarOpen(!navbarOpen);
   };
 
   return (
-    <nav>
-      <Link to="/">Home</Link>
-      <Link to="/profile/search">Search for Profiles</Link>
-      <Link to="/sound/search">Search for Sound</Link>
-      {(user && (
-        <>
-          <Link to="/message/list">Messages</Link>
-          <Link to="/sound-create">Upload New Sound</Link>
-          <span>Welcome<Link to={`/profile/${user._id}`}>{user.name}</Link></span>
-          <button onClick={handleSignOut}>Sign Out</button>
-        </>
-      )) || (
-        <>
-          <Link to="/log-in">Log In</Link>
-          <Link to="/register">Register</Link>
-        </>
-      )}
+    <nav className="navBar">
+      <button className="toggelBtn" onClick={handleToggleMenu}>
+        {navbarOpen ? (
+          <MdClose style={{ color: "#fff", width: "40px", height: "40px" }} />
+        ) : (
+          <FiMenu style={{ color: "#7b7b7b", width: "40px", height: "40px" }} />
+        )}
+      </button>
+      <div className="mobile">
+        <NavContent
+          mobile={true}
+          navbarOpen={navbarOpen}
+          changeNavbarState={setNavbarOpen}
+        />
+      </div>
+      <div className="desktop">
+        <NavContent
+          mobile={false}
+          navbarOpen={navbarOpen}
+          changeNavbarState={setNavbarOpen}
+        />
+      </div>
+      <h1>AUDITY</h1>
     </nav>
   );
 };
