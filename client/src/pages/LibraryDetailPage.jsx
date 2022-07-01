@@ -11,9 +11,9 @@ const LibraryDetailPage = () => {
   useEffect(() => {
     loadLibrary(id).then((data) => {
       setLibrary(data.library);
-      // console.log(data.library);
+      console.log(library);
     });
-  }, [id]);
+  }, []);
 
   // useEffect(() => {
   //   console.log('this is the second useEffect');

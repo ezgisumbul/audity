@@ -4,37 +4,24 @@ import { loadLibrary, removeFromLibrary } from '../services/library';
 import AuthenticationContext from '../context/authentication';
 
 const LibrarySoundList = ({ library }) => {
-  //   const [library, setLibrary] = useState(null);
-
-  //   const { id } = useParams();
+  // These states are pointing to the same object but
+  // preventing the page to be recursively rendered or not being
+  // re-rendered at all combined with 2 useEffects below:
+  const [libraryUpdated, setLibraryUpdated] = useState(library);
+  const [libraryClone, setLibraryClone] = useState(library);
 
   useEffect(() => {
     loadLibrary(library._id).then((data) => {
-      console.log('LOAD LIBRARY:');
-      console.log(data);
-      //   setLibrary(data.library);
-      // console.log(data.library);
+      setLibraryUpdated(data.library);
     });
-  }, [library._id, library]);
+  }, [library._id, library, libraryClone]);
 
-  // useEffect(() => {
-  //   console.log('this is the second useEffect');
-  // }, [library]);
-
-  //   }, [id, library]); -> if I add library as a dependency then, the page
-  // re-renders when I remove an item. But it makes continuous get requests
-  // to the library/:id. How can I re-render but not make many requests?
+  useEffect(() => {}, [libraryClone]);
 
   const handleSoundRemovalFromLibrary = (soundToRemove) => {
-    console.log('SOUND TO REMOVE:');
-    console.log(soundToRemove);
     removeFromLibrary(library._id, soundToRemove)
-      .then((res) => {
-        // const newLibrary = res;
-        // setLibrary(newLibrary);
-        console.log('SUPPOSEDLY REMOVED');
-        console.log('res:');
-        console.log(res);
+      .then((result) => {
+        setLibraryClone(result);
       })
       .catch((error) => console.log(error));
   };
@@ -42,32 +29,23 @@ const LibrarySoundList = ({ library }) => {
   const { user } = useContext(AuthenticationContext);
 
   return (
-    library && (
+    libraryUpdated && (
       <div>
-        {/* <h1>{library.title}</h1> */}
-        {/* <h2>{library.user}</h2>
-        <h4>{user._id}</h4> */}
         {user && (
           <>
-            {library.user === user._id && (
-              <Link to={`/library/${library._id}/edit`} className="btn">
+            {libraryUpdated.user === user._id && (
+              <Link to={`/library/${libraryUpdated._id}/edit`} className="btn">
                 Edit library
               </Link>
             )}
           </>
         )}
 
-        {/* {
-          //   console.log('library')}
-          console.log(library.sound)
-        } */}
-
-        {library.sound &&
-          library.sound.map(
+        {libraryUpdated.sound &&
+          libraryUpdated.sound.map(
             (sound, index) =>
               sound && (
                 <div key={sound || index}>
-                  {console.log('SOUND TITLE')}
                   <h4>{sound.title}</h4>
                   {/* <h4>{sound.owner && sound.owner.name}</h4> */}
                   <audio controls>
@@ -78,13 +56,11 @@ const LibrarySoundList = ({ library }) => {
                   </audio>
                   {user && (
                     <>
-                      {library.user === user._id && (
+                      {libraryUpdated.user === user._id && (
                         <div>
                           <button
                             onClick={() => {
-                              handleSoundRemovalFromLibrary(sound);
-                              console.log('This is sound id');
-                              console.log(sound);
+                              handleSoundRemovalFromLibrary(sound._id);
                             }}
                           >
                             Remove from the library
