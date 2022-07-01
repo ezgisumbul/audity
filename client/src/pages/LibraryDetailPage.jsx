@@ -44,9 +44,14 @@ const LibraryDetailPage = () => {
         {user && (
           <>
             {library.user === user._id && (
-              <Link to={`/library/${id}/edit`} className="btn">
-                Edit library
-              </Link>
+              <>
+                <Link to={`/library/${id}/edit`} className="btn">
+                  Edit library
+                </Link>
+                <Link to={`/library/${id}/delete`} className="btn">
+                  Delete library
+                </Link>
+              </>
             )}
           </>
         )}

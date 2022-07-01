@@ -1,12 +1,17 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { loadLibrary, removeFromLibrary } from '../services/library';
+import {
+  libraryDelete,
+  listLibraries,
+  loadLibrary,
+  removeFromLibrary
+} from '../services/library';
 import AuthenticationContext from '../context/authentication';
 
-const LibrarySoundList = ({ library }) => {
+const LibrarySoundList = ({ library, libraries, setLibraries }) => {
   // These states are pointing to the same object but
   // preventing the page to be recursively rendered or not being
-  // re-rendered at all combined with 2 useEffects below:
+  // re-rendered at all combined with 3 useEffects below:
   const [libraryUpdated, setLibraryUpdated] = useState(library);
   const [libraryClone, setLibraryClone] = useState(library);
 
@@ -17,12 +22,25 @@ const LibrarySoundList = ({ library }) => {
   }, [library._id, library, libraryClone]);
 
   useEffect(() => {}, [libraryClone]);
+  useEffect(() => {}, [libraries]);
 
   const handleSoundRemovalFromLibrary = (soundToRemove) => {
     removeFromLibrary(library._id, soundToRemove)
       .then((result) => {
         setLibraryClone(result);
       })
+      .catch((error) => console.log(error));
+  };
+
+  const handleLibraryDeletion = (libraryId) => {
+    libraryDelete(libraryId)
+      .then(() => listLibraries())
+      .then((result) => {
+        setLibraries(result.libraries);
+        // console.log('deletion result', result);
+      })
+      // (result) => console.log('deletion result', result)
+
       .catch((error) => console.log(error));
   };
 
@@ -34,9 +52,22 @@ const LibrarySoundList = ({ library }) => {
         {user && (
           <>
             {libraryUpdated.user === user._id && (
-              <Link to={`/library/${libraryUpdated._id}/edit`} className="btn">
-                Edit library
-              </Link>
+              <>
+                <Link
+                  to={`/library/${libraryUpdated._id}/edit`}
+                  className="btn"
+                >
+                  Edit library
+                </Link>
+                <button
+                  onClick={() => {
+                    handleLibraryDeletion(libraryUpdated._id);
+                  }}
+                  className="btn"
+                >
+                  Delete library
+                </button>
+              </>
             )}
           </>
         )}
