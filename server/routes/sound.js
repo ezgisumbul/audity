@@ -119,17 +119,16 @@ router.post('/create', (req, res, next) => {
     recordedAt
   } = req.body;
 
-  // const fileStr = soundFile; // <-- works: there is this long file string stored in sound File
-  // console.log(req.body); // <-- undefined - why? when i console loged the str it starts with: 'data:audio/mpeg;base64....'
-
-  // cloudinary.uploader
-  //   .upload(fileStr, { resource_type: 'video' })
-  //   .then((sound) => {
-  //     console.log(sound);
-  //   })
-  //   .catch((error) => {
-  //     next(error);
-  //   });
+  const fileStr = soundFile; // <-- works: there is this long file string stored in sound File
+  console.log(req.body); // <-- undefined - why? when i console loged the str it starts with: 'data:audio/mpeg;base64....'
+  cloudinary.uploader
+    .upload(fileStr, { resource_type: 'video' })
+    .then((sound) => {
+      console.log(sound);
+    })
+    .catch((error) => {
+      next(error);
+    });
 
   Sound.create({
     title,
@@ -139,7 +138,7 @@ router.post('/create', (req, res, next) => {
     position,
     published,
     owner: req.user._id,
-    soundFile: 'test.mp3', // <--- for dev as long sound upload does not work
+    soundFile, // <--- for dev as long sound upload does not work
     quality,
     recordedAt
   })
