@@ -8,7 +8,7 @@ const SoundCard = ({ sound }) => {
   return (
     <div className="sound-card">
       <div>{sound.title}</div>
-      <span>{formateDate(sound.recordedAt)}</span>
+      <span>{sound.recordedAt && formateDate(sound.recordedAt)}</span>
       <span>{sound.owner && sound.owner.name}</span>
       <Link to={`/sound/${sound._id}`}>Details</Link>
       <audio controls>

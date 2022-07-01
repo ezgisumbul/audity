@@ -50,7 +50,7 @@ const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
       description: "",
       tags: [],
       price: 0,
-      position: "",
+      position: null,
       published: true,
       soundFile: "",
       quality: "medium",
