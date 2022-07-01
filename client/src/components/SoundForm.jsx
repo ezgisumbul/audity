@@ -29,13 +29,13 @@ const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
   };
 
   const handleFileInputChange = (event) => {
-    // const file = event.target.files[0];
-    // const reader = new FileReader()
-    // reader.readAsDataURL(file) // <-- new / result os a base64 encoded audio file / problem: creation does not work
-    // reader.onloadend = () => {
-    //   onSoundChange({...sound, soundFile: reader.result})
-    //   //console.log(reader.result)
-    // }
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file); // <-- new / result os a base64 encoded audio file / problem: creation does not work
+    reader.onloadend = () => {
+      onSoundChange({ ...sound, soundFile: reader.result });
+      //console.log(reader.result)
+    };
 
     onSoundChange({ ...sound, soundFile: event.target.value }); // <-- muss wieder gelöscht werden
   };
@@ -50,7 +50,7 @@ const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
       description: "",
       tags: [],
       price: 0,
-      position: "",
+      position: null,
       published: true,
       soundFile: "",
       quality: "medium",
@@ -97,7 +97,7 @@ const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
           onPositionChange={(position) => onSoundChange({ ...sound, position })}
         />
 
-        <label htmlFor="uploadInput">Upload Sound File</label>
+        <label htmlFor="uploadInput">Upload file</label>
         <input
           id="uploadInput"
           type="file"

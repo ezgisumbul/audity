@@ -1,6 +1,81 @@
+li {
+  list-style: none;
+}
+
 nav {
   display: flex;
-  a {
-    padding: 1em;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 1rem;
+}
+
+button {
+  border: 0;
+}
+
+.link {
+  position: relative;
+  display: block;
+  padding: 1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.toggelBtn {
+  @media (min-width: 900px) {
+    display: none;
+  }
+  position: fixed;
+  left: 10px;
+  top: 10px;
+  z-index: 10;
+  cursor: pointer;
+}
+
+// styling of mobile menu (wrapped in a div with class "mobile" )
+
+.mobile {
+  .navBar {
+    position: relative;
+  }
+
+  .menuNav {
+    @media (min-width: 900px) {
+      display: none;
+    }
+    padding: 0;
+    overflow-y: scroll;
+    position: fixed;
+    top: 0;
+    background: lightgoldenrodyellow;
+    left: 0;
+    bottom: 0;
+    height: 100vh;
+    width: 0;
+    overflow: hidden;
+    max-width: 290px;
+    z-index: 9;
+  }
+
+  .menuNav.showMenu {
+    width: 100%;
+  }
+
+  .menuNav li:first-child {
+    margin-top: 7rem;
+  }
+}
+
+// styling of desktop version menu (wrapped in a div with class "desktop" )
+
+.desktop {
+  .menuNav {
+    @media (max-width: 900px) {
+      display: none;
+    }
+    display: flex;
+    align-items: row;
   }
 }
