@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
 import { listLibraries } from '../services/library';
+import AuthenticationContext from '../context/authentication';
+import LibraryList from '../components/LibraryList';
 
 const LibraryListPage = () => {
   const [libraries, setLibraries] = useState([]);
+
   //   const [selectedLibraryName, setSelectedLibraryName] = useState('');
 
   useEffect(() => {
@@ -13,21 +15,24 @@ const LibraryListPage = () => {
     });
   }, []);
 
+  const { user } = useContext(AuthenticationContext);
+
   return (
     <div>
-      <Link to={'/library/create'}>Create new library</Link>
-      {libraries &&
-        libraries.map((library) => (
-          // I get a warning. Do I need to provide key to ul as well
-          // or putting all in a div and providing a key to the
-          // whole div??? key={library._id}
-          <ul>
-            <li key={library._id}>
-              {library.title}
-              {/* {library.item.map((item) => {})} */}
-            </li>
-          </ul>
-        ))}
+      {(!user && (
+        <Link to={'/library/create'}>Register to create a library</Link>
+      )) || <Link to={'/library/create'}>Create new library</Link>}
+
+      <div>
+        {user && (
+          <>
+            {libraries &&
+              libraries.map((library) => {
+                return <LibraryList library={library} key={library._id} />;
+              })}
+          </>
+        )}
+      </div>
     </div>
   );
 };

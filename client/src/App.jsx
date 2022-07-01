@@ -23,6 +23,7 @@ import LibraryDetailPage from './pages/LibraryDetailPage';
 import LibraryListPage from './pages/LibraryListPage';
 import MessageThreadPage from './pages/MessageThreadPage';
 import MessageDetailPage from './pages/MessageDetailPage';
+import LibraryEditPage from './pages/LibraryEditPage';
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -48,6 +49,7 @@ const App = () => {
           <Route path="/item/create" element={<ItemCreate />} />
           <Route path="/item/:id" element={<ItemPage />} />
           <Route path="/library/create" element={<LibraryCreate />} />
+          <Route path="/library/:id/edit" element={<LibraryEditPage />} />
           <Route path="/library/:id" element={<LibraryDetailPage />} />
           <Route path="/library/list" element={<LibraryListPage />} />
           <Route path="/sound/:id/edit" element={<SoundEditPage />} />

@@ -46,21 +46,6 @@ router.post('/:id/bookmark', (req, res, next) => {
     { title: selectedLibraryName, user: req.user._id },
     { $push: { item: id } }
   )
-
-    // const { id } = req.params;
-    // Library.findOne({ item: id })
-    //   .then((library) => {
-    //     // console.log(library);
-    //     if (!library) {
-    //       // Once the library id is passed, instead of create library per object
-    //       // $push to the library array, Library.findOneAndUpdate(id)
-    //       Library.create({ item: id, user: req.user._id });
-    //     } else {
-    //       //   //   // the button should be remove in this case
-    //       console.log('Library exists with this item' + library);
-    //     }
-    //   })
-    // .then((library) => {})
     .then(() => {
       res.json({});
     })

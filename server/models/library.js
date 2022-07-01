@@ -4,16 +4,6 @@ const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema(
   {
-    // user: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   required: true,
-    //   ref: 'User'
-    // },
-    // sound: [{
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   required: true,
-    //   ref: 'Sound'
-    // }]
     title: {
       type: String
     },
@@ -22,12 +12,19 @@ const schema = new mongoose.Schema(
       required: true,
       ref: 'User'
     },
-    item: [
+    sound: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Item'
+        required: true,
+        ref: 'Sound'
       }
     ]
+    //, item: [
+    //   {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'Item'
+    //   }
+    // ]
   },
   { timestamps: true }
 );

@@ -4,30 +4,25 @@ const express = require('express');
 const router = express.Router();
 
 const Library = require('./../models/library');
-const Sound = require('./../models/sound');
-const Item = require('./../models/item');
+const routeGuard = require('../middleware/route-guard');
 
-router.get('/', (req, res, next) => {
-  Library.find()
-    .then((libraries) => {
-      res.json({ libraries });
-    })
-    .catch((err) => next(err));
-});
-
-router.get('/list', (req, res, next) => {
-  Library.find()
-    .then((libraries) => {
-      res.json({ libraries });
-    })
-    .catch((err) => next(err));
+router.get('/list', routeGuard, (req, res, next) => {
+  console.log();
+  if (req.user) {
+    Library.find({ user: String(req.user._id) })
+      .then((libraries) => {
+        res.json({ libraries });
+      })
+      .catch((err) => next(err));
+  }
 });
 
 router.get('/:id', (req, res, next) => {
+  console.log('They called me');
   const { id } = req.params;
   Library.findById(id)
     .populate({
-      path: 'item',
+      path: 'sound',
       populate: { path: 'owner', model: 'User' }
     })
     .then((library) => {
@@ -43,31 +38,36 @@ router.post('/list', (req, res, next) => {
   );
 });
 
-router.post('/:id', (req, res, next) => {
-  const { id } = req.params;
-  // console.log('id:' + id);
-  const { soundToRemove } = req.body;
-  // console.log(selectedLibraryName);
-  // console.log(req.body);
-  // Once the library id is passed, instead of create library per object
-  // $push to the library array, Library.findOneAndUpdate(id)
-  Library.findByIdAndUpdate(id, { $pull: { item: soundToRemove } })
-    .then(() => {
-      res.json({});
+router.patch('/list', (req, res, next) => {
+  // const { id } = req.params;
+  const { id, soundToRemove } = req.body;
+
+  Library.findByIdAndUpdate(
+    id,
+    { $pull: { sound: soundToRemove } },
+    { new: true }
+  )
+    .then((library) => {
+      res.json({ library });
     })
     .catch((error) => {
+      console.log(error);
       next(error);
     });
 });
 
-// Move to sound route
+router.patch('/:id', (req, res, next) => {
+  const { id } = req.params;
+  const { title } = req.body;
 
-// router.post('/sound/:id/bookmark', (req, res, next) => {
-//   const { id } = req.params;
-
-//   Sound.findOneAndUpdate({ _id: id }, { ...sound });
-// });
-
-// router.delete('/sound/:id/bookmark', (req, res, next) => {});
+  Library.findByIdAndUpdate({ _id: id }, { title }, { new: true })
+    .then((library) => {
+      res.json({ library });
+    })
+    .catch((error) => {
+      console.log(error);
+      next(error);
+    });
+});
 
 module.exports = router;
