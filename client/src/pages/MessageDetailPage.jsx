@@ -16,7 +16,7 @@ const MessageDetailPage = () => {
   const [profile, setProfile] = useState(null);
   const [messages, setMessages] = useState([]);
   const [content, setContent] = useState('');
-  // const [threads, setThreads] = useState([]);
+  const [threads, setThreads] = useState([]);
 
   useEffect(() => {
     profileLoad(id)
@@ -29,12 +29,12 @@ const MessageDetailPage = () => {
 
   useEffect(() => {
     messageThreadList().then((data) => {
-      // const allThreads = data.threads;
-      // setThreads(
-      //   allThreads.filter((elem) =>
-      //     messages.find((message) => elem._id === message.sender)
-      //   )
-      // );
+      const allThreads = data.threads;
+      setThreads(
+        allThreads.filter((elem) =>
+          messages.find((message) => elem._id === message.sender)
+        )
+      );
     });
   }, [messages]);
 
