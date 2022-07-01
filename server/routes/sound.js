@@ -138,7 +138,7 @@ router.post('/create', (req, res, next) => {
     position,
     published,
     owner: req.user._id,
-    soundFile: 'test.mp3', // <--- for dev as long sound upload does not work
+    soundFile, // <--- for dev as long sound upload does not work
     quality,
     recordedAt
   })

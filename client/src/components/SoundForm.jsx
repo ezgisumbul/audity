@@ -29,13 +29,13 @@ const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
   };
 
   const handleFileInputChange = (event) => {
-    // const file = event.target.files[0];
-    // const reader = new FileReader()
-    // reader.readAsDataURL(file) // <-- new / result os a base64 encoded audio file / problem: creation does not work
-    // reader.onloadend = () => {
-    //   onSoundChange({...sound, soundFile: reader.result})
-    //   //console.log(reader.result)
-    // }
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file); // <-- new / result os a base64 encoded audio file / problem: creation does not work
+    reader.onloadend = () => {
+      onSoundChange({ ...sound, soundFile: reader.result });
+      //console.log(reader.result)
+    };
 
     onSoundChange({ ...sound, soundFile: event.target.value }); // <-- muss wieder gelöscht werden
   };
