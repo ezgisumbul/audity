@@ -1,19 +1,19 @@
-import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import AuthenticationContext from '../context/authentication';
-import AuthenticationForm from '../components/AuthenticationForm';
-import { logInUser } from '../services/authentication';
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import AuthenticationContext from "../context/authentication";
+import AuthenticationForm from "../components/AuthenticationForm";
+import { logInUser } from "../services/authentication";
 
 const LogInPage = () => {
   const navigate = useNavigate();
 
   const [user, setUserState] = useState({
-    name: '',
-    email: '',
-    password: '',
-    description: '',
-    picture: '',
-    sound: ''
+    name: "",
+    email: "",
+    password: "",
+    description: "",
+    picture: "",
+    sound: "",
   });
 
   const { setUser } = useContext(AuthenticationContext);
@@ -21,7 +21,7 @@ const LogInPage = () => {
   const handleLogIn = () => {
     logInUser(user).then((data) => {
       setUser(data.user);
-      navigate('/');
+      navigate("/");
     });
   };
 
@@ -30,8 +30,8 @@ const LogInPage = () => {
       <h1>Log In to Existign Account</h1>
       <AuthenticationForm
         user={user}
-        buttonLabel="Register New Account"
-        displayInputs={['email', 'password']}
+        buttonLabel="Log in"
+        displayInputs={["email", "password"]}
         onUserChange={setUserState}
         onAuthenticationSubmit={handleLogIn}
       />

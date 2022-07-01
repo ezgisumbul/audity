@@ -40,14 +40,12 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
   return (
     <ul className={`menuNav ${navbarOpen ? " showMenu" : ""}`}>
       {linkList.map((link) => (
-        <li>
+        <li key={link.id}>
           <NavLink
-            key={link.id}
             className="link"
             to={link.path}
             onClick={() => closeMenu()}
             // activeClassName="active-link"
-            exact
           >
             {link.text}
           </NavLink>
@@ -61,7 +59,6 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
               to={`/profile/${user._id}`}
               onClick={() => closeMenu()}
               // activeClassName="active-link"
-              exact
             >
               My Profile
             </NavLink>
@@ -72,7 +69,6 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
               to="/message/list"
               onClick={() => closeMenu()}
               // activeClassName="active-link"
-              exact
             >
               Messages
             </NavLink>
@@ -86,7 +82,6 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
                 handleSignOut();
               }}
               // activeClassName="active-link"
-              exact
             >
               Sign Out
             </NavLink>
