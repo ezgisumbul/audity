@@ -1,7 +1,7 @@
-import { signOutUser } from "./../services/authentication";
-import { NavLink, useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import AuthenticationContext from "../context/authentication";
+import { signOutUser } from './../services/authentication';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import AuthenticationContext from '../context/authentication';
 
 const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
   const handleSignOut = () => {
     signOutUser().then(() => {
       setUser(null);
-      navigate("/");
+      navigate('/');
     });
   };
 
@@ -21,24 +21,24 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
 
   const linkList = [
     {
-      path: "/",
-      text: "Home",
-      id: 1,
+      path: '/',
+      text: 'Home',
+      id: 1
     },
     {
-      path: "/profile/search",
-      text: "Search for Users",
-      id: 2,
+      path: '/profile/search',
+      text: 'Search for Users',
+      id: 2
     },
     {
-      path: "/sound/search",
-      text: "Search for Sounds",
-      id: 3,
-    },
+      path: '/sound/search',
+      text: 'Search for Sounds',
+      id: 3
+    }
   ];
 
   return (
-    <ul className={`menuNav ${navbarOpen ? " showMenu" : ""}`}>
+    <ul className={`menuNav ${navbarOpen ? ' showMenu' : ''}`}>
       {linkList.map((link) => (
         <li key={link.id}>
           <NavLink
@@ -53,6 +53,17 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
       ))}
       {(user && (
         <>
+          <li>
+            <NavLink
+              className="link"
+              to={'/library/list'}
+              onClick={() => closeMenu()}
+              // activeClassName="active-link"
+              exact
+            >
+              My Libraries
+            </NavLink>
+          </li>
           <li>
             <NavLink
               className="link"

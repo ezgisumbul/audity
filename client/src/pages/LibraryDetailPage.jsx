@@ -11,7 +11,7 @@ const LibraryDetailPage = () => {
   useEffect(() => {
     loadLibrary(id).then((data) => {
       setLibrary(data.library);
-      // console.log(data.library);
+      console.log(library);
     });
   }, [id]);
 
@@ -44,9 +44,14 @@ const LibraryDetailPage = () => {
         {user && (
           <>
             {library.user === user._id && (
-              <Link to={`/library/${id}/edit`} className="btn">
-                Edit library
-              </Link>
+              <>
+                <Link to={`/library/${id}/edit`} className="btn">
+                  Edit library
+                </Link>
+                <Link to={`/library/${id}/delete`} className="btn">
+                  Delete library
+                </Link>
+              </>
             )}
           </>
         )}

@@ -10,6 +10,7 @@ router.get('/list', routeGuard, (req, res, next) => {
   console.log();
   if (req.user) {
     Library.find({ user: String(req.user._id) })
+      .populate('sound')
       .then((libraries) => {
         res.json({ libraries });
       })

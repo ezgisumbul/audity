@@ -12,6 +12,10 @@ export const libraryEdit = (id, library) => {
   return api.patch(`/library/${id}`, library).then((response) => response.data);
 };
 
+export const libraryDelete = (id) => {
+  return api.delete(`/library/${id}`).then((response) => response.data);
+};
+
 export const loadLibrary = (id) => {
   return api.get(`/library/${id}`).then((response) => response.data);
 };

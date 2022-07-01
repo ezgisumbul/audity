@@ -228,6 +228,25 @@ router.post('/:id/bookmark', (req, res, next) => {
     });
 });
 
+// router.post('/:id/bookmark', (req, res, next) => {
+//   const { id } = req.params;
+//   // console.log('id:' + id);
+//   const { selectedLibraryName } = req.body;
+
+//   Library.findOne({
+//     title: selectedLibraryName,
+//     user: req.user._id,
+//     sound: { $ne: id }
+//   })
+//     .populate('sound')
+//     .then(() => {
+//       res.json({});
+//     })
+//     .catch((error) => {
+//       next(error);
+//     });
+// });
+
 // router.delete('/:id/bookmark', (req, res, next) => {});
 
 module.exports = router;
