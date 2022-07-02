@@ -57,6 +57,19 @@ router.patch('/list', (req, res, next) => {
     });
 });
 
+router.delete('/:id', (req, res, next) => {
+  const { id } = req.params;
+
+  Library.findOneAndDelete({ _id: id, user: req.user._id }, { new: true })
+    .then((result) => {
+      console.log('deletion result backend', result);
+      res.json({});
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
 router.patch('/:id', (req, res, next) => {
   const { id } = req.params;
   const { title } = req.body;

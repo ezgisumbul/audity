@@ -8,13 +8,12 @@ const Sound = require('./../models/sound');
 const Item = require('../models/item');
 const Library = require('./../models/library');
 
-// router.get('/', (req, res, next) => {
-//   // res.json({ type: 'success', data: { title: 'Hello World' } });
-//   console.log('HALLO');
-//   Sound.find().then((sounds) => {
-//     res.json({ sounds });
-//   });
-// });
+router.get('/', (req, res, next) => {
+  // res.json({ type: 'success', data: { title: 'Hello World' } });
+  console.log('HALLO');
+
+  res.json({ message: 'success' });
+});
 
 router.get('/item/:id', (req, res, next) => {
   const { id } = req.params;
