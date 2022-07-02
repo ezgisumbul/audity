@@ -8,8 +8,8 @@ import {
   followerLoad,
   followedLoad,
 } from "../services/follow";
-import SoundCardList from "./../components/SoundCardList";
-import SoundMap from "./../components/SoundMap";
+import SoundMapAndListToggle from "../components/SoundMapAndListToggle";
+
 import "./ProfilePage.scss";
 
 const ProfilePage = () => {
@@ -25,6 +25,8 @@ const ProfilePage = () => {
   const [followed, setFollowed] = useState([]); //users that this user follows
   const [follower, setFollower] = useState([]); //users that are following this user
   const [followerIds, setFollowerIds] = useState([]);
+
+  const [mapView, setMapView] = useState(true);
 
   const { user, setUser } = useContext(AuthenticationContext);
 
@@ -111,9 +113,38 @@ const ProfilePage = () => {
             </audio>
           </div>
 
-          <SoundCardList sounds={sounds} />
-          <SoundMap sounds={sounds} />
-          <Link to={"/library/list"}>See {profile.name}'s sound library</Link>
+          <SoundMapAndListToggle
+            mapView={mapView}
+            setMapView={setMapView}
+            sounds={sounds}
+          />
+
+          {/* <button
+            className={mapView ? "" : "selected"}
+            onClick={() => {
+              setMapView(false);
+            }}
+          >
+            List
+          </button>
+          <button
+            className={mapView ? "selected" : ""}
+            onClick={() => setMapView(true)}
+          >
+            Map
+          </button>
+
+          <div className={mapView ? "hide" : ""}>
+            <SoundCardList sounds={sounds} />
+          </div>
+          <div className={mapView ? "" : "hide"}>
+            <SoundMap sounds={sounds} />
+          </div> */}
+
+          <div>
+            <Link to={"/library/list"}>See {profile.name}'s sound library</Link>
+          </div>
+
           {/* {user && profile._id === user._id && (
             <Link to={"/library/list"}>See {profile.name}'s sound library</Link>
           )} */}

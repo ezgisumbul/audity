@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react';
-import { tags } from './../utils/tags';
-import TagsCheckboxComponent from './../components/TagsCheckboxComponent';
-import { soundSearch } from './../services/sound'
-import SoundCardList from './../components/SoundCardList';
-import SoundMap from './../components/SoundMap';
+import { useState, useEffect } from "react";
+import { tags } from "./../utils/tags";
+import TagsCheckboxComponent from "./../components/TagsCheckboxComponent";
+import { soundSearch } from "./../services/sound";
+import SoundMapAndListToggle from "../components/SoundMapAndListToggle";
 
-const qualities = ['high', 'medium', 'low'];
+const qualities = ["high", "medium", "low"];
 
 const SoundSearchPage = () => {
   const [checkedState, setCheckedState] = useState(
@@ -17,12 +16,14 @@ const SoundSearchPage = () => {
   );
 
   const [query, setQuery] = useState({
-    term: '',
+    term: "",
     tags: [],
-    quality: []
+    quality: [],
   });
 
   const [sounds, setSounds] = useState([]);
+
+  const [mapView, setMapView] = useState(true);
 
   useEffect(() => {
     soundSearch(query).then((response) => {
@@ -67,27 +68,26 @@ const SoundSearchPage = () => {
         (item) => item !== qualities[position]
       );
     }
-    console.log(qualityArray);
+
     setQuery({ ...query, quality: qualityArray });
   };
 
   const handleTermInputChange = (event) => {
-    setQuery({...query, term: event.target.value})
-    console.log(event.target.value)
-  }
+    setQuery({ ...query, term: event.target.value });
+    console.log(event.target.value);
+  };
 
   return (
     <div>
-
       <h1>Search for Sounds</h1>
-      <label htmlFor="input-search-term">Search by Name</label>
-        <input
-          id="input-search-term"
-          type="text"
-          placeholder="Search for User's Profiles ..."
-          value={query.term}
-          onChange={handleTermInputChange}
-        />
+      <label htmlFor="input-search-term"></label>
+      <input
+        id="input-search-term"
+        type="text"
+        placeholder="Search for Sounds ..."
+        value={query.term}
+        onChange={handleTermInputChange}
+      />
 
       <h1>Filter by Tags</h1>
       <form onSubmit={(event) => handleFormSubmit(event)}>
@@ -120,12 +120,15 @@ const SoundSearchPage = () => {
 
       <div>
         <ul>
-        {sounds && 
-          (<>
-          <SoundCardList sounds={sounds} />
-          <SoundMap sounds={sounds} />
-          </>)
-        }
+          {sounds && (
+            <>
+              <SoundMapAndListToggle
+                mapView={mapView}
+                setMapView={setMapView}
+                sounds={sounds}
+              />
+            </>
+          )}
         </ul>
       </div>
     </div>
