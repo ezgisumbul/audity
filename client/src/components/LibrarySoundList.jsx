@@ -1,12 +1,13 @@
-import { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   libraryDelete,
   listLibraries,
   loadLibrary,
-  removeFromLibrary
-} from '../services/library';
-import AuthenticationContext from '../context/authentication';
+  removeFromLibrary,
+} from "../services/library";
+import AuthenticationContext from "../context/authentication";
+import SoundCard from "./SoundCard";
 
 const LibrarySoundList = ({ library, libraries, setLibraries }) => {
   // These states are pointing to the same object but
@@ -77,14 +78,7 @@ const LibrarySoundList = ({ library, libraries, setLibraries }) => {
             (sound, index) =>
               sound && (
                 <div key={sound || index}>
-                  <h4>{sound.title}</h4>
-                  {/* <h4>{sound.owner && sound.owner.name}</h4> */}
-                  <audio controls>
-                    <source
-                      src={sound.soundFile}
-                      // type="mp3"
-                    />
-                  </audio>
+                  <SoundCard sound={sound} />
                   {user && (
                     <>
                       {libraryUpdated.user === user._id && (
@@ -98,9 +92,6 @@ const LibrarySoundList = ({ library, libraries, setLibraries }) => {
                           </button>
                         </div>
                       )}
-                      <Link to={`/sound/${sound}`} className="btn">
-                        Go to details
-                      </Link>
                     </>
                   )}
                 </div>
@@ -112,3 +103,14 @@ const LibrarySoundList = ({ library, libraries, setLibraries }) => {
 };
 
 export default LibrarySoundList;
+
+{
+  /* <h4>{sound.title}</h4>
+                  
+                  <audio controls>
+                    <source
+                      src={sound.soundFile}
+                      // type="mp3"
+                    />
+                  </audio>  */
+}

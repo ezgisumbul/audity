@@ -59,7 +59,6 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
               to={"/sound-create"}
               onClick={() => closeMenu()}
               // activeClassName="active-link"
-              exact
             >
               New Sound
             </NavLink>
@@ -70,7 +69,6 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
               to={"/library/list"}
               onClick={() => closeMenu()}
               // activeClassName="active-link"
-              exact
             >
               My Libraries
             </NavLink>
