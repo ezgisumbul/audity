@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import SoundInputMap from './SoundInputMap';
-import { tags } from './../utils/tags';
-import TagsCheckboxComponent from './TagsCheckboxComponent';
+import { useState } from "react";
+import SoundInputMap from "./SoundInputMap";
+import { tags } from "./../utils/tags";
+import TagsCheckboxComponent from "./TagsCheckboxComponent";
 
 const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
   const [checkedState, setCheckedState] = useState(
@@ -46,15 +46,15 @@ const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
 
     setCheckedState(new Array(tags.length).fill(false));
     onSoundChange({
-      title: '',
-      description: '',
+      title: "",
+      description: "",
       tags: [],
       price: 0,
-      position: '',
+      position: null,
       published: true,
-      soundFile: '',
-      quality: 'medium',
-      recordedAt: ''
+      soundFile: "",
+      quality: "medium",
+      recordedAt: "",
     });
   };
 
@@ -97,7 +97,7 @@ const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
           onPositionChange={(position) => onSoundChange({ ...sound, position })}
         />
 
-        <label htmlFor="uploadInput">Upload Sound File</label>
+        <label htmlFor="uploadInput">Upload file</label>
         <input
           id="uploadInput"
           type="file"
@@ -141,7 +141,7 @@ const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
         />
 
         <label htmlFor="publishInput">
-          {sound.published ? 'set private' : 'set public'}
+          {sound.published ? "set private" : "set public"}
         </label>
         <input
           type="checkbox"

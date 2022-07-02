@@ -1,20 +1,21 @@
-import { useState } from 'react';
-import { soundCreate } from './../services/sound';
-import SoundForm from './../components/SoundForm';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { soundCreate } from "./../services/sound";
+import SoundForm from "./../components/SoundForm";
+import { useNavigate } from "react-router-dom";
 
 const SoundCreatePage = () => {
   const navigate = useNavigate();
 
   const [sound, setSound] = useState({
-    title: '',
-    description: '',
+    title: "",
+    description: "",
     tags: [],
     price: 0,
-    //   position,
+    position: null,
     published: true,
-    soundFile: '',
-    quality: 'medium'
+    soundFile: "",
+    quality: "medium",
+    recordedAt: "",
   });
 
   const handleSoundCreation = () => {

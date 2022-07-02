@@ -28,7 +28,14 @@ const LibraryListPage = () => {
           <>
             {libraries &&
               libraries.map((library) => {
-                return <LibraryList library={library} key={library._id} />;
+                return (
+                  <LibraryList
+                    library={library}
+                    key={library._id}
+                    libraries={libraries}
+                    setLibraries={setLibraries}
+                  />
+                );
               })}
           </>
         )}

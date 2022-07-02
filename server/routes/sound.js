@@ -120,11 +120,11 @@ router.post('/create', (req, res, next) => {
   } = req.body;
 
   const fileStr = soundFile; // <-- works: there is this long file string stored in sound File
-  console.log(req.body); // <-- undefined - why? when i console loged the str it starts with: 'data:audio/mpeg;base64....'
+
   cloudinary.uploader
     .upload(fileStr, { resource_type: 'video' })
     .then((sound) => {
-      console.log(sound);
+      console.log('soundupload succesfull');
     })
     .catch((error) => {
       next(error);
@@ -164,7 +164,7 @@ router.patch('/:id/edit', (req, res, next) => {
     recordedAt
   } = req.body;
   const owner = req.user._id;
-  console.log(owner); // problem
+
   Sound.findByIdAndUpdate(
     { _id: id, owner },
     {
@@ -213,7 +213,6 @@ router.get('/:id', (req, res, next) => {
 
 router.post('/:id/bookmark', (req, res, next) => {
   const { id } = req.params;
-  // console.log('id:' + id);
   const { selectedLibraryName } = req.body;
 
   Library.findOneAndUpdate(
@@ -228,6 +227,25 @@ router.post('/:id/bookmark', (req, res, next) => {
       next(error);
     });
 });
+
+// router.post('/:id/bookmark', (req, res, next) => {
+//   const { id } = req.params;
+//   // console.log('id:' + id);
+//   const { selectedLibraryName } = req.body;
+
+//   Library.findOne({
+//     title: selectedLibraryName,
+//     user: req.user._id,
+//     sound: { $ne: id }
+//   })
+//     .populate('sound')
+//     .then(() => {
+//       res.json({});
+//     })
+//     .catch((error) => {
+//       next(error);
+//     });
+// });
 
 // router.delete('/:id/bookmark', (req, res, next) => {});
 

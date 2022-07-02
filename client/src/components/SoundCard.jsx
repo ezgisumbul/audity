@@ -2,13 +2,14 @@ import { Link } from 'react-router-dom';
 import './SoundCard.scss';
 
 const SoundCard = ({ sound }) => {
-  console.log(sound);
-
   return (
     <div className="sound-card">
       <div>
         <h2>{sound.title}</h2>
-        <small>{new Date(sound.createdAt).toLocaleDateString('de-DE')}</small>
+        <small>
+          {sound.recordedAt &&
+            new Date(sound.recordedAt).toLocaleDateString('de-DE')}
+        </small>
         <small>{sound.owner && sound.owner.name}</small>
       </div>
       <audio controls>

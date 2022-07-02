@@ -58,7 +58,10 @@ const schema = new mongoose.Schema(
 
     position: {
       type: { type: String, default: 'Point' },
-      coordinates: [Number]
+      coordinates: {
+        type: [Number],
+        default: [-6.101178540392873, 105.42380264840183]
+      }
     },
 
     published: {

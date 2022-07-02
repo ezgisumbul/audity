@@ -1,8 +1,8 @@
-import { useContext, useState, useEffect } from "react";
-import { soundEdit, soundLoad } from "./../services/sound";
-import SoundForm from "./../components/SoundForm";
-import { useNavigate, useParams } from "react-router-dom";
-import AuthenticationContext from "../context/authentication";
+import { useContext, useState, useEffect } from 'react';
+import { soundEdit, soundLoad } from './../services/sound';
+import SoundForm from './../components/SoundForm';
+import { useNavigate, useParams } from 'react-router-dom';
+import AuthenticationContext from '../context/authentication';
 
 const SoundEditPage = () => {
   const { id } = useParams();
