@@ -1,17 +1,16 @@
-import { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
-import AuthenticationContext from '../context/authentication';
-import { profileLoad } from '../services/profile';
+import { useState, useEffect, useContext } from "react";
+import { useParams, Link } from "react-router-dom";
+import AuthenticationContext from "../context/authentication";
+import { profileLoad } from "../services/profile";
 import {
   followUser,
   unFollowUser,
   followerLoad,
-  followedLoad
-} from '../services/follow';
-import { Link } from 'react-router-dom';
-import SoundCardList from './../components/SoundCardList';
-import SoundMap from './../components/SoundMap';
-import './ProfilePage.scss';
+  followedLoad,
+} from "../services/follow";
+import SoundMapAndListToggle from "../components/SoundMapAndListToggle";
+
+import "./ProfilePage.scss";
 
 const ProfilePage = () => {
   const { id } = useParams();
@@ -26,6 +25,8 @@ const ProfilePage = () => {
   const [followed, setFollowed] = useState([]); //users that this user follows
   const [follower, setFollower] = useState([]); //users that are following this user
   const [followerIds, setFollowerIds] = useState([]);
+
+  const [mapView, setMapView] = useState(true);
 
   const { user, setUser } = useContext(AuthenticationContext);
 
@@ -43,37 +44,52 @@ const ProfilePage = () => {
   }, [id, setUser]);
 
   const handleFollow = () => {
-    followUser(profile._id).then((response) => console.log(response));
+    followUser(profile._id)
+      .then(() => followerLoad(id))
+      .then((data) => {
+        setFollower(data.follower);
+        const followerIdArray = data.follower.map((document) => document._id);
+        setFollowerIds(followerIdArray);
+      });
   };
 
   const handleUnFollow = () => {
-    unFollowUser(profile._id).then((response) => console.log(response));
+    unFollowUser(profile._id)
+      .then(() => followerLoad(id))
+      .then((data) => {
+        setFollower(data.follower);
+        const followerIdArray = data.follower.map((document) => document._id);
+        setFollowerIds(followerIdArray);
+        console.log(data.follower);
+      });
   };
 
   return (
     <div>
       {profile && (
         <>
-          <header className="profile-header">
+          <div className="profile-header">
             <h1>Hi, I'm {profile.name}</h1>
             <img
               src={
                 profile.picture ||
-                'https://images.unsplash.com/photo-1570499911518-9b95b0660755?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2346&q=80'
+                "https://images.unsplash.com/photo-1570499911518-9b95b0660755?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2346&q=80"
               }
               alt={profile.name}
             />
 
             <div>
-              <p>
+              <Link to={`/profile/${id}/following`}>
                 {followed.length !== 0 && `Following ${followed.length}`}
-                <br />
+              </Link>
+              <br />
+              <Link to={`/profile/${id}/follower`}>
                 {follower.length !== 0 && `Followers ${follower.length}`}
-              </p>
+              </Link>
             </div>
 
             {user && profile._id === user._id && (
-              <Link to={'/profile/edit'}>Edit Profile</Link>
+              <Link to={"/profile/edit"}>Edit Profile</Link>
             )}
 
             {user && profile._id !== user._id && (
@@ -95,11 +111,40 @@ const ProfilePage = () => {
                 // type="mp3"
               />
             </audio>
-          </header>
+          </div>
 
-          <SoundCardList sounds={sounds} />
-          <SoundMap sounds={sounds} />
-          <Link to={'/library/list'}>See {profile.name}'s sound library</Link>
+          <SoundMapAndListToggle
+            mapView={mapView}
+            setMapView={setMapView}
+            sounds={sounds}
+          />
+
+          {/* <button
+            className={mapView ? "" : "selected"}
+            onClick={() => {
+              setMapView(false);
+            }}
+          >
+            List
+          </button>
+          <button
+            className={mapView ? "selected" : ""}
+            onClick={() => setMapView(true)}
+          >
+            Map
+          </button>
+
+          <div className={mapView ? "hide" : ""}>
+            <SoundCardList sounds={sounds} />
+          </div>
+          <div className={mapView ? "" : "hide"}>
+            <SoundMap sounds={sounds} />
+          </div> */}
+
+          <div>
+            <Link to={"/library/list"}>See {profile.name}'s sound library</Link>
+          </div>
+
           {/* {user && profile._id === user._id && (
             <Link to={"/library/list"}>See {profile.name}'s sound library</Link>
           )} */}

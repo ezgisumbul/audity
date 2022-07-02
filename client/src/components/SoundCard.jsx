@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import './SoundCard.scss';
+import { Link } from "react-router-dom";
+import "./SoundCard.scss";
 
 const SoundCard = ({ sound }) => {
   return (
@@ -10,7 +10,7 @@ const SoundCard = ({ sound }) => {
             <h2>{sound.title}</h2>
             <small>
               {sound.recordedAt &&
-                new Date(sound.recordedAt).toLocaleDateString('de-DE')}
+                new Date(sound.recordedAt).toLocaleDateString("de-DE")}
             </small>
             <small>{sound.owner && sound.owner.name}</small>
           </div>

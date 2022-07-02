@@ -11,20 +11,3 @@ export const followerLoad = (id) =>
 
 export const unFollowUser = (id) =>
   api.delete(`/profile/${id}/unfollow`).then((response) => response.data);
-
-// export const soundEdit = (id, sound) =>
-//   api.patch(`/sound/${id}/edit`, sound).then((response) => response.data);
-
-// export const soundList = () =>
-//   api.get('/sound/list').then((response) => response.data);
-
-// export const soundSearch = (query) =>
-//   api
-//     .get(`/sound/search?${new URLSearchParams(query).toString()}`)
-//     .then((response) => response.data);
-
-// export const addBookmark = (id, selectedLibraryName) => {
-//   return api
-//     .post(`/sound/${id}/bookmark`, { selectedLibraryName })
-//     .then((response) => response.data);
-// };

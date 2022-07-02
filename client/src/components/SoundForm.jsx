@@ -31,7 +31,7 @@ const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
   const handleFileInputChange = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
-    reader.readAsDataURL(file); // <-- new / result os a base64 encoded audio file / problem: creation does not work
+    reader.readAsDataURL(file); // <-- new / result os a base64 encoded audio file
     reader.onloadend = () => {
       onSoundChange({ ...sound, soundFile: reader.result });
       //console.log(reader.result)
@@ -42,20 +42,24 @@ const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    onSoundSubmit();
+    if (sound.soundFile) {
+      onSoundSubmit();
 
-    setCheckedState(new Array(tags.length).fill(false));
-    onSoundChange({
-      title: "",
-      description: "",
-      tags: [],
-      price: 0,
-      position: null,
-      published: true,
-      soundFile: "",
-      quality: "medium",
-      recordedAt: "",
-    });
+      setCheckedState(new Array(tags.length).fill(false));
+      onSoundChange({
+        title: "",
+        description: "",
+        tags: [],
+        price: 0,
+        position: null,
+        published: true,
+        soundFile: "",
+        quality: "medium",
+        recordedAt: "",
+      });
+    } else {
+      alert("Please select a sound file!");
+    }
   };
 
   return (
