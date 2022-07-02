@@ -107,6 +107,7 @@ router.get('/search', (req, res, next) => {
 });
 
 router.post('/create', (req, res, next) => {
+  // console.log('REQ body', req.body);
   const {
     title,
     description,
@@ -120,6 +121,8 @@ router.post('/create', (req, res, next) => {
   } = req.body;
 
   const fileStr = soundFile; // <-- works: there is this long file string stored in sound File
+
+  console.log('FileString before transform', soundFile, 'here');
 
   cloudinary.uploader
     .upload(fileStr, { resource_type: 'video' })
@@ -143,6 +146,7 @@ router.post('/create', (req, res, next) => {
     recordedAt
   })
     .then((sound) => {
+      console.log(sound);
       res.json({ sound });
     })
     .catch((error) => {

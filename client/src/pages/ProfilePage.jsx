@@ -91,7 +91,7 @@ const ProfilePage = () => {
 
             <audio controls>
               <source
-                src={profile.audio}
+                src={profile.sound}
                 // type="mp3"
               />
             </audio>

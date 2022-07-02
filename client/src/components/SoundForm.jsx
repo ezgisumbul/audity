@@ -18,7 +18,7 @@ const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
 
     setCheckedState(updatedCheckedState);
 
-    let soundArray = sound.tags;
+    let soundArray = sound.tags; 
 
     if (!sound.tags.includes(tags[position])) {
       soundArray.push(tags[position]);

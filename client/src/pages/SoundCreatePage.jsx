@@ -16,7 +16,7 @@ const SoundCreatePage = () => {
     soundFile: "",
     quality: "medium",
     recordedAt: "",
-  });
+  }); 
 
   const handleSoundCreation = () => {
     soundCreate(sound).then((data) => {

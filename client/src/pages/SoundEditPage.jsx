@@ -21,7 +21,7 @@ const SoundEditPage = () => {
         setSound(data.sound);
       }
     });
-  }, [id]);
+  }, [id]); 
 
   const handleSoundEdit = () => {
     soundEdit(id, sound).then((data) => {

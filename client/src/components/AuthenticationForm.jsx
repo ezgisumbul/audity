@@ -4,6 +4,40 @@ const AuthenticationForm = (props) => {
     props.onAuthenticationSubmit();
   };
 
+  const handlePictureUpload = (event) => {
+    // console.log('event.target.file 0', event.target.files[0]);
+    // console.log('event.target.file 1', event.target.files[1]);
+    // console.log('even.target.files', event.target.files);
+    const imageFile = event.target.files[0];
+
+    console.log(event.target);
+    const reader = new FileReader();
+    reader.readAsDataURL(imageFile); // <-- new / result os a base64 encoded audio file / problem: creation does not work
+    reader.onloadend = () => {
+      props.onUserChange({ ...props.user, picture: reader.result });
+      console.log(reader.result);
+    };
+
+    props.onUserChange({ ...props.user, picture: event.target.value }); // <-- muss wieder gelöscht werden
+  };
+
+  const handleSoundUpload = (event) => {
+    // console.log('event.target.file 0', event.target.files[0]);
+    // console.log('event.target.file 1', event.target.files[1]);
+    // console.log('even.target.files', event.target.files);
+    const soundFile = event.target.files[0];
+
+    console.log(event.target);
+    const reader = new FileReader();
+    reader.readAsDataURL(soundFile); // <-- new / result os a base64 encoded audio file / problem: creation does not work
+    reader.onloadend = () => {
+      props.onUserChange({ ...props.user, sound: reader.result });
+      console.log(reader.result);
+    };
+
+    props.onUserChange({ ...props.user, sound: event.target.value }); // <-- muss wieder gelöscht werden
+  };
+
   return (
     <div>
       <form onSubmit={handleSubmission} encType="multipart/form-data">
@@ -80,13 +114,8 @@ const AuthenticationForm = (props) => {
               id="input-picture"
               type="file"
               accept="image/*"
-              value={props.user.picture}
-              onChange={(event) =>
-                props.onUserChange({
-                  ...props.user,
-                  picture: event.target.value
-                })
-              }
+              // value={props.user.picture}
+              onChange={handlePictureUpload}
             />
           </>
         )}
@@ -98,9 +127,11 @@ const AuthenticationForm = (props) => {
               id="input-sound"
               type="file"
               accept="audio/*"
-              value={props.user.sound}
-              onChange={(event) =>
-                props.onUserChange({ ...props.user, sound: event.target.value })
+              // value={props.user.sound}
+              onChange={
+                handleSoundUpload
+                // (event) =>
+                // props.onUserChange({ ...props.user, sound: event.target.value })
               }
             />
           </>
