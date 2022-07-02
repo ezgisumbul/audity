@@ -12,7 +12,8 @@ import SoundMap from './../components/SoundMap';
 
 const SoundDetailPage = () => {
   // @Johanna I couldn't understand why you are pushing sounds into an array
-
+  const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [sound, setSound] = useState(null);
 
   const [libraries, setLibraries] = useState([]);
@@ -23,13 +24,17 @@ const SoundDetailPage = () => {
   //const [sounds, setSounds] = useState();
 
   useEffect(() => {
-    soundLoad(id).then((response) => {
-      const arr = [];
-      arr.push(response.sound);
-      setSound(arr);
+    setIsLoading(true);
+    soundLoad(id)
+      .then((response) => {
+        const arr = [];
+        arr.push(response.sound);
+        setSound(arr);
+        setIsLoading(false);
 
-      /*       console.log(response.sound.position.coordinates); */
-    });
+        /*       console.log(response.sound.position.coordinates); */
+      })
+      .catch(() => setIsError(true));
   }, [id]);
 
   const handleAddBookmark = (event) => {
@@ -40,9 +45,11 @@ const SoundDetailPage = () => {
   };
 
   useEffect(() => {
+    setIsLoading(true);
     listLibraries().then((data) => {
       //   console.log(data);
       setLibraries(data.libraries);
+      setIsLoading(false);
     });
   }, []);
 
@@ -67,7 +74,8 @@ const SoundDetailPage = () => {
               <li key={item}>{item}</li>
             ))}
           </ul>
-          <SoundMap sounds={sound} />
+          {(isLoading && <div>Loading...</div>) ||
+            (isError && <div>Error!</div>) || <SoundMap sounds={sound} />}
           <audio controls>
             <source
               src={sound[0].soundFile}
@@ -111,9 +119,10 @@ const SoundDetailPage = () => {
               value={selectedLibraryName}
             >
               <option>Add to library</option>
-              {libraries.map((library) => (
-                <option key={library._id}>{library.title}</option>
-              ))}
+              {(isLoading && <option>... Loading</option>) ||
+                libraries.map((library) => (
+                  <option key={library._id}>{library.title}</option>
+                ))}
             </select>
             <button>+</button>
           </form>
