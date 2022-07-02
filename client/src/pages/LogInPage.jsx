@@ -27,10 +27,10 @@ const LogInPage = () => {
 
   return (
     <div>
-      <h1>Log In to Existign Account</h1>
+      <h1>Log In to Existing Account</h1>
       <AuthenticationForm
         user={user}
-        buttonLabel="Register New Account"
+        buttonLabel="Log in"
         displayInputs={['email', 'password']}
         onUserChange={setUserState}
         onAuthenticationSubmit={handleLogIn}

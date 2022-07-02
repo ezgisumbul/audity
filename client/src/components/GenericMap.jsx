@@ -11,7 +11,13 @@ const GenericMap = ({ children, ...props }) => {
         mapContainerStyle={{ width: '100vw', height: '400px' }}
         center={{ lat: 52.520008, lng: 13.404954 }}
         zoom={10}
-        options={{ fullscreenControl: false, streetViewControl: false }}
+        options={{
+          fullscreenControl: false,
+          streetViewControl: false,
+          backgroundColor: 'green',
+          zoomControl: false,
+          mapTypeControl: false
+        }}
         {...props}
       >
         {children}
