@@ -9,6 +9,7 @@ import { listMyLibraries } from "../services/library";
 
 import React from "react";
 import SoundMap from "./../components/SoundMap";
+import LibraryDropdown from "../components/LibraryDropdown";
 import "./SoundDetailPage.scss";
 
 const SoundDetailPage = () => {
@@ -17,10 +18,14 @@ const SoundDetailPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [sound, setSound] = useState(null);
 
-  const [libraries, setLibraries] = useState([]);
-  const [selectedLibraryName, setSelectedLibraryName] = useState("");
-
   const [successDivShow, setSuccessDivShow] = useState(false);
+
+  // I had a div with class "succesdiv" and a 2nd class "hide" (conditionally only in case successDivShow is false);
+  // when form was rendered and addBookmark was successfull I set this state to true
+  // and with setInterval was setting it to false again after 2 seconds - the styling of these
+
+  // const [libraries, setLibraries] = useState([]);
+  // const [selectedLibraryName, setSelectedLibraryName] = useState('');
 
   const { id } = useParams();
 
@@ -40,26 +45,20 @@ const SoundDetailPage = () => {
       .catch(() => setIsError(true));
   }, [id]);
 
-  const handleAddBookmark = (event) => {
-    event.preventDefault();
+  // const handleAddBookmark = (event) => {
+  //   event.preventDefault();
 
-    addBookmark(id, selectedLibraryName).then((response) => {
-      if (response.message === "success") {
-        setSuccessDivShow(true);
-        console.log(response.message);
-        setTimeout(() => setSuccessDivShow(false), 2000);
-      }
-    });
-  };
+  //   addBookmark(id, selectedLibraryName);
+  // };
 
-  useEffect(() => {
-    setIsLoading(true);
-    listMyLibraries().then((data) => {
-      // console.log(data);
-      setLibraries(data.libraries);
-      setIsLoading(false);
-    });
-  }, []);
+  // useEffect(() => {
+  //   setIsLoading(true);
+  //   listMyLibraries().then((data) => {
+  //     // console.log(data);
+  //     setLibraries(data.libraries);
+  //     setIsLoading(false);
+  //   });
+  // }, []);
 
   const { user } = useContext(AuthenticationContext);
 
@@ -103,20 +102,21 @@ const SoundDetailPage = () => {
             <Link to={`/sound/${id}/edit`}>Edit Sound</Link>
           )}
           <br></br>
-          {/* Sound will be carried to library create */}
-          <Link to={"/library/create"}>Save to new library</Link>
-          <form onSubmit={handleAddBookmark}>
+
+          <LibraryDropdown />
+
+          {/* <form onSubmit={handleAddBookmark}>
             <label htmlFor="input-sound-library">
               Choose a library to add:
-            </label>
+            </label> */}
 
-            {/* <ul>
+          {/* <ul>
               {libraries.map((library) => (
                 <li key={library._id}>{library.title}</li>
               ))}
             </ul> */}
 
-            <select
+          {/* <select
               id="input-sound-library"
               // onChange={handleLibraryToAdd}
               // onFocus={(this.selectedIndex = -1)}
@@ -131,9 +131,9 @@ const SoundDetailPage = () => {
                 libraries.map((library) => (
                   <option key={library._id}>{library.title}</option>
                 ))}
-            </select>
-            <button>+</button>
-          </form>
+            </select> */}
+          {/* <button>+</button>
+          </form> */}
         </>
       )}
       <div className={`successdiv ${successDivShow ? "" : "hide"}`}>

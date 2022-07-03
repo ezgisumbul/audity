@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import LibraryForm from '../components/LibraryForm';
 import { libraryCreate } from '../services/library';
 
 const LibraryCreate = () => {
@@ -13,29 +14,24 @@ const LibraryCreate = () => {
 
   const handleFormSubmission = (event) => {
     event.preventDefault();
-    libraryCreate(library).then((data) => {
-      setLibrary(data);
+    if (library.title) {
+      libraryCreate(library).then((data) => {
+        setLibrary(data);
 
-      navigate(`/library/my-libraries`);
-    });
+        navigate(`/library/my-libraries`);
+      });
+    } else {
+      alert('Library title cannot be empty');
+    }
   };
 
   return (
     <div>
-      <form onSubmit={handleFormSubmission}>
-        <label htmlFor="input-title">Title</label>
-        <input
-          placeholder="Enter sound library name"
-          id="input-title"
-          value={library.title}
-          onChange={(event) =>
-            // console.log('HeLLO' + library.title)
-
-            setLibrary({ ...library, title: event.target.value })
-          }
-        />
-        <button>Submit</button>
-      </form>
+      <LibraryForm
+        library={library}
+        setLibrary={setLibrary}
+        onSubmit={handleFormSubmission}
+      />
     </div>
   );
 };
