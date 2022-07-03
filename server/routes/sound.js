@@ -4,6 +4,7 @@ const { Router } = require('express');
 const Library = require('../models/library');
 const Sound = require('./../models/sound');
 const { cloudinary } = require('./../utils/cloudinary');
+const routeGuard = require('../middleware/route-guard');
 
 const router = new Router();
 
@@ -213,6 +214,20 @@ router.get('/:id', (req, res, next) => {
     .catch((error) => {
       next(error);
     });
+});
+
+router.get('/:id/selectable-libraries', routeGuard, (req, res, next) => {
+  const { id } = req.params;
+  if (req.user) {
+    Library.find({ user: String(req.user._id), sound: { $ne: id } })
+      .populate('sound')
+      .then((libraries) => {
+        // console.log(libraries);
+        // sound:{_id: { $ne: id}}
+        res.json({ libraries });
+      })
+      .catch((err) => next(err));
+  }
 });
 
 router.post('/:id/bookmark', (req, res, next) => {

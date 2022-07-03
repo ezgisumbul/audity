@@ -5,7 +5,7 @@ import { useParams, Link } from 'react-router-dom';
 
 // import formateDate from '../utils/format-date';
 // import { addBookmark } from '../services/item';
-import { listMyLibraries } from '../services/library';
+import { listAvailableLibraries } from '../services/sound';
 
 import React from 'react';
 
@@ -23,7 +23,7 @@ const LibraryDropdown = () => {
 
   useEffect(() => {
     // setIsLoading(true);
-    listMyLibraries().then((data) => {
+    listAvailableLibraries(id).then((data) => {
       // console.log(data);
       setLibraries(data.libraries);
       //   setIsLoading(false);

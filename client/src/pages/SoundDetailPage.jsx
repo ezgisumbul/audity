@@ -143,4 +143,4 @@ const SoundDetailPage = () => {
   );
 };
 
-export default SoundDetailPage;
+export default SoundDetailPage; 
