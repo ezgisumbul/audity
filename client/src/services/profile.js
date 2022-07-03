@@ -13,3 +13,4 @@ export const profileSearch = (term) => {
     .get(`/profile/search?term=${term}`)
     .then((response) => response.data);
 };
+ 

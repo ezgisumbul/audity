@@ -1,19 +1,24 @@
 import { useContext, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { loadLibrary, removeFromLibrary } from '../services/library';
 import AuthenticationContext from '../context/authentication';
 
 const LibraryDetailPage = () => {
   const [library, setLibrary] = useState(null);
+  const [libraryUpdated, setLibraryUpdated] = useState(library);
 
   const { id } = useParams();
 
   useEffect(() => {
     loadLibrary(id).then((data) => {
-      setLibrary(data.library);
-      console.log(library);
+      setLibraryUpdated(data.library);
+      // console.log(data.library);
     });
-  }, [id]);
+  }, [id, library]);
+
+  useEffect(() => {}, [library]);
+
+  const navigate = useNavigate();
 
   // useEffect(() => {
   //   console.log('this is the second useEffect');
@@ -27,9 +32,10 @@ const LibraryDetailPage = () => {
     console.log(soundToRemove);
     removeFromLibrary(id, soundToRemove)
       .then((res) => {
-        const newLibrary = res;
-        setLibrary(newLibrary);
-        console.log(res);
+        setLibrary(res);
+      })
+      .then(() => {
+        navigate(`/library/${id}`);
       })
       .catch((error) => console.log(error));
   };
@@ -37,13 +43,13 @@ const LibraryDetailPage = () => {
   const { user } = useContext(AuthenticationContext);
 
   return (
-    library && (
+    libraryUpdated && (
       <div>
-        <h1>{library.title}</h1>
+        <h1>{libraryUpdated.title}</h1>
 
         {user && (
           <>
-            {library.user === user._id && (
+            {libraryUpdated.user === user._id && (
               <>
                 <Link to={`/library/${id}/edit`} className="btn">
                   Edit library
@@ -56,8 +62,8 @@ const LibraryDetailPage = () => {
           </>
         )}
 
-        {library.sound &&
-          library.sound.map(
+        {libraryUpdated.sound &&
+          libraryUpdated.sound.map(
             (sound, index) =>
               sound && (
                 <div key={sound._id || index}>
@@ -72,7 +78,7 @@ const LibraryDetailPage = () => {
                   </audio>{' '}
                   {user && (
                     <>
-                      {library.user === user._id && (
+                      {libraryUpdated.user === user._id && (
                         <div>
                           <button
                             onClick={() => {

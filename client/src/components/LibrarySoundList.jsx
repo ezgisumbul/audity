@@ -1,13 +1,13 @@
-import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   libraryDelete,
-  listLibraries,
+  listMyLibraries,
   loadLibrary,
-  removeFromLibrary,
-} from "../services/library";
-import AuthenticationContext from "../context/authentication";
-import SoundCard from "./SoundCard";
+  removeFromLibrary
+} from '../services/library';
+import AuthenticationContext from '../context/authentication';
+import SoundCard from './SoundCard';
 
 const LibrarySoundList = ({ library, libraries, setLibraries }) => {
   // These states are pointing to the same object but
@@ -15,6 +15,8 @@ const LibrarySoundList = ({ library, libraries, setLibraries }) => {
   // re-rendered at all combined with 3 useEffects below:
   const [libraryUpdated, setLibraryUpdated] = useState(library);
   const [libraryClone, setLibraryClone] = useState(library);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadLibrary(library._id).then((data) => {
@@ -35,10 +37,14 @@ const LibrarySoundList = ({ library, libraries, setLibraries }) => {
 
   const handleLibraryDeletion = (libraryId) => {
     libraryDelete(libraryId)
-      .then(() => listLibraries())
+      .then(() => listMyLibraries())
       .then((result) => {
         setLibraries(result.libraries);
+
         // console.log('deletion result', result);
+      })
+      .then(() => {
+        navigate('/library/my-libraries');
       })
       // (result) => console.log('deletion result', result)
 
@@ -103,14 +109,3 @@ const LibrarySoundList = ({ library, libraries, setLibraries }) => {
 };
 
 export default LibrarySoundList;
-
-{
-  /* <h4>{sound.title}</h4>
-                  
-                  <audio controls>
-                    <source
-                      src={sound.soundFile}
-                      // type="mp3"
-                    />
-                  </audio>  */
-}

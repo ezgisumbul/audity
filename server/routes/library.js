@@ -6,8 +6,18 @@ const router = express.Router();
 const Library = require('./../models/library');
 const routeGuard = require('../middleware/route-guard');
 
-router.get('/list', routeGuard, (req, res, next) => {
-  console.log();
+router.get('/:userId/list', (req, res, next) => {
+  if (req.user) {
+    Library.find({ user: String(req.params.userId) })
+      .populate('sound')
+      .then((libraries) => {
+        res.json({ libraries });
+      })
+      .catch((err) => next(err));
+  }
+});
+
+router.get('/my-libraries', routeGuard, (req, res, next) => {
   if (req.user) {
     Library.find({ user: String(req.user._id) })
       .populate('sound')
@@ -19,7 +29,6 @@ router.get('/list', routeGuard, (req, res, next) => {
 });
 
 router.get('/:id', (req, res, next) => {
-  console.log('They called me');
   const { id } = req.params;
   Library.findById(id)
     .populate({
@@ -32,14 +41,15 @@ router.get('/:id', (req, res, next) => {
     .catch((err) => next(err));
 });
 
-router.post('/list', (req, res, next) => {
+router.post('/create', routeGuard, (req, res, next) => {
   const { title } = req.body;
+
   Library.create({ title, user: req.user._id }).then((library) =>
     res.json({ library })
   );
 });
 
-router.patch('/list', (req, res, next) => {
+router.patch('/my-libraries', routeGuard, (req, res, next) => {
   // const { id } = req.params;
   const { id, soundToRemove } = req.body;
 
@@ -57,7 +67,7 @@ router.patch('/list', (req, res, next) => {
     });
 });
 
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', routeGuard, (req, res, next) => {
   const { id } = req.params;
 
   Library.findOneAndDelete({ _id: id, user: req.user._id }, { new: true })
@@ -70,7 +80,7 @@ router.delete('/:id', (req, res, next) => {
     });
 });
 
-router.patch('/:id', (req, res, next) => {
+router.patch('/:id', routeGuard, (req, res, next) => {
   const { id } = req.params;
   const { title } = req.body;
 

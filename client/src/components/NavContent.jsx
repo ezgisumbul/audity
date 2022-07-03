@@ -66,7 +66,7 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
           <li>
             <NavLink
               className="link"
-              to={'/library/list'}
+              to={'/library/my-libraries'}
               onClick={() => closeMenu()}
               // activeClassName="active-link"
             >

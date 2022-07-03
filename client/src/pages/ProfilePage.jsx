@@ -1,16 +1,17 @@
-import { useState, useEffect, useContext } from "react";
-import { useParams, Link } from "react-router-dom";
-import AuthenticationContext from "../context/authentication";
-import { profileLoad } from "../services/profile";
+import { useState, useEffect, useContext } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import AuthenticationContext from '../context/authentication';
+import { profileLoad } from '../services/profile';
 import {
   followUser,
   unFollowUser,
   followerLoad,
-  followedLoad,
-} from "../services/follow";
-import SoundMapAndListToggle from "../components/SoundMapAndListToggle";
+  followedLoad
+} from '../services/follow';
+import SoundMapAndListToggle from '../components/SoundMapAndListToggle';
 
-import "./ProfilePage.scss";
+import './ProfilePage.scss';
+import { listLibraries } from '../services/library';
 
 const ProfilePage = () => {
   const { id } = useParams();
@@ -28,6 +29,8 @@ const ProfilePage = () => {
 
   const [mapView, setMapView] = useState(true);
 
+  const [libraries, setLibraries] = useState(null);
+
   const { user, setUser } = useContext(AuthenticationContext);
 
   useEffect(() => {
@@ -36,11 +39,19 @@ const ProfilePage = () => {
       setSounds(data.sounds);
     });
     followedLoad(id).then((data) => setFollowed(data.followed));
-    followerLoad(id).then((data) => {
-      setFollower(data.follower);
-      const followerIdArray = data.follower.map((document) => document._id);
-      setFollowerIds(followerIdArray);
-    });
+    followerLoad(id)
+      .then((data) => {
+        setFollower(data.follower);
+        const followerIdArray = data.follower.map((document) => document._id);
+        setFollowerIds(followerIdArray);
+      })
+      .then(() => {
+        listLibraries(id)
+          .then((data) => {
+            setLibraries(data.libraries);
+          })
+          .catch((err) => console.log(err));
+      });
   }, [id, setUser]);
 
   const handleFollow = () => {
@@ -73,7 +84,7 @@ const ProfilePage = () => {
             <img
               src={
                 profile.picture ||
-                "https://images.unsplash.com/photo-1570499911518-9b95b0660755?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2346&q=80"
+                'https://images.unsplash.com/photo-1570499911518-9b95b0660755?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2346&q=80'
               }
               alt={profile.name}
             />
@@ -89,7 +100,7 @@ const ProfilePage = () => {
             </div>
 
             {user && profile._id === user._id && (
-              <Link to={"/profile/edit"}>Edit Profile</Link>
+              <Link to={'/profile/edit'}>Edit Profile</Link>
             )}
 
             {user && profile._id !== user._id && (
@@ -142,7 +153,18 @@ const ProfilePage = () => {
           </div> */}
 
           <div>
-            <Link to={"/library/list"}>See {profile.name}'s sound library</Link>
+            <Link to={`/library/${id}/list`}>
+              See {profile.name}'s sound library
+            </Link>
+          </div>
+
+          <div>
+            {libraries &&
+              libraries.map((library) => {
+                return (
+                  <Link to={`/library/${library._id}`}>{library.title}</Link>
+                );
+              })}
           </div>
 
           {/* {user && profile._id === user._id && (

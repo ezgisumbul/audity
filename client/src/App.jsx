@@ -1,31 +1,32 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
-import HomePage from "./pages/HomePage";
-import RegisterPage from "./pages/RegisterPage";
-import LogInPage from "./pages/LogInPage";
-import ProfilePage from "./pages/ProfilePage";
-import ProfileSearchPage from "./pages/ProfileSearchPage";
-import ProfileEditPage from "./pages/ProfileEditPage";
-import SoundCreatePage from "./pages/SoundCreatePage";
-import SoundEditPage from "./pages/SoundEditPage";
-import SoundDetailPage from "./pages/SoundDetailPage";
-import SoundSearchPage from "./pages/SoundSearchPage";
-import FollowerPage from "./pages/FollowerPage";
-import FollowingPage from "./pages/FollowingPage";
+import HomePage from './pages/HomePage';
+import RegisterPage from './pages/RegisterPage';
+import LogInPage from './pages/LogInPage';
+import ProfilePage from './pages/ProfilePage';
+import ProfileSearchPage from './pages/ProfileSearchPage';
+import ProfileEditPage from './pages/ProfileEditPage';
+import SoundCreatePage from './pages/SoundCreatePage';
+import SoundEditPage from './pages/SoundEditPage';
+import SoundDetailPage from './pages/SoundDetailPage';
+import SoundSearchPage from './pages/SoundSearchPage';
+import FollowerPage from './pages/FollowerPage';
+import FollowingPage from './pages/FollowingPage';
 
-import Navbar from "./components/Navbar";
-import AuthenticationContext from "./context/authentication";
-import { loadUserInformation } from "./services/authentication";
-import ItemCreate from "./pages/ItemCreate";
-import ItemPage from "./pages/ItemPage";
+import Navbar from './components/Navbar';
+import AuthenticationContext from './context/authentication';
+import { loadUserInformation } from './services/authentication';
+import ItemCreate from './pages/ItemCreate';
+import ItemPage from './pages/ItemPage';
 
-import LibraryCreate from "./pages/LibraryCreate";
-import LibraryDetailPage from "./pages/LibraryDetailPage";
-import LibraryListPage from "./pages/LibraryListPage";
-import MessageThreadPage from "./pages/MessageThreadPage";
-import MessageDetailPage from "./pages/MessageDetailPage";
-import LibraryEditPage from "./pages/LibraryEditPage";
+import LibraryCreate from './pages/LibraryCreate';
+import LibraryDetailPage from './pages/LibraryDetailPage';
+import LibraryListPage from './pages/LibraryListPage';
+import MessageThreadPage from './pages/MessageThreadPage';
+import MessageDetailPage from './pages/MessageDetailPage';
+import LibraryEditPage from './pages/LibraryEditPage';
+import MyLibrariesPage from './pages/MyLibrariesPage';
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -55,7 +56,8 @@ const App = () => {
           <Route path="/library/create" element={<LibraryCreate />} />
           <Route path="/library/:id/edit" element={<LibraryEditPage />} />
           <Route path="/library/:id" element={<LibraryDetailPage />} />
-          <Route path="/library/list" element={<LibraryListPage />} />
+          <Route path="/library/:userId/list" element={<LibraryListPage />} />
+          <Route path="/library/my-libraries" element={<MyLibrariesPage />} />
           <Route path="/sound/:id/edit" element={<SoundEditPage />} />
           <Route path="/sound/:id" element={<SoundDetailPage />} />
           <Route path="/sound/search" element={<SoundSearchPage />} />

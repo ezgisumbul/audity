@@ -15,8 +15,8 @@ const LibraryCreate = () => {
     event.preventDefault();
     libraryCreate(library).then((data) => {
       setLibrary(data);
-      console.log(data);
-      navigate('/library/list');
+
+      navigate(`/library/my-libraries`);
     });
   };
 

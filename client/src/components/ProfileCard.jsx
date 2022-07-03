@@ -36,3 +36,4 @@ const ProfileCard = ({ profile }) => {
 };
 
 export default ProfileCard;
+ 

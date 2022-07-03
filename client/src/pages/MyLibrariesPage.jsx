@@ -1,29 +1,27 @@
 import { useContext, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { listLibraries } from '../services/library';
+import { Link } from 'react-router-dom';
+import { listMyLibraries } from '../services/library';
 import AuthenticationContext from '../context/authentication';
 import LibraryList from '../components/LibraryList';
 
-const LibraryListPage = () => {
+const MyLibrariesPage = () => {
   const [libraries, setLibraries] = useState([]);
-  const { userId } = useParams();
 
   //   const [selectedLibraryName, setSelectedLibraryName] = useState('');
 
   useEffect(() => {
-    listLibraries(userId).then((data) => {
+    listMyLibraries().then((data) => {
       setLibraries(data.libraries);
     });
-  }, [userId]);
+  }, []);
 
   const { user } = useContext(AuthenticationContext);
 
   return (
     <div>
-      {(!user && <Link to={'/register'}>Register to create a library</Link>) ||
-        (userId === user._id && (
-          <Link to={'/library/create'}>Create new library</Link>
-        ))}
+      {(!user && (
+        <Link to={'/register'}>Register to create a library</Link>
+      )) || <Link to={'/library/create'}>Create new library</Link>}
 
       <div>
         {user && (
@@ -36,7 +34,6 @@ const LibraryListPage = () => {
                     key={library._id}
                     libraries={libraries}
                     setLibraries={setLibraries}
-                    userId={userId}
                   />
                 );
               })}
@@ -47,4 +44,4 @@ const LibraryListPage = () => {
   );
 };
 
-export default LibraryListPage;
+export default MyLibrariesPage;

@@ -1,11 +1,15 @@
 import api from './api';
 
-export const listLibraries = () => {
-  return api.get('/library/list').then((response) => response.data);
+export const listLibraries = (userId) => {
+  return api.get(`/library/${userId}/list`).then((response) => response.data);
+};
+
+export const listMyLibraries = () => {
+  return api.get('/library/my-libraries').then((response) => response.data);
 };
 
 export const libraryCreate = (library) => {
-  return api.post('/library/list', library).then((response) => response.data);
+  return api.post(`/library/create`, library).then((response) => response.data);
 };
 
 export const libraryEdit = (id, library) => {
@@ -22,6 +26,6 @@ export const loadLibrary = (id) => {
 
 export const removeFromLibrary = (id, soundToRemove) => {
   return api
-    .patch(`/library/list`, { id, soundToRemove })
+    .patch('/library/my-libraries', { id, soundToRemove })
     .then((response) => response.data);
 };
