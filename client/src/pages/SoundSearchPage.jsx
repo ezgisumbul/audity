@@ -120,7 +120,7 @@ const SoundSearchPage = () => {
 
       <div>
         <ul>
-          {sounds && (
+          {sounds.length !== 0 && (
             <>
               <SoundMapAndListToggle
                 mapView={mapView}

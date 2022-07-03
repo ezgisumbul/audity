@@ -11,26 +11,30 @@ router.post('/sign-up', (req, res, next) => {
   console.log('REQ body', req.body);
   const { name, email, password, description, picture, sound } = req.body;
 
-  const imgStr = picture; // <-- works: there is this long file string stored in sound File
+  const imgStr = picture;
   const soundStr = sound;
 
-  cloudinary.uploader
-    .upload(imgStr, { resource_type: 'image' })
-    .then(() => {
-      console.log('image upload succesfull');
-    })
-    .catch((error) => {
-      next(error);
-    });
+  if (imgStr) {
+    cloudinary.uploader
+      .upload(imgStr, { resource_type: 'image' })
+      .then(() => {
+        console.log('image upload succesfull');
+      })
+      .catch((error) => {
+        next(error);
+      });
+  }
 
-  cloudinary.uploader
-    .upload(soundStr, { resource_type: 'video' })
-    .then(() => {
-      console.log('sound upload succesfull');
-    })
-    .catch((error) => {
-      next(error);
-    });
+  if (soundStr) {
+    cloudinary.uploader
+      .upload(soundStr, { resource_type: 'video' })
+      .then(() => {
+        console.log('sound upload succesfull');
+      })
+      .catch((error) => {
+        next(error);
+      });
+  }
 
   bcryptjs
     .hash(password, 10)

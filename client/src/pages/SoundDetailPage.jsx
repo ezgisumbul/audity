@@ -1,14 +1,15 @@
-import { soundLoad, addBookmark } from './../services/sound';
-import { useContext, useState, useEffect } from 'react';
-import AuthenticationContext from '../context/authentication';
-import { useParams, Link } from 'react-router-dom';
-import formatPrice from '../utils/format-price';
+import { soundLoad, addBookmark } from "./../services/sound";
+import { useContext, useState, useEffect } from "react";
+import AuthenticationContext from "../context/authentication";
+import { useParams, Link } from "react-router-dom";
+import formatPrice from "../utils/format-price";
 // import formateDate from '../utils/format-date';
 // import { addBookmark } from '../services/item';
-import { listMyLibraries } from '../services/library';
+import { listMyLibraries } from "../services/library";
 
-import React from 'react';
-import SoundMap from './../components/SoundMap';
+import React from "react";
+import SoundMap from "./../components/SoundMap";
+import "./SoundDetailPage.scss";
 
 const SoundDetailPage = () => {
   // @Johanna I couldn't understand why you are pushing sounds into an array
@@ -17,7 +18,9 @@ const SoundDetailPage = () => {
   const [sound, setSound] = useState(null);
 
   const [libraries, setLibraries] = useState([]);
-  const [selectedLibraryName, setSelectedLibraryName] = useState('');
+  const [selectedLibraryName, setSelectedLibraryName] = useState("");
+
+  const [successDivShow, setSuccessDivShow] = useState(false);
 
   const { id } = useParams();
 
@@ -40,7 +43,13 @@ const SoundDetailPage = () => {
   const handleAddBookmark = (event) => {
     event.preventDefault();
 
-    addBookmark(id, selectedLibraryName);
+    addBookmark(id, selectedLibraryName).then((response) => {
+      if (response.message === "success") {
+        setSuccessDivShow(true);
+        console.log(response.message);
+        setTimeout(() => setSuccessDivShow(false), 2000);
+      }
+    });
   };
 
   useEffect(() => {
@@ -61,10 +70,10 @@ const SoundDetailPage = () => {
           <h1>{sound[0].title}</h1>
           <span>
             {sound[0].recordedAt &&
-              new Date(sound[0].recordedAt).toLocaleDateString('de-DE')}
+              new Date(sound[0].recordedAt).toLocaleDateString("de-DE")}
           </span>
           <h2>
-            A sound by{' '}
+            A sound by{" "}
             <Link to={`/profile/${sound[0].owner._id}`}>
               {sound[0].owner.name}
             </Link>
@@ -85,8 +94,8 @@ const SoundDetailPage = () => {
           </audio>
           <small>
             {sound[0].price === 0
-              ? 'you can use it for free'
-              : 'price: ' + formatPrice(sound[0].price)}
+              ? "you can use it for free"
+              : "price: " + formatPrice(sound[0].price)}
           </small>
 
           {/* <button>add to sound library</button> */}
@@ -95,7 +104,7 @@ const SoundDetailPage = () => {
           )}
           <br></br>
           {/* Sound will be carried to library create */}
-          <Link to={'/library/create'}>Save to new library</Link>
+          <Link to={"/library/create"}>Save to new library</Link>
           <form onSubmit={handleAddBookmark}>
             <label htmlFor="input-sound-library">
               Choose a library to add:
@@ -127,6 +136,9 @@ const SoundDetailPage = () => {
           </form>
         </>
       )}
+      <div className={`successdiv ${successDivShow ? "" : "hide"}`}>
+        <h3>Sound was added to library</h3>
+      </div>
     </div>
   );
 };

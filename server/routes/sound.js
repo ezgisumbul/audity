@@ -225,7 +225,7 @@ router.post('/:id/bookmark', (req, res, next) => {
   )
 
     .then(() => {
-      res.json({});
+      res.json({ message: 'success' });
     })
     .catch((error) => {
       next(error);

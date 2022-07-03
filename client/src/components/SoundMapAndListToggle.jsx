@@ -3,29 +3,33 @@ import SoundMap from "./SoundMap";
 
 const SoundMapAndListToggle = ({ sounds, setMapView, mapView }) => {
   return (
-    <div>
-      <button
-        className={mapView ? "" : "selected"}
-        onClick={() => {
-          setMapView(false);
-        }}
-      >
-        List
-      </button>
-      <button
-        className={mapView ? "selected" : ""}
-        onClick={() => setMapView(true)}
-      >
-        Map
-      </button>
+    <>
+      {sounds.length !== 0 && (
+        <div>
+          <button
+            className={mapView ? "" : "selected"}
+            onClick={() => {
+              setMapView(false);
+            }}
+          >
+            List
+          </button>
+          <button
+            className={mapView ? "selected" : ""}
+            onClick={() => setMapView(true)}
+          >
+            Map
+          </button>
 
-      <div className={mapView ? "hide" : ""}>
-        <SoundCardList sounds={sounds} />
-      </div>
-      <div className={mapView ? "" : "hide"}>
-        <SoundMap sounds={sounds} />
-      </div>
-    </div>
+          <div className={mapView ? "hide" : ""}>
+            <SoundCardList sounds={sounds} />
+          </div>
+          <div className={mapView ? "" : "hide"}>
+            <SoundMap sounds={sounds} />
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

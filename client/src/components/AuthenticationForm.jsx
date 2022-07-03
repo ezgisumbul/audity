@@ -15,7 +15,6 @@ const AuthenticationForm = (props) => {
     reader.readAsDataURL(imageFile); // <-- new / result os a base64 encoded audio file / problem: creation does not work
     reader.onloadend = () => {
       props.onUserChange({ ...props.user, picture: reader.result });
-      console.log(reader.result);
     };
 
     props.onUserChange({ ...props.user, picture: event.target.value }); // <-- muss wieder gelöscht werden
@@ -41,7 +40,7 @@ const AuthenticationForm = (props) => {
   return (
     <div>
       <form onSubmit={handleSubmission} encType="multipart/form-data">
-        {props.displayInputs.includes('name') && (
+        {props.displayInputs.includes("name") && (
           <>
             <label htmlFor="input-name">Name</label>
             <input
@@ -56,7 +55,7 @@ const AuthenticationForm = (props) => {
           </>
         )}
 
-        {props.displayInputs.includes('email') && (
+        {props.displayInputs.includes("email") && (
           <>
             <label htmlFor="input-email">Email</label>
             <input
@@ -71,7 +70,7 @@ const AuthenticationForm = (props) => {
           </>
         )}
 
-        {props.displayInputs.includes('password') && (
+        {props.displayInputs.includes("password") && (
           <>
             <label htmlFor="input-password">Password</label>
             <input
@@ -82,14 +81,14 @@ const AuthenticationForm = (props) => {
               onChange={(event) =>
                 props.onUserChange({
                   ...props.user,
-                  password: event.target.value
+                  password: event.target.value,
                 })
               }
             />
           </>
         )}
 
-        {props.displayInputs.includes('description') && (
+        {props.displayInputs.includes("description") && (
           <>
             <label htmlFor="input-description">Description</label>
             <input
@@ -100,14 +99,14 @@ const AuthenticationForm = (props) => {
               onChange={(event) =>
                 props.onUserChange({
                   ...props.user,
-                  description: event.target.value
+                  description: event.target.value,
                 })
               }
             />
           </>
         )}
 
-        {props.displayInputs.includes('picture') && (
+        {props.displayInputs.includes("picture") && (
           <>
             <label htmlFor="input-picture">Profile picture</label>
             <input
@@ -120,7 +119,7 @@ const AuthenticationForm = (props) => {
           </>
         )}
 
-        {props.displayInputs.includes('sound') && (
+        {props.displayInputs.includes("sound") && (
           <>
             <label htmlFor="input-sound">Profile audio</label>
             <input
