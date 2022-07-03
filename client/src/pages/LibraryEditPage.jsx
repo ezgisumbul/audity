@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import LibraryForm from '../components/LibraryForm';
 import { libraryEdit, loadLibrary } from '../services/library';
 
 const LibraryEditPage = () => {
@@ -11,9 +12,13 @@ const LibraryEditPage = () => {
 
   const handleFormSubmission = (event) => {
     event.preventDefault();
-    libraryEdit(id, library).then(() => {
-      navigate(`/library/${id}`);
-    });
+    if (library.title) {
+      libraryEdit(id, library).then(() => {
+        navigate(`/library/${id}`);
+      });
+    } else {
+      alert('Library title cannot be empty');
+    }
   };
 
   useEffect(() => {
@@ -24,17 +29,11 @@ const LibraryEditPage = () => {
     <div>
       <h1>Edit library name</h1>
       {library && (
-        <form onSubmit={handleFormSubmission}>
-          <label htmlFor="input-title">Title</label>
-          <input
-            id="input-title"
-            value={library.title}
-            onChange={(event) =>
-              setLibrary({ ...library, title: event.target.value })
-            }
-          />
-          <button>Submit</button>
-        </form>
+        <LibraryForm
+          library={library}
+          setLibrary={setLibrary}
+          onSubmit={handleFormSubmission}
+        />
       )}
     </div>
   );

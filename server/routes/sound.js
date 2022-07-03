@@ -218,18 +218,48 @@ router.get('/:id', (req, res, next) => {
 router.post('/:id/bookmark', (req, res, next) => {
   const { id } = req.params;
   const { selectedLibraryName } = req.body;
+  Library.findOne({ title: selectedLibraryName, user: req.user._id }).then(
+    (match) => {
+      if (match) {
+        Library.findOneAndUpdate(
+          {
+            title: selectedLibraryName,
+            user: req.user._id,
+            sound: { $ne: id }
+          },
+          { $push: { sound: id } }
+        )
 
-  Library.findOneAndUpdate(
-    { title: selectedLibraryName, user: req.user._id, sound: { $ne: id } },
-    { $push: { sound: id } }
-  )
-
-    .then(() => {
-      res.json({});
-    })
-    .catch((error) => {
-      next(error);
-    });
+          .then(() => {
+            res.json({});
+          })
+          .catch((error) => {
+            next(error);
+          });
+      } else {
+        let libraryIndex;
+        Library.find({ user: req.user._id })
+          .then((result) => {
+            libraryIndex = result.length;
+            console.log('libraryIndex:', libraryIndex);
+          })
+          .then(() => {
+            Library.create({
+              title: `Library #${libraryIndex}`,
+              user: req.user._id,
+              sound: id
+            })
+              .then((result) => {
+                console.log('Library sound push result', result);
+                res.json({});
+              })
+              .catch((error) => {
+                next(error);
+              });
+          });
+      }
+    }
+  );
 });
 
 // router.post('/:id/bookmark', (req, res, next) => {

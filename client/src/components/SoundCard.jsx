@@ -27,4 +27,4 @@ const SoundCard = ({ sound }) => {
   );
 };
 
-export default SoundCard;
+export default SoundCard; 
