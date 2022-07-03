@@ -41,11 +41,41 @@ const customMapStyle = [
     ],
   },
   {
+    featureType: "administrative",
+    elementType: "labels.text.stroke",
+    stylers: [
+      {
+        visibility: "off",
+      },
+    ],
+  },
+  {
     featureType: "administrative.land_parcel",
     elementType: "labels.text.fill",
     stylers: [
       {
         color: "#bdbdbd",
+      },
+    ],
+  },
+  {
+    featureType: "landscape",
+    elementType: "geometry.fill",
+    stylers: [
+      {
+        color: "#b683fd",
+      },
+      {
+        visibility: "on",
+      },
+    ],
+  },
+  {
+    featureType: "landscape",
+    elementType: "labels.text.stroke",
+    stylers: [
+      {
+        visibility: "off",
       },
     ],
   },
@@ -105,6 +135,15 @@ const customMapStyle = [
   {
     featureType: "road",
     elementType: "labels.icon",
+    stylers: [
+      {
+        visibility: "off",
+      },
+    ],
+  },
+  {
+    featureType: "road",
+    elementType: "labels.text.stroke",
     stylers: [
       {
         visibility: "off",
