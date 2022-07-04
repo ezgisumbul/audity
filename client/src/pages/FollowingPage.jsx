@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import AuthenticationContext from "./../context/authentication";
 import { useParams } from "react-router-dom";
-import { followedLoad } from "./../services/follow";
+import { unFollowUser, followedLoad } from "./../services/follow";
 import { profileLoad } from "./../services/profile";
 import ProfileCard from "../components/ProfileCard";
 
@@ -18,6 +19,18 @@ const FollowingPage = () => {
     });
   }, [id]);
 
+  const { user } = useContext(AuthenticationContext);
+
+  const handleUnfollowUser = (UserId) => {
+    unFollowUser(UserId)
+      .then(() => {
+        return followedLoad(id);
+      })
+      .then((data) => {
+        setFollowed(data.followed);
+      });
+  };
+
   return (
     <div>
       {(followed.length !== 0 && profile && (
@@ -28,7 +41,11 @@ const FollowingPage = () => {
           <ul>
             {followed.map((followed) => (
               <li key={followed._id}>
-                <ProfileCard profile={followed} />
+                <ProfileCard
+                  unfollowBtn={user._id === id ? true : false}
+                  handleUnfollowUser={handleUnfollowUser}
+                  profile={followed}
+                />
               </li>
             ))}
           </ul>
