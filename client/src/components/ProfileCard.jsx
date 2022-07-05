@@ -37,16 +37,16 @@ const ProfileCard = ({ handleUnfollowUser, unfollowBtn, profile }) => {
                 alt={profile.name}
               />
             </div>
-            <div className="profile-main-info-div">
+            <div id="profile-main-info-div">
               <h4>{profile.name}</h4>
               {sounds.length !== 0 && (
-                <p>
-                  <small>{sounds.length}</small>sounds
-                </p>
+                <>
+                  <small>{`${sounds.length} sounds`}</small>
+                </>
               )}
             </div>
           </Link>
-          <div>
+          <div id="profile-follow-div">
             {/* the following has to be outside Link-Tag so that the Unfollow-Button dioes not take you to deleted profile */}
             {(unfollowBtn && (
               <button onClick={handleUnfollowButton}>Unfollow</button>

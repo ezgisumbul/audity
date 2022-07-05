@@ -1,16 +1,107 @@
-.profile-header {
-  img {
-    width: 10rem;
-    height: 10rem;
-    object-fit: cover;
-    border-radius: 50%;
+@use "./../utils/variables.scss" as v;
+
+.profile-page-div {
+  .profile-header {
+    padding: 0 2rem;
+    h1 {
+      font-size: v.$h1;
+    }
+
+    div {
+      display: flex;
+
+      div {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        margin-left: 1rem;
+
+        .edit-btn {
+          width: 9rem;
+          height: 2.5rem;
+          color: black;
+          background-color: v.$thirdcolor;
+          text-align: center;
+        }
+
+        small {
+          margin: 0;
+          line-height: 0.2rem;
+          font-size: 1rem;
+          margin-left: 0.5rem;
+        }
+      }
+    }
+
+    img {
+      width: 7rem;
+      height: 7rem;
+      object-fit: cover;
+      border-radius: 50%;
+      border-width: 3px;
+      border-style: solid;
+      border-color: v.$firstcolor;
+    }
+    #profile-message-follow-div {
+      margin-top: 2rem;
+      justify-content: space-between;
+
+      a,
+      button {
+        font-size: 1rem;
+      }
+
+      button {
+        background-color: v.$green;
+        margin-right: 1rem;
+      }
+    }
+
+    p {
+      margin-top: 1rem;
+      font-size: 1rem;
+    }
+  }
+
+  #profile-sounds-div {
+    h3 {
+      margin-left: 2rem;
+    }
+  }
+
+  #profile-libraries {
+    h4 {
+      font-weight: 500;
+    }
+    a {
+      line-height: 20px;
+      color: black;
+      margin: 0.75rem;
+      font-size: 1rem;
+    }
+    div {
+      border-top-style: solid;
+      border-bottom-style: solid;
+      border-width: 1px;
+      border-color: v.$thirdcolor;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      small {
+        color: v.$firstcolor;
+        font-size: v.$small;
+        margin-right: 1rem;
+      }
+    }
   }
 }
-
 .hide {
   display: none;
 }
 
 .selected {
-  color: red;
+  background-color: v.$thirdcolor;
+  color: black;
 }
