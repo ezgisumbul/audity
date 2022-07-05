@@ -18,7 +18,7 @@ const RegisterPage = () => {
   const { setUser } = useContext(AuthenticationContext);
 
   const handleRegistration = (event) => {
-    console.log(user);
+    // console.log(user);
     registerUser(user).then((data) => {
       console.log('successfull registration');
       setUser(data.user);
