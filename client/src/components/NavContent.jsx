@@ -20,11 +20,11 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
   };
 
   const linkList = [
-    {
+    /*     {
       path: '/',
-      text: 'Home',
+      text: 'Audity',
       id: 1
-    },
+    }, */
     {
       path: '/profile/search',
       text: 'Search for Users',
@@ -39,6 +39,7 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
 
   return (
     <ul className={`menuNav ${navbarOpen ? ' showMenu' : ''}`}>
+      <hr />
       {linkList.map((link) => (
         <li key={link.id}>
           <NavLink
@@ -49,6 +50,7 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
           >
             {link.text}
           </NavLink>
+          <hr />
         </li>
       ))}
       {(user && (
@@ -60,9 +62,10 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
               onClick={() => closeMenu()}
               // activeClassName="active-link"
             >
-              New Sound
+              Create Sound
             </NavLink>
           </li>
+          <hr />
           <li>
             <NavLink
               className="link"
@@ -70,9 +73,10 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
               onClick={() => closeMenu()}
               // activeClassName="active-link"
             >
-              My Libraries
+              Libraries
             </NavLink>
           </li>
+          <hr />
           <li>
             <NavLink
               className="link"
@@ -80,10 +84,11 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
               onClick={() => closeMenu()}
               // activeClassName="active-link"
             >
-              My Profile
+              {user.name}'s Profile
             </NavLink>
           </li>
-          <li>
+          <hr />
+          {/*     <li>
             <NavLink
               className="link"
               to="/message/list"
@@ -92,7 +97,7 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
             >
               Messages
             </NavLink>
-          </li>
+          </li> */}
           <li>
             <NavLink
               className="link"
@@ -106,6 +111,7 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
               Sign Out
             </NavLink>
           </li>
+          <hr />
         </>
       )) || (
         <>
