@@ -34,7 +34,7 @@ const Navbar = () => {
       <button className="toggelBtn" onClick={handleToggleMenu}>
         {navbarOpen ? (
           <VscClose
-            style={{ color: '#8941E7', width: '40px', height: '40px' }}
+            style={{ color: '#8941E7', width: '32px', height: '32px' }}
           />
         ) : (
           <AiOutlineMenu

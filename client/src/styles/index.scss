@@ -43,15 +43,26 @@ input[type='email'],
 input[type='password'],
 input[type='date'],
 select,
-textarea,
-button {
+textarea {
   font: inherit;
-  // border: 1px solid #dadada;
+  border: 1px solid #000;
   line-height: inherit;
   color: inherit;
   padding: 1rem;
   background: transparent;
   margin-bottom: 1rem;
+  border-radius: 5rem;
+  font-size: $h4;
+}
+
+button {
+  border: none;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+  background-color: $firstcolor;
+  font-size: $h4;
+  color: white;
+  border-radius: 4rem;
 }
 
 a {
