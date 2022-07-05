@@ -1,21 +1,21 @@
-import { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import AuthenticationContext from '../context/authentication';
+import { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import AuthenticationContext from "../context/authentication";
 import {
   messageSend,
   messageThreadList,
-  messageThreadLoad
-} from '../services/message';
-import { profileLoad } from '../services/profile';
-import formateDate from '../utils/format-date';
-import './MessageDetailPage.scss';
+  messageThreadLoad,
+} from "../services/message";
+import { profileLoad } from "../services/profile";
+import formateDate from "../utils/format-date";
+import "./MessageDetailPage.scss";
 
 const MessageDetailPage = () => {
   const { id } = useParams();
 
   const [profile, setProfile] = useState(null);
   const [messages, setMessages] = useState([]);
-  const [content, setContent] = useState('');
+  const [content, setContent] = useState("");
   const [threads, setThreads] = useState([]);
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const MessageDetailPage = () => {
     event.preventDefault();
     messageSend(id, { content })
       .then((data) => {
-        setContent('');
+        setContent("");
         setMessages([...messages, data.message]);
       })
       .catch((error) => console.log(error));
@@ -64,7 +64,7 @@ const MessageDetailPage = () => {
           <div
             key={message._id}
             className={
-              message.sender === user._id ? 'message-sent' : 'message-received'
+              message.sender === user._id ? "message-sent" : "message-received"
             }
           >
             <small>{formateDate(message.createdAt)}</small>

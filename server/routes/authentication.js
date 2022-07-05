@@ -8,7 +8,6 @@ const { cloudinary } = require('./../utils/cloudinary');
 const router = new Router();
 
 router.post('/sign-up', (req, res, next) => {
-  console.log('REQ body', req.body);
   const { name, email, password, description, picture, sound } = req.body;
 
   const imgStr = picture;

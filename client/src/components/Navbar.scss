@@ -1,15 +1,36 @@
-li {
+// scss variables
+
+$h1: 2.5rem;
+$h2: 2rem;
+$h3: 1.9rem;
+$h4: 1.2rem;
+$p: 1rem;
+$small: 0.8rem;
+
+$firstcolor: #8941e7;
+$secondcolor: #ff4747;
+$thirdcolor: #f0f3f4;
+$fourthcolor: #ded1ee;
+$green: #36cd85;
+
+li,
+h2 {
   list-style: none;
+  font-size: $h3;
+  font-weight: 300;
 }
 
 nav {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: baseline;
-  padding: 1rem;
+  align-items: center;
+  margin: 0 1rem;
+  ul {
+    padding-top: 0;
+    margin-top: 63px;
+  }
 }
-
 button {
   border: 0;
 }
@@ -17,10 +38,9 @@ button {
 .link {
   position: relative;
   display: block;
-  padding: 1rem;
+  padding: 1.2rem;
   text-decoration: none;
-  text-transform: uppercase;
-  font-weight: bold;
+  /* text-transform: uppercase; */
 }
 
 .toggelBtn {
@@ -28,8 +48,8 @@ button {
     display: none;
   }
   position: fixed;
-  left: 10px;
-  top: 10px;
+  top: 0;
+  right: 10px;
   z-index: 10;
   cursor: pointer;
 }
@@ -39,33 +59,41 @@ button {
 .mobile {
   .navBar {
     position: relative;
+    height: 64px;
   }
 
   .menuNav {
     @media (min-width: 900px) {
       display: none;
     }
+
     padding: 0;
     overflow-y: scroll;
     position: fixed;
     top: 0;
-    background: lightgoldenrodyellow;
+    background: #fff;
     left: 0;
     bottom: 0;
     height: 100vh;
     width: 0;
     overflow: hidden;
-    max-width: 290px;
+    max-width: 100vw;
     z-index: 9;
+
+    // Line in between menu options
+    hr {
+      border: 0.7px solid $firstcolor;
+      margin: 0.3rem 1rem;
+    }
   }
 
   .menuNav.showMenu {
     width: 100%;
   }
 
-  .menuNav li:first-child {
-    margin-top: 7rem;
-  }
+  /*  .menuNav li:first-child {
+    margin-top: 0.5rem;
+  } */
 }
 
 // styling of desktop version menu (wrapped in a div with class "desktop" )
