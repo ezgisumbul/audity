@@ -125,6 +125,7 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
               Log In
             </NavLink>
           </li>
+          <hr />
           <li>
             <NavLink
               className="link"
@@ -135,6 +136,7 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
               Register
             </NavLink>
           </li>
+          <hr />
         </>
       )}
     </ul>
