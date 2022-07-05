@@ -7,7 +7,10 @@ import { useParams, Link } from 'react-router-dom';
 // import { addBookmark } from '../services/item';
 import { listAvailableLibraries } from '../services/sound';
 
-import React from 'react';
+import { toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+// toast.configure();
 
 const LibraryDropdown = () => {
   const [libraries, setLibraries] = useState([]);
@@ -19,6 +22,8 @@ const LibraryDropdown = () => {
     event.preventDefault();
 
     addBookmark(id, selectedLibraryName);
+
+    toast.success('Sound added to the library!');
   };
 
   useEffect(() => {
@@ -32,6 +37,7 @@ const LibraryDropdown = () => {
 
   return (
     <div>
+      <ToastContainer />
       <form onSubmit={handleAddBookmark}>
         <label htmlFor="input-sound-library">Add to a library:</label>
 

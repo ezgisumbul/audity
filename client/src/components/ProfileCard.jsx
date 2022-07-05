@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import AuthenticationContext from "./../context/authentication";
 import { profileLoad } from "./../services/profile";
 import { followerLoad } from "./../services/follow";
 import "./ProfileCard.scss";
 
-const ProfileCard = ({ profile }) => {
+const ProfileCard = ({ handleUnfollowUser, unfollowBtn, profile }) => {
   const [sounds, setSounds] = useState([]);
   const [following, setFollowing] = useState(false);
 
@@ -12,28 +13,40 @@ const ProfileCard = ({ profile }) => {
     profileLoad(profile._id).then((data) => setSounds(data.sounds));
     followerLoad(profile._id).then((data) => {
       const followers = data.follower.map((doc) => doc._id);
-      if (followers.length !== 0) setFollowing(true);
+      if (followers.includes(user._id)) setFollowing(true); // checks if loged-in user follows this profile
     });
   }, [profile]);
 
+  const { user } = useContext(AuthenticationContext);
+
+  const handleUnfollowButton = (id) => {
+    handleUnfollowUser(profile._id);
+  };
+
   return (
     <div>
-      {profile && sounds.ength !== 0 && (
-        <Link className="profile-card" to={`/profile/${profile._id}`}>
-          <img
-            src="https://images.unsplash.com/photo-1604863047626-b716dd8980d8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1364&q=80"
-            alt={profile.name}
-          />
-          <p>{profile.name}</p>
-          <p>
-            <span>{sounds.length}</span>sounds
-          </p>
-          {following && <p>You Follow this User</p>}
-        </Link>
+      {profile && sounds.length !== 0 && (
+        <>
+          <Link className="profile-card" to={`/profile/${profile._id}`}>
+            <img
+              src="https://images.unsplash.com/photo-1604863047626-b716dd8980d8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1364&q=80"
+              alt={profile.name}
+            />
+            <p>{profile.name}</p>
+            <p>
+              <span>{sounds.length}</span>sounds
+            </p>
+          </Link>
+          {/* the following has to be outside Link-Tag so that the Unfollow-Button dioes not take you to deleted profile */}
+          {(unfollowBtn && (
+            <button onClick={handleUnfollowButton}>Unfollow</button>
+          )) || <p>{following && <span>You Follow this User</span>}</p>}
+          {/* unfollowBtn is only set to true when card is rendered on FollowingPage AND when when it is the loged-in user's Following page */}
+          {/* in all other cases: check if user is following profile - if yes: show following-tag */}
+        </>
       )}
     </div>
   );
 };
 
 export default ProfileCard;
- 

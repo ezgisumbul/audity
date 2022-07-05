@@ -1,0 +1,79 @@
+.player {
+  --primary: rgb(95, 43, 217);
+  --secondary: rgb(19, 169, 219);
+  display: flex;
+  width: 80vw;
+}
+
+.skipTen {
+  background: none;
+  border: none;
+  display: flex;
+  font-family: inherit;
+  font-size: 30px;
+  align-items: center;
+  cursor: pointer;
+  color: var(--secondary);
+}
+
+.skipTen.hover {
+  color: var(--primary);
+}
+
+.playPause {
+  color: var(--secondary);
+  background: var(--primary);
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+  width: 50px;
+  height: 50px;
+  font-size: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.currentTime,
+.duration {
+  font-family: inherit;
+  font-size: 20px;
+}
+
+.currentTime {
+  margin-left: 25px;
+}
+
+.progressBar {
+  --bar-bg: pink;
+  --seek-before-width: 100px;
+  --seek-before-color: orange;
+  --knob-unselect: green;
+  --knob-select: lightgreen;
+
+  appearance: none;
+  background: var(--bar-bg);
+  border-radius: 10px;
+  position: relative;
+  width: 80vw;
+  height: 11px;
+  outline: none;
+}
+
+// firefox progress bar
+
+.progressBar {
+  --bar-bg: pink;
+  --seek-before-width: 100px;
+  --seek-before-color: orange;
+  --knob-unselect: green;
+  --knob-select: lightgreen;
+
+  appearance: none;
+  background: var(--bar-bg);
+  border-radius: 10px;
+  position: relative;
+  width: 80vw;
+  height: 11px;
+  outline: none;
+}

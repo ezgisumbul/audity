@@ -1,16 +1,22 @@
-import { soundLoad, addBookmark } from "./../services/sound";
-import { useContext, useState, useEffect } from "react";
-import AuthenticationContext from "../context/authentication";
-import { useParams, Link } from "react-router-dom";
-import formatPrice from "../utils/format-price";
+import { soundLoad, addBookmark } from './../services/sound';
+import { useContext, useState, useEffect } from 'react';
+import AuthenticationContext from '../context/authentication';
+import { useParams, Link } from 'react-router-dom';
+import formatPrice from '../utils/format-price';
 // import formateDate from '../utils/format-date';
 // import { addBookmark } from '../services/item';
-import { listMyLibraries } from "../services/library";
+import { listMyLibraries } from '../services/library';
 
-import React from "react";
-import SoundMap from "./../components/SoundMap";
-import LibraryDropdown from "../components/LibraryDropdown";
-import "./SoundDetailPage.scss";
+import React from 'react';
+import SoundMap from './../components/SoundMap';
+import LibraryDropdown from '../components/LibraryDropdown';
+import './SoundDetailPage.scss';
+import CustomPlayer from '../components/CustomPlayer';
+
+// import AudioPlayer from '../components/AudioPlayer';
+
+// import AudioPlayer from '../components/AudioPlayer';
+// import MyPlayer from './../components/MyPlayer';
 
 const SoundDetailPage = () => {
   // @Johanna I couldn't understand why you are pushing sounds into an array
@@ -69,10 +75,10 @@ const SoundDetailPage = () => {
           <h1>{sound[0].title}</h1>
           <span>
             {sound[0].recordedAt &&
-              new Date(sound[0].recordedAt).toLocaleDateString("de-DE")}
+              new Date(sound[0].recordedAt).toLocaleDateString('de-DE')}
           </span>
           <h2>
-            A sound by{" "}
+            A sound by{' '}
             <Link to={`/profile/${sound[0].owner._id}`}>
               {sound[0].owner.name}
             </Link>
@@ -91,10 +97,15 @@ const SoundDetailPage = () => {
               // type="mp3"
             />
           </audio>
+          <CustomPlayer source={sound[0]} />
+          {/* <Player source={sound[0]} /> */}
+
+          {/* <AudioPlayer /> */}
+          {/* <audio-player /> */}
           <small>
             {sound[0].price === 0
-              ? "you can use it for free"
-              : "price: " + formatPrice(sound[0].price)}
+              ? 'you can use it for free'
+              : 'price: ' + formatPrice(sound[0].price)}
           </small>
 
           {/* <button>add to sound library</button> */}
@@ -136,11 +147,11 @@ const SoundDetailPage = () => {
           </form> */}
         </>
       )}
-      <div className={`successdiv ${successDivShow ? "" : "hide"}`}>
+      <div className={`successdiv ${successDivShow ? '' : 'hide'}`}>
         <h3>Sound was added to library</h3>
       </div>
     </div>
   );
 };
 
-export default SoundDetailPage; 
+export default SoundDetailPage;
