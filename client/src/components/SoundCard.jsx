@@ -7,22 +7,30 @@ const SoundCard = ({ sound }) => {
     <div className="sound-card">
       {sound && (
         <>
-          <div>
-            <h2>{sound.title}</h2>
-            <small>
-              {sound.recordedAt &&
-                new Date(sound.recordedAt).toLocaleDateString('de-DE')}
-            </small>
-            <small>{sound.owner && sound.owner.name}</small>
+          <div className="soundcard-wrapper">
+            <div className="soundcard-leftside">
+              <small>{sound.title} </small>
+              <small>
+                {sound.recordedAt &&
+                  new Date(sound.recordedAt).toLocaleDateString('de-DE')}
+              </small>
+              <small>{sound.owner && sound.owner.name}</small>
+            </div>
+            <div>
+              <audio controls>
+                <source
+                  src={sound.soundFile}
+                  // type="mp3"
+                />
+              </audio>
+            </div>
           </div>
-          <audio controls>
-            <source
-              src={sound.soundFile}
-              // type="mp3"
-            />
-          </audio>
-          <Link to={`/sound/${sound._id}`}>Details</Link>
-          <LibraryDropdown />
+          <div>
+            <Link to={`/sound/${sound._id}`}>Details</Link>
+          </div>
+          <div>
+            <LibraryDropdown />
+          </div>
         </>
       )}
     </div>

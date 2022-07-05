@@ -1,17 +1,22 @@
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import SoundMap from "./../components/SoundMap";
-import SoundCard from "./../components/SoundCard";
-import { soundList } from "../services/sound";
+import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import SoundMap from './../components/SoundMap';
+import SoundCard from './../components/SoundCard';
+import { soundList } from '../services/sound';
+import { useContext } from 'react';
+import AuthenticationContext from '../context/authentication';
+import './HomePage.scss';
 
 const HomePage = () => {
   const [filters, setFilters] = useState({
     lat: 38.75,
     lng: -9.25,
-    distance: 1,
+    distance: 1
   });
 
   const [sounds, setSounds] = useState([]);
+
+  const { user, setUser } = useContext(AuthenticationContext);
 
   useEffect(() => {
     soundList().then((sounds) => {
@@ -33,10 +38,19 @@ const HomePage = () => {
           />
         </>
       )}
-
-      <h2>Welcome to Audity. Create an account and listen to your city.</h2>
-      <Link to={"/register"}>Register</Link>
-      <Link to={"/log-in"}>Sign in</Link>
+      <section>
+        <h3>Welcome to Audity. Create an account and listen to your city.</h3>
+        {!user && (
+          <div className="link-wrapper">
+            <Link to={'/register'} className="btn">
+              Register
+            </Link>
+            <Link to={'/log-in'} className="btn">
+              Sign in
+            </Link>
+          </div>
+        )}
+      </section>
       <footer>Lorem ipsum dolor sit amet</footer>
     </div>
   );

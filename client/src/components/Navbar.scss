@@ -30,10 +30,11 @@ nav {
     padding-top: 0;
     margin-top: 63px;
   }
-  button {
-    margin-top: 1rem;
-    border: 0;
-    background-color: transparent;
+}
+
+.navBar {
+  a {
+    z-index: 11;
   }
 }
 
@@ -54,6 +55,11 @@ nav {
   right: 10px;
   z-index: 10;
   cursor: pointer;
+  margin-top: 0.6rem;
+  padding: 8px 8px 5px 8px;
+  border: 0;
+  background-color: white;
+  border-radius: 50%;
 }
 
 // styling of mobile menu (wrapped in a div with class "mobile" )
@@ -72,8 +78,9 @@ nav {
     padding: 0;
     overflow-y: scroll;
     position: fixed;
-    top: 0;
-    background: #fff;
+    padding-top: 63px;
+    top: -63px;
+    background: white;
     left: 0;
     bottom: 0;
     height: 100vh;

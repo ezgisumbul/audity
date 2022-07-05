@@ -1,11 +1,27 @@
+$h1: 2.5rem;
+$h2: 2rem;
+$h3: 1.9rem;
+$h4: 1.2rem;
+$p: 1rem;
+$small: 0.8rem;
+
+$firstcolor: #8941e7;
+$secondcolor: #ff4747;
+$thirdcolor: #f0f3f4;
+$fourthcolor: #ded1ee;
+$green: #36cd85;
+.background {
+  background-color: $thirdcolor;
+}
+
 .message-sent {
-  background-color: rgb(200, 246, 246);
+  background-color: $firstcolor;
+  color: white;
   align-self: flex-end;
 }
 
 .message-received {
-  background-color: rgb(127, 145, 145);
-  color: white;
+  background-color: white;
 }
 
 .message-sent,
@@ -13,29 +29,36 @@
   margin: 1rem 0;
   border-radius: 0.25rem;
   padding: 0.5rem 0.75rem;
-  width: 12rem;
+  max-width: 70vw;
+  box-shadow: 2px 2px 7px 1px rgba(0, 0, 0, 0.1);
 }
 
 .message-list {
+  padding: 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 
   small {
-    font-size: 0.75rem;
+    font-size: $small;
+    letter-spacing: 0.5px;
   }
 }
 
 .message-user {
+  margin: 1rem 0 1rem 1.5rem;
   display: flex;
   align-items: center;
   gap: 1rem;
   font-size: 1.8rem;
 
   img {
-    width: 5rem;
-    height: 5rem;
+    width: 4rem;
+    height: 4rem;
     object-fit: cover;
     border-radius: 50%;
   }
+}
+.send-form {
+  padding-top: 1rem;
 }

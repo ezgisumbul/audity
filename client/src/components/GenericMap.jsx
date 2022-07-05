@@ -1,5 +1,6 @@
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import customMapStyle from './../utils/custom-map-style';
+import './GenericMap.scss';
 
 const GenericMap = ({ children, onLoad, onMove, markerPosition, ...props }) => {
   const { isLoaded } = useJsApiLoader({
@@ -10,7 +11,7 @@ const GenericMap = ({ children, onLoad, onMove, markerPosition, ...props }) => {
     (isLoaded && (
       <div>
         <GoogleMap
-          mapContainerStyle={{ width: '100vw', height: '600px' }}
+          mapContainerStyle={{ width: '100vw', height: '60vh' }}
           center={
             (markerPosition && {
               lat: markerPosition.lat,

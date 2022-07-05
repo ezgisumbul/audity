@@ -32,37 +32,66 @@ $firstcolor: #8941e7;
 $secondcolor: #ff4747;
 $thirdcolor: #f0f3f4;
 $fourthcolor: #ded1ee;
+$fifth-color: #b7b7b7;
 $green: #36cd85;
 
 h1 {
   font-weight: 300;
 }
 
+h4 {
+  font-weight: 300;
+  line-height: 0;
+  margin-block-start: 1.3rem;
+  margin-block-end: 0.6rem;
+}
+
 input[type='text'],
 input[type='email'],
 input[type='password'],
 input[type='date'],
-select,
-textarea {
+select {
   font: inherit;
   border: 1px solid #000;
   line-height: inherit;
-  color: inherit;
+  color: black;
   padding: 1rem;
-  background: transparent;
+  background: white;
   margin-bottom: 1rem;
   border-radius: 5rem;
   font-size: $h4;
 }
+input:focus {
+  outline: 1px solid $firstcolor;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
 
 button {
   border: none;
-  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
   padding: 0 1rem;
   background-color: $firstcolor;
   font-size: $h4;
   color: white;
   border-radius: 4rem;
+}
+
+textarea {
+  font-family: 'DM Sans', sans-serif;
+  margin: 0 1rem 1rem 1rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border-color: $fifth-color;
+}
+
+textarea:focus {
+  outline: 0.5px solid $firstcolor;
 }
 
 a {
@@ -73,6 +102,20 @@ a {
 form {
   display: flex;
   flex-direction: column;
+}
+
+hr {
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+}
+
+.btn {
+  border: none;
+  padding: 0.5rem 1rem;
+  background-color: $firstcolor;
+  font-size: $h4;
+  color: white;
+  border-radius: 4rem;
 }
 
 // input[type="file"] {

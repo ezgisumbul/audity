@@ -12,3 +12,43 @@ $secondcolor: #ff4747;
 $thirdcolor: #f0f3f4;
 $fourthcolor: #ded1ee;
 $green: #36cd85;
+
+.authentication-form {
+  margin: 0 1rem;
+  label {
+    font-size: $small;
+  }
+}
+
+.send-button {
+  border: none;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0;
+  background-color: $firstcolor;
+  font-size: $h4;
+  color: white;
+  border-radius: 4rem;
+}
+
+.custom-file-upload {
+  font: inherit;
+  border: 1px solid #000;
+  line-height: inherit;
+  color: inherit;
+  padding: 1rem;
+  background: transparent;
+  margin-bottom: 1rem;
+  border-radius: 5rem;
+  font-size: $h4;
+}
+
+input::file-selector-button {
+  font-family: 'DM Sans', sans-serif;
+  font-size: $small;
+  padding: 0.5em;
+  /*   border: thin solid rgb(0, 0, 0); */
+  border-style: none;
+  background-color: $fourthcolor;
+  border-radius: 5rem;
+}

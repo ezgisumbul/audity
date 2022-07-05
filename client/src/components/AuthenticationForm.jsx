@@ -35,11 +35,11 @@ const AuthenticationForm = (props) => {
       console.log(reader.result);
     };
 
-    props.onUserChange({ ...props.user, sound: event.target.value }); // <-- muss wieder gelöscht werden
+    props.onUserChange({ ...props.user, sound: event.target.value }); // <-- has to be erased
   };
 
   return (
-    <div>
+    <div className="authentication-form">
       <form onSubmit={handleSubmission} encType="multipart/form-data">
         {props.displayInputs.includes('name') && (
           <>
@@ -109,35 +109,40 @@ const AuthenticationForm = (props) => {
 
         {props.displayInputs.includes('picture') && (
           <>
-            <label htmlFor="input-picture">Profile picture</label>
-            <input
-              id="input-picture"
-              type="file"
-              accept="image/*"
-              // value={props.user.picture}
-              onChange={handlePictureUpload}
-            />
+            <label htmlFor="input-picture">Upload Profile Picture</label>
+            <label htmlFor="input-picture" className="custom-file-upload">
+              <input
+                id="input-picture"
+                type="file"
+                accept="image/*"
+                // value={props.user.picture}
+                onChange={handlePictureUpload}
+              />
+            </label>
           </>
         )}
 
         {props.displayInputs.includes('sound') && (
           <>
-            <label htmlFor="input-sound">Profile audio</label>
-            <input
-              id="input-sound"
-              type="file"
-              accept="audio/*"
-              // value={props.user.sound}
-              onChange={
-                handleSoundUpload
-                // (event) =>
-                // props.onUserChange({ ...props.user, sound: event.target.value })
-              }
-            />
+            <label htmlFor="input-sound">Upload Profile audio</label>
+            <label htmlFor="input-picture" className="custom-file-upload">
+              <input
+                id="input-sound"
+                type="file"
+                accept="audio/*"
+                // value={props.user.sound}
+                onChange={
+                  handleSoundUpload
+                  // (event) =>
+                  // props.onUserChange({ ...props.user, sound: event.target.value })
+                }
+              />
+            </label>
           </>
         )}
-
-        <button>{props.buttonLabel}</button>
+        <div className="send-button">
+          <button>{props.buttonLabel}</button>
+        </div>
       </form>
     </div>
   );
