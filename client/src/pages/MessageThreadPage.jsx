@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { messageThreadList } from '../services/message';
-import './MessageThreadPage.scss';
+import { useEffect, useState } from "react";
+import { messageThreadList } from "../services/message";
+import ThreadPreviewCard from "./../components/ThreadPreviewCard";
+import "./MessageThreadPage.scss";
 
 const MessageThreadPage = () => {
   const [threads, setThreads] = useState([]);
@@ -16,10 +16,7 @@ const MessageThreadPage = () => {
     <div className="message-thread-list">
       {threads.map((thread) => (
         <li key={thread._id}>
-          <Link to={`/message/${thread._id}`}>
-            {/* <img src={thread.picture} alt={thread.name} /> */}
-            {thread.name}
-          </Link>
+          <ThreadPreviewCard profile={thread} />
         </li>
       ))}
     </div>
