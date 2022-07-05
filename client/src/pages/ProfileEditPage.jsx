@@ -26,6 +26,7 @@ const ProfileEditPage = () => {
 
   return (
     <div>
+      <hr />
       <h1>Profile Edit</h1>
       {profile && (
         <AuthenticationForm

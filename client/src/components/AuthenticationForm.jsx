@@ -1,3 +1,5 @@
+import './AuthenticationForm.scss';
+
 const AuthenticationForm = (props) => {
   const handleSubmission = (event) => {
     event.preventDefault();
@@ -33,13 +35,13 @@ const AuthenticationForm = (props) => {
       console.log(reader.result);
     };
 
-    props.onUserChange({ ...props.user, sound: event.target.value }); // <-- muss wieder gelöscht werden
+    props.onUserChange({ ...props.user, sound: event.target.value }); // <-- has to be erased
   };
 
   return (
-    <div>
+    <div className="authentication-form">
       <form onSubmit={handleSubmission} encType="multipart/form-data">
-        {props.displayInputs.includes("name") && (
+        {props.displayInputs.includes('name') && (
           <>
             <label htmlFor="input-name">Name</label>
             <input
@@ -54,7 +56,7 @@ const AuthenticationForm = (props) => {
           </>
         )}
 
-        {props.displayInputs.includes("email") && (
+        {props.displayInputs.includes('email') && (
           <>
             <label htmlFor="input-email">Email</label>
             <input
@@ -69,7 +71,7 @@ const AuthenticationForm = (props) => {
           </>
         )}
 
-        {props.displayInputs.includes("password") && (
+        {props.displayInputs.includes('password') && (
           <>
             <label htmlFor="input-password">Password</label>
             <input
@@ -80,14 +82,14 @@ const AuthenticationForm = (props) => {
               onChange={(event) =>
                 props.onUserChange({
                   ...props.user,
-                  password: event.target.value,
+                  password: event.target.value
                 })
               }
             />
           </>
         )}
 
-        {props.displayInputs.includes("description") && (
+        {props.displayInputs.includes('description') && (
           <>
             <label htmlFor="input-description">Description</label>
             <input
@@ -98,44 +100,49 @@ const AuthenticationForm = (props) => {
               onChange={(event) =>
                 props.onUserChange({
                   ...props.user,
-                  description: event.target.value,
+                  description: event.target.value
                 })
               }
             />
           </>
         )}
 
-        {props.displayInputs.includes("picture") && (
+        {props.displayInputs.includes('picture') && (
           <>
-            <label htmlFor="input-picture">Profile picture</label>
-            <input
-              id="input-picture"
-              type="file"
-              accept="image/*"
-              // value={props.user.picture}
-              onChange={handlePictureUpload}
-            />
+            <label htmlFor="input-picture">Upload Profile Picture</label>
+            <label htmlFor="input-picture" className="custom-file-upload">
+              <input
+                id="input-picture"
+                type="file"
+                accept="image/*"
+                // value={props.user.picture}
+                onChange={handlePictureUpload}
+              />
+            </label>
           </>
         )}
 
-        {props.displayInputs.includes("sound") && (
+        {props.displayInputs.includes('sound') && (
           <>
-            <label htmlFor="input-sound">Profile audio</label>
-            <input
-              id="input-sound"
-              type="file"
-              accept="audio/*"
-              // value={props.user.sound}
-              onChange={
-                handleSoundUpload
-                // (event) =>
-                // props.onUserChange({ ...props.user, sound: event.target.value })
-              }
-            />
+            <label htmlFor="input-sound">Upload Profile audio</label>
+            <label htmlFor="input-picture" className="custom-file-upload">
+              <input
+                id="input-sound"
+                type="file"
+                accept="audio/*"
+                // value={props.user.sound}
+                onChange={
+                  handleSoundUpload
+                  // (event) =>
+                  // props.onUserChange({ ...props.user, sound: event.target.value })
+                }
+              />
+            </label>
           </>
         )}
-
-        <button>{props.buttonLabel}</button>
+        <div className="send-button">
+          <button>{props.buttonLabel}</button>
+        </div>
       </form>
     </div>
   );

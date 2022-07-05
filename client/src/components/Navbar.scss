@@ -1,22 +1,9 @@
-// scss variables
-
-$h1: 2.5rem;
-$h2: 2rem;
-$h3: 1.9rem;
-$h4: 1.2rem;
-$p: 1rem;
-$small: 0.8rem;
-
-$firstcolor: #8941e7;
-$secondcolor: #ff4747;
-$thirdcolor: #f0f3f4;
-$fourthcolor: #ded1ee;
-$green: #36cd85;
+@use './../utils/variables.scss' as v;
 
 li,
 h2 {
   list-style: none;
-  font-size: $h3;
+  font-size: v.$h3;
   font-weight: 300;
 }
 
@@ -31,8 +18,11 @@ nav {
     margin-top: 63px;
   }
 }
-button {
-  border: 0;
+
+.navBar {
+  a {
+    z-index: 11;
+  }
 }
 
 .link {
@@ -52,6 +42,11 @@ button {
   right: 10px;
   z-index: 10;
   cursor: pointer;
+  margin-top: 0.6rem;
+  padding: 8px 8px 5px 8px;
+  border: 0;
+  background-color: white;
+  border-radius: 50%;
 }
 
 // styling of mobile menu (wrapped in a div with class "mobile" )
@@ -70,8 +65,9 @@ button {
     padding: 0;
     overflow-y: scroll;
     position: fixed;
-    top: 0;
-    background: #fff;
+    padding-top: 63px;
+    top: -63px;
+    background: white;
     left: 0;
     bottom: 0;
     height: 100vh;
@@ -82,7 +78,7 @@ button {
 
     // Line in between menu options
     hr {
-      border: 0.7px solid $firstcolor;
+      border: 0.7px solid v.$firstcolor;
       margin: 0.3rem 1rem;
     }
   }

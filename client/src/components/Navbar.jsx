@@ -5,6 +5,7 @@ import { FiMenu } from 'react-icons/fi';
 import { VscClose } from 'react-icons/vsc';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { VscComment } from 'react-icons/vsc';
+
 import NavContent from './NavContent';
 import { Link } from 'react-router-dom';
 
@@ -34,7 +35,7 @@ const Navbar = () => {
       <button className="toggelBtn" onClick={handleToggleMenu}>
         {navbarOpen ? (
           <VscClose
-            style={{ color: '#8941E7', width: '40px', height: '40px' }}
+            style={{ color: '#8941E7', width: '32px', height: '32px' }}
           />
         ) : (
           <AiOutlineMenu

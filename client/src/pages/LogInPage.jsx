@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import AuthenticationContext from '../context/authentication';
 import AuthenticationForm from '../components/AuthenticationForm';
 import { logInUser } from '../services/authentication';
-
+import './LogInPage.scss';
 const LogInPage = () => {
   const navigate = useNavigate();
 
@@ -26,8 +26,8 @@ const LogInPage = () => {
   };
 
   return (
-    <div>
-      <h1>Log In to Existing Account</h1>
+    <div className="login-form">
+      <h1>Welcome Back</h1>
       <AuthenticationForm
         user={user}
         buttonLabel="Log in"

@@ -21,7 +21,7 @@ const SoundEditPage = () => {
         setSound(data.sound);
       }
     });
-  }, [id]); 
+  }, [id]);
 
   const handleSoundEdit = () => {
     soundEdit(id, sound).then((data) => {
@@ -32,6 +32,7 @@ const SoundEditPage = () => {
 
   return (
     <div>
+      <hr />
       <h1>Add a new sound to your Archive</h1>
       {(sound && isOwner && (
         <SoundForm
