@@ -28,9 +28,6 @@ const SoundCard = ({ sound }) => {
           <div>
             <Link to={`/sound/${sound._id}`}>Details</Link>
           </div>
-          <div>
-            <LibraryDropdown />
-          </div>
         </>
       )}
     </div>

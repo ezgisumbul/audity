@@ -97,7 +97,7 @@ const SoundDetailPage = () => {
               // type="mp3"
             />
           </audio>
-          <CustomPlayer source={sound[0]} />
+          {/* <CustomPlayer source={sound[0]} /> */}
           {/* <Player source={sound[0]} /> */}
 
           {/* <AudioPlayer /> */}
