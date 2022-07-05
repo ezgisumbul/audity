@@ -10,7 +10,6 @@ const AuthenticationForm = (props) => {
     // console.log('even.target.files', event.target.files);
     const imageFile = event.target.files[0];
 
-    console.log(event.target);
     const reader = new FileReader();
     reader.readAsDataURL(imageFile); // <-- new / result os a base64 encoded audio file / problem: creation does not work
     reader.onloadend = () => {
