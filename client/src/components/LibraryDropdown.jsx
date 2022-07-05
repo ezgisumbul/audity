@@ -23,7 +23,6 @@ const LibraryDropdown = () => {
 
     addBookmark(id, selectedLibraryName);
 
-    // toast('Hello Geeks');
     toast.success('Sound added to the library!');
   };
 
