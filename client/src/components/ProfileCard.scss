@@ -1,16 +1,38 @@
-$profile-image-size: 6rem;
+.profile-card-wrapper-div {
+  height: 80px;
 
-.profile-card {
+  border-width: 1px 0px;
+  border-style: solid;
+  border-color: #000000;
+
   display: flex;
-  align-items: center;
-  gap: 1rem;
+  flex-direction: row;
+  // align-items: center;
+
+  // gap: 1rem;
   margin: 1rem 0;
+
+  .profile-card-link {
+    display: flex;
+    flex-direction: row;
+  }
+
+  h4 {
+    font-size: 1.2 rem;
+    font-weight: 400;
+    color: black;
+  }
+
+  small {
+  }
+
   img {
-    width: $profile-image-size;
-    height: $profile-image-size;
+    width: 4rem;
+    height: 4rem;
     border-radius: 50%;
     object-fit: cover;
   }
+
   span {
     font-size: 1.25rem;
     font-weight: 400;
