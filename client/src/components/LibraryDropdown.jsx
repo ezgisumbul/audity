@@ -48,16 +48,18 @@ const LibraryDropdown = () => {
           }}
           value={selectedLibraryName}
         >
-          <option selected="selected" disabled>
+          {/* <option selected="selected" disabled>
             Select library...
-          </option>
-          <option>Create playlist</option>
-          {
-            //   (isLoading && <option>... Loading</option>) ||
-            libraries.map((library) => (
-              <option key={library._id}>{library.title}</option>
-            ))
-          }
+          </option> */}
+          <optgroup label="Select library...">
+            <option>Create playlist</option>
+            {
+              //   (isLoading && <option>... Loading</option>) ||
+              libraries.map((library) => (
+                <option key={library._id}>{library.title}</option>
+              ))
+            }
+          </optgroup>
         </select>
         <button>+</button>
       </form>

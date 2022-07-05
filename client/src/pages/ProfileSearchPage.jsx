@@ -7,15 +7,21 @@ const ProfileSearchPage = () => {
   const [term, setTerm] = useState("");
 
   const [profiles, setProfiles] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // if statement to prevent search if nothing is typed in
+    // if statement to prevent search in case nothing is typed in
     if (term.length !== 0) {
       profileSearch(term).then((data) => {
         setProfiles(data.profiles);
+        setIsLoading(false);
+        console.log("Profiles", data.profiles);
+        console.log("Profiles", data.profiles);
       });
     } else {
       setProfiles([]);
+      setIsLoading(false);
+      console.log("Profiles", profiles);
     }
   }, [term]);
 
@@ -36,12 +42,29 @@ const ProfileSearchPage = () => {
         />
         <button>Search</button>
       </form>
-      {profiles.map((profile) => (
-        <ProfileCard key={profile._id} profile={profile} />
-      ))}
+      <div>
+        {(term.length !== 0 && (
+          <>
+            {(!isLoading && profiles.length !== 0 && (
+              <>
+                {profiles.map((profile) => (
+                  <ProfileCard key={profile._id} profile={profile} />
+                ))}
+              </>
+            )) || (
+              <>
+                <p>No users found.</p>
+              </>
+            )}
+          </>
+        )) || (
+          <>
+            <p>Type in something to find other AUDITY Users.</p>
+          </>
+        )}
+      </div>
     </div>
   );
 };
 
 export default ProfileSearchPage;
- 
