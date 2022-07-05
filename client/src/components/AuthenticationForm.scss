@@ -1,22 +1,9 @@
-// scss variables
-
-$h1: 2.5rem;
-$h2: 2rem;
-$h3: 1.9rem;
-$h4: 1.2rem;
-$p: 1rem;
-$small: 0.8rem;
-
-$firstcolor: #8941e7;
-$secondcolor: #ff4747;
-$thirdcolor: #f0f3f4;
-$fourthcolor: #ded1ee;
-$green: #36cd85;
+@use './../utils/variables.scss' as v;
 
 .authentication-form {
   margin: 0 1rem;
   label {
-    font-size: $small;
+    font-size: v.$small;
   }
 }
 
@@ -25,8 +12,8 @@ $green: #36cd85;
   margin: 0 auto;
   margin-bottom: 1rem;
   padding: 0.5rem 0;
-  background-color: $firstcolor;
-  font-size: $h4;
+  background-color: v.$firstcolor;
+  font-size: v.$h4;
   color: white;
   border-radius: 4rem;
 }
@@ -40,15 +27,15 @@ $green: #36cd85;
   background: transparent;
   margin-bottom: 1rem;
   border-radius: 5rem;
-  font-size: $h4;
+  font-size: v.$h4;
 }
 
 input::file-selector-button {
   font-family: 'DM Sans', sans-serif;
-  font-size: $small;
+  font-size: v.$small;
   padding: 0.5em;
   /*   border: thin solid rgb(0, 0, 0); */
   border-style: none;
-  background-color: $fourthcolor;
+  background-color: v.$fourthcolor;
   border-radius: 5rem;
 }
