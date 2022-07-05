@@ -29,7 +29,7 @@ const MessageThreadPage = () => {
               ))}
             </ul>
           )) || (
-            <div>
+            <>
               <p>
                 You have not started a Conversation with any user yet. Find
                 other sound lovers and start your first conversation.
@@ -37,7 +37,7 @@ const MessageThreadPage = () => {
               <button>
                 <Link to="/sound/search">Find Users</Link>
               </button>
-            </div>
+            </>
           )}
         </>
       )}

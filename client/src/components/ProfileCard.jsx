@@ -25,17 +25,22 @@ const ProfileCard = ({ handleUnfollowUser, unfollowBtn, profile }) => {
 
   return (
     <div>
-      {profile && sounds.length !== 0 && (
+      {profile && (
         <>
           <Link className="profile-card" to={`/profile/${profile._id}`}>
             <img
-              src="https://images.unsplash.com/photo-1604863047626-b716dd8980d8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1364&q=80"
+              src={
+                profile.picture ||
+                "https://images.unsplash.com/photo-1570499911518-9b95b0660755?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2346&q=80"
+              }
               alt={profile.name}
             />
             <p>{profile.name}</p>
-            <p>
-              <span>{sounds.length}</span>sounds
-            </p>
+            {sounds.length !== 0 && (
+              <p>
+                <span>{sounds.length}</span>sounds
+              </p>
+            )}
           </Link>
           {/* the following has to be outside Link-Tag so that the Unfollow-Button dioes not take you to deleted profile */}
           {(unfollowBtn && (
