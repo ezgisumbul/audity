@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import AuthenticationContext from "./../context/authentication";
-import { profileLoad } from "./../services/profile";
-import { followerLoad } from "./../services/follow";
-import "./ProfileCard.scss";
+import { Link } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import AuthenticationContext from './../context/authentication';
+import { profileLoad } from './../services/profile';
+import { followerLoad } from './../services/follow';
+import './ProfileCard.scss';
 
 const ProfileCard = ({ handleUnfollowUser, unfollowBtn, profile }) => {
   const [sounds, setSounds] = useState([]);
@@ -31,7 +31,7 @@ const ProfileCard = ({ handleUnfollowUser, unfollowBtn, profile }) => {
             <img
               src={
                 profile.picture ||
-                "https://images.unsplash.com/photo-1570499911518-9b95b0660755?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2346&q=80"
+                'https://images.unsplash.com/photo-1570499911518-9b95b0660755?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2346&q=80'
               }
               alt={profile.name}
             />

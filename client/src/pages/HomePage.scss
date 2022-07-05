@@ -1,15 +1,4 @@
-$h1: 2.5rem;
-$h2: 2rem;
-$h3: 1.9rem;
-$h4: 1.2rem;
-$p: 1rem;
-$small: 0.8rem;
-
-$firstcolor: #8941e7;
-$secondcolor: #ff4747;
-$thirdcolor: #f0f3f4;
-$fourthcolor: #ded1ee;
-$green: #36cd85;
+@use './../utils/variables.scss' as v;
 
 h1 {
   padding: 1rem;
@@ -30,7 +19,7 @@ h1 {
     background-color: #bababa;
   }
   h3 {
-    font-size: $h3;
+    font-size: v.$h3;
     font-weight: 300;
     line-height: 1.05;
   }
