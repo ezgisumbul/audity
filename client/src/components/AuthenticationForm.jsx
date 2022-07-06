@@ -129,7 +129,8 @@ const AuthenticationForm = (props) => {
               <input
                 id="input-sound"
                 type="file"
-                accept="audio/*"
+                // accept="audio/*"
+                accept=".wav,.aif,.aiff,.flac,.alac,.aac,.ogg,.mp3,.mp4"
                 // value={props.user.sound}
                 onChange={
                   handleSoundUpload
