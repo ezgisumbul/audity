@@ -2,6 +2,10 @@ import { useContext, useState } from 'react';
 import AuthenticationContext from '../context/authentication';
 import LibrarySoundList from '../components/LibrarySoundList';
 
+import { BsChevronDown } from 'react-icons/bs';
+import { BsChevronRight } from 'react-icons/bs';
+import './LibraryList.scss';
+
 const LibraryList = ({ library, libraries, setLibraries }) => {
   const [isExtended, setIsExtended] = useState(false);
   const handleLibraryExtend = () => {
@@ -15,10 +19,25 @@ const LibraryList = ({ library, libraries, setLibraries }) => {
       {user && (
         <>
           {library && (
-            <>
-              <h1>{library.title}</h1>
+            <div className="library-single">
+              <div className="library-single-header">
+                <h4>{library.title}</h4>
 
-              <button onClick={handleLibraryExtend}>⌄</button>
+                <button
+                  className="library-chevron"
+                  onClick={handleLibraryExtend}
+                >
+                  {(isExtended && (
+                    <p>
+                      <BsChevronDown />
+                    </p>
+                  )) || (
+                    <p>
+                      <BsChevronRight />
+                    </p>
+                  )}
+                </button>
+              </div>
               {isExtended && (
                 <LibrarySoundList
                   library={library}
@@ -26,7 +45,7 @@ const LibraryList = ({ library, libraries, setLibraries }) => {
                   setLibraries={setLibraries}
                 />
               )}
-            </>
+            </div>
           )}
         </>
       )}
@@ -34,4 +53,4 @@ const LibraryList = ({ library, libraries, setLibraries }) => {
   );
 };
 
-export default LibraryList; 
+export default LibraryList;

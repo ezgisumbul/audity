@@ -76,42 +76,55 @@ const ProfilePage = () => {
   };
 
   return (
-    <div>
+    <div className="profile-page-div">
       {profile && (
         <>
           <div className="profile-header">
             <h1>Hi, I'm {profile.name}</h1>
-            <img
-              src={
-                profile.picture ||
-                "https://images.unsplash.com/photo-1570499911518-9b95b0660755?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2346&q=80"
-              }
-              alt={profile.name}
-            />
-
             <div>
-              <Link to={`/profile/${id}/following`}>
-                {followed.length !== 0 && `Following ${followed.length}`}
-              </Link>
-              <br />
-              <Link to={`/profile/${id}/follower`}>
-                {follower.length !== 0 && `Followers ${follower.length}`}
-              </Link>
+              <img
+                src={
+                  profile.picture ||
+                  "https://images.unsplash.com/photo-1570499911518-9b95b0660755?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2346&q=80"
+                }
+                alt={profile.name}
+              />
+              <div>
+                {user && profile._id === user._id && (
+                  <div>
+                    <Link className="btn edit-btn" to={"/profile/edit"}>
+                      Edit Profile
+                    </Link>
+                  </div>
+                )}
+
+                <div>
+                  <small>
+                    <Link to={`/profile/${id}/following`}>
+                      {followed.length !== 0 && `Following ${followed.length}`}
+                    </Link>
+                  </small>
+                  <br />
+                  <small>
+                    <Link to={`/profile/${id}/follower`}>
+                      {follower.length !== 0 && `Followers ${follower.length}`}
+                    </Link>
+                  </small>
+                </div>
+              </div>
             </div>
 
-            {user && profile._id === user._id && (
-              <Link to={"/profile/edit"}>Edit Profile</Link>
-            )}
-
             {user && profile._id !== user._id && (
-              <>
-                <Link to={`/message/${id}`}>Send Message</Link>
+              <div id="profile-message-follow-div">
+                <Link className="btn" to={`/message/${id}`}>
+                  Send Message
+                </Link>
                 {!followerIds.includes(user._id) ? (
                   <button onClick={handleFollow}>Follow</button>
                 ) : (
                   <button onClick={handleUnFollow}>Unfollow</button>
                 )}
-              </>
+              </div>
             )}
 
             <p>{profile.description}</p>
@@ -127,31 +140,44 @@ const ProfilePage = () => {
           </div>
 
           {(sounds.length !== 0 && (
-            <SoundMapAndListToggle
-              mapView={mapView}
-              setMapView={setMapView}
-              sounds={sounds}
-            />
+            <div id="profile-sounds-div">
+              <h3>Sounds</h3>
+              <SoundMapAndListToggle
+                mapView={mapView}
+                setMapView={setMapView}
+                sounds={sounds}
+              />
+            </div>
           )) ||
             (user._id === profile._id && (
               <Link to={"/sound-create"}>Create your first sound</Link>
             ))}
 
-          <div>
-            <Link to={`/library/${id}/list`}>
-              See {profile.name}'s sound library
-            </Link>
-          </div>
-
-          <div>
-            {libraries &&
-              libraries.map((library) => {
-                return (
-                  <Link key={library._id} to={`/library/${library._id}`}>
-                    {library.title}
-                  </Link>
-                );
-              })}
+          <div id="profile-libraries">
+            {libraries && (
+              <>
+                <h4>
+                  <Link to={`/library/${id}/list`}>Sound Lists</Link>
+                </h4>
+                {libraries.map((library) => {
+                  return (
+                    <>
+                      <div>
+                        <>
+                          <Link
+                            key={library._id}
+                            to={`/library/${library._id}`}
+                          >
+                            {library.title}
+                          </Link>
+                          <small>{`${library.sound.length} sounds`}</small>
+                        </>
+                      </div>
+                    </>
+                  );
+                })}
+              </>
+            )}
           </div>
 
           {/* {user && profile._id === user._id && (

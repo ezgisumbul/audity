@@ -1,19 +1,76 @@
-$primary-color: #cbcbcb;
+@use './../utils/variables.scss' as v;
 
 .sound-card {
-  padding: 2rem;
-  margin-bottom: 1rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 100vw;
-  height: 80px;
-  background-color: $primary-color;
+  //   // padding: 2rem;
+  //   padding: 0;
+  //   // margin-top: 1.5rem;
+  //   // margin-bottom: 1rem;
+  //   margin: 0;
+  //   // display: flex;
+  //   // flex-direction: row;
+  //   justify-content: space-between;
+  //   margin-right: 3rem;
 
+  //   align-items: center;
+  //   width: 100vw;
+  //   height: 80px;
+  //   background-color: transparent;
+
+  .soundcard-wrapper {
+    margin: 0 0 0 0.6rem;
+    // padding: 1rem 0;
+    // border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    align-items: space-between;
+    justify-content: space-between;
+    // gap: 0.5rem;
+  }
+  .soundcard-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0;
+    padding: 0.5rem 0 0.5rem 0.5rem;
+    // width: 80%;
+
+    audio {
+      // width: 90%;
+    }
+  }
+
+  // a {
+  //   // padding: 1rem;
+  //   // border: 1px solid black;
+  //   // margin-left: 1rem;
+  // }
   a {
+    display: flex;
+    margin: 0;
     padding: 1rem;
-    border: 1px solid black;
-    margin-left: 1rem;
+    // padding: 0.5rem 0rem 0.5rem 1rem;
+    align-items: center;
+    // border: 1px solid black;
+    justify-content: center;
+    background-color: v.$fourthcolor;
+    border-radius: 19.5px 0px 0px 19.5px;
+    width: 2rem;
+
+    // a {
+    //   margin: 0;
+    //   padding: 0;
+    // }
+    p {
+      writing-mode: tb-rl;
+      transform: rotate(-180deg);
+      color: black;
+      background-color: v.$fourthcolor;
+      font-size: 0.7rem;
+      // padding: 0.5rem;
+
+      // border: 1px solid black;
+
+      margin: 0;
+    }
   }
 }

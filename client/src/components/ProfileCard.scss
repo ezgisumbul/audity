@@ -1,18 +1,71 @@
-$profile-image-size: 6rem;
+@use "./../utils/variables.scss" as v;
 
-.profile-card {
+.profile-card-wrapper-div {
+  margin-top: -1px;
+  height: 80px;
+
+  border-width: 1px 0px;
+  border-style: solid;
+  border-color: #000000;
+
   display: flex;
+  flex-direction: row;
   align-items: center;
-  gap: 1rem;
-  margin: 1rem 0;
-  img {
-    width: $profile-image-size;
-    height: $profile-image-size;
-    border-radius: 50%;
-    object-fit: cover;
+  justify-content: space-between;
+
+  .profile-card-link {
+    display: flex;
+    flex-direction: row;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    #profile-main-info-div {
+      min-width: 10rem;
+      align-items: flex-start;
+
+      h4 {
+        margin: 0.6rem 0 0.4rem 0;
+        padding: 0;
+        font-size: v.$h4;
+        font-weight: 400;
+        color: black;
+      }
+
+      small {
+        font-size: v.$small;
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    img {
+      margin: 0.5rem 0.9rem 0.5rem 0.9rem;
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      object-fit: cover;
+    }
   }
-  span {
-    font-size: 1.25rem;
-    font-weight: 400;
+
+  #profile-follow-div {
+    line-height: 1rem;
+    margin-right: 1rem;
+    justify-content: center;
+
+    span {
+      color: v.$fifthcolor;
+      font-size: v.$small;
+      font-weight: 400;
+    }
+
+    button {
+      padding: 0.2rem 0.8rem;
+      font-size: v.$small;
+      background-color: v.$secondcolor;
+    }
   }
 }

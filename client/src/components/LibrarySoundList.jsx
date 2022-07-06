@@ -9,6 +9,8 @@ import {
 import AuthenticationContext from '../context/authentication';
 import SoundCard from './SoundCard';
 
+import './LibrarySoundList.scss';
+
 const LibrarySoundList = ({ library, libraries, setLibraries }) => {
   // These states are pointing to the same object but
   // preventing the page to be recursively rendered or not being
@@ -55,11 +57,37 @@ const LibrarySoundList = ({ library, libraries, setLibraries }) => {
 
   return (
     libraryUpdated && (
-      <div>
+      <div className="library-extended-view">
+        {libraryUpdated.sound &&
+          libraryUpdated.sound.map(
+            (sound, index) =>
+              sound && (
+                <div key={sound || index}>
+                  <div>
+                    <SoundCard sound={sound} />
+                    {user && (
+                      <div>
+                        {libraryUpdated.user === user._id && (
+                          <button
+                            className="btn remove"
+                            onClick={() => {
+                              handleSoundRemovalFromLibrary(sound._id);
+                            }}
+                          >
+                            <p>Remove</p>
+                          </button>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )
+          )}
+
         {user && (
           <>
             {libraryUpdated.user === user._id && (
-              <>
+              <div className="edit-delete-buttons">
                 <Link
                   to={`/library/${libraryUpdated._id}/edit`}
                   className="btn"
@@ -70,42 +98,17 @@ const LibrarySoundList = ({ library, libraries, setLibraries }) => {
                   onClick={() => {
                     handleLibraryDeletion(libraryUpdated._id);
                   }}
-                  className="btn"
+                  className="btn delete"
                 >
                   Delete library
                 </button>
-              </>
+              </div>
             )}
           </>
         )}
-
-        {libraryUpdated.sound &&
-          libraryUpdated.sound.map(
-            (sound, index) =>
-              sound && (
-                <div key={sound || index}>
-                  <SoundCard sound={sound} />
-                  {user && (
-                    <>
-                      {libraryUpdated.user === user._id && (
-                        <div>
-                          <button
-                            onClick={() => {
-                              handleSoundRemovalFromLibrary(sound._id);
-                            }}
-                          >
-                            Remove from the library
-                          </button>
-                        </div>
-                      )}
-                    </>
-                  )}
-                </div>
-              )
-          )}
       </div>
     )
   );
 };
 
-export default LibrarySoundList; 
+export default LibrarySoundList;
