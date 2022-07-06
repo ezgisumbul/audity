@@ -24,7 +24,7 @@ const Navbar = () => {
 
   return (
     <nav className="navBar">
-      <div className={navbarOpen ? "fixed-menu" : ""}>
+      <div id="nav-top" className={navbarOpen ? "fixed-menu" : ""}>
         <Link to={"/"}>
           <h2 onClick={handleCloseMenu}>AUDITY</h2>
         </Link>
@@ -53,17 +53,17 @@ const Navbar = () => {
         </button>
       </div>
 
-      <div className="mobile">
+      <div className="desktop">
         <NavContent
-          mobile={true}
+          mobile={false}
           navbarOpen={navbarOpen}
           changeNavbarState={setNavbarOpen}
         />
       </div>
 
-      <div className="desktop">
+      <div className="mobile">
         <NavContent
-          mobile={false}
+          mobile={true}
           navbarOpen={navbarOpen}
           changeNavbarState={setNavbarOpen}
         />

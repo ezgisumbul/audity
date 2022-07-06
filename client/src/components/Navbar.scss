@@ -8,7 +8,13 @@ h2 {
 }
 
 .navBar {
-  div {
+  margin: 0;
+  #nav-top {
+    @media (min-width: 900px) {
+      // media query for desktop navbar
+      display: none;
+    }
+
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -17,11 +23,6 @@ h2 {
     #nav-message-btn {
       margin: 0 auto;
     }
-  }
-
-  ul {
-    padding-top: 0;
-    margin-top: 63px;
   }
 
   a {
@@ -48,6 +49,7 @@ h2 {
 
 .toggelBtn {
   @media (min-width: 900px) {
+    // media query for desktop navbar
     display: none;
   }
   position: fixed;
@@ -70,11 +72,11 @@ h2 {
     height: 64px;
   }
 
-  .menuNav {
-    @media (min-width: 900px) {
-      display: none;
-    }
+  ul {
+    margin-top: 63px;
+  }
 
+  .menuNav {
     padding: 0;
     overflow-y: scroll;
     position: fixed;
@@ -105,14 +107,21 @@ h2 {
   } */
 }
 
-// styling of desktop version menu (wrapped in a div with class "desktop" )
+// styling of desktop version menu (NavContent is wrapped in a div with class "desktop")
 
 .desktop {
   .menuNav {
     @media (max-width: 900px) {
       display: none;
     }
+
     display: flex;
-    align-items: row;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  a {
+    font-size: v.$h4;
   }
 }
