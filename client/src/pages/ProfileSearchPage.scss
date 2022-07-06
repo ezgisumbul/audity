@@ -1,7 +1,15 @@
+@use './../utils/variables' as v;
+
+.profile-search-page {
+  height: 100vh;
+  background-color: v.$fourthcolor;
+  color: v.$dark;
+}
+
 .profile-search-form {
-  flex-direction: row;
   input {
-    flex: 1;
+    width: 92vw;
+    max-width: 600px;
   }
   label {
     opacity: 0;
@@ -9,4 +17,14 @@
     position: absolute;
     z-index: -9999;
   }
+}
+
+.search-input-container {
+  margin: 8rem auto 0 auto;
+  position: relative;
+}
+.search-results {
+  width: 92vw;
+  max-width: 600px;
+  margin: 0 auto;
 }

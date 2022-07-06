@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import { tags } from "./../utils/tags";
-import TagsCheckboxComponent from "./../components/TagsCheckboxComponent";
-import { soundSearch } from "./../services/sound";
-import SoundMapAndListToggle from "../components/SoundMapAndListToggle";
-
-const qualities = ["high", "medium", "low"];
+import { useState, useEffect } from 'react';
+import { tags } from './../utils/tags';
+import TagsCheckboxComponent from './../components/TagsCheckboxComponent';
+import { soundSearch } from './../services/sound';
+import SoundMapAndListToggle from '../components/SoundMapAndListToggle';
+import './SoundSearchPage.scss';
+const qualities = ['high', 'medium', 'low'];
 
 const SoundSearchPage = () => {
   const [checkedState, setCheckedState] = useState(
@@ -16,9 +16,9 @@ const SoundSearchPage = () => {
   );
 
   const [query, setQuery] = useState({
-    term: "",
+    term: '',
     tags: [],
-    quality: [],
+    quality: []
   });
 
   const [sounds, setSounds] = useState([]);
@@ -78,18 +78,22 @@ const SoundSearchPage = () => {
   };
 
   return (
-    <div>
+    <div className="sound-search-page">
       <h1>Search for Sounds</h1>
-      <label htmlFor="input-search-term"></label>
-      <input
-        id="input-search-term"
-        type="text"
-        placeholder="Search for Sounds ..."
-        value={query.term}
-        onChange={handleTermInputChange}
-      />
-
+      <div className="sound-search-results">
+        <div className="input-search-term">
+          <label htmlFor="input-search-term"></label>
+          <input
+            id="input-search-term"
+            type="text"
+            placeholder="Search for Sounds ..."
+            value={query.term}
+            onChange={handleTermInputChange}
+          />
+        </div>
+      </div>
       <h1>Filter by Tags</h1>
+
       <form onSubmit={(event) => handleFormSubmit(event)}>
         <TagsCheckboxComponent
           checkedStateArray={checkedState}
@@ -97,25 +101,31 @@ const SoundSearchPage = () => {
         />
 
         <h1>Choose Quality</h1>
-        <ul className="quality-list">
+
+        <div className="quality-list quality-wrapper">
           {qualities.map((name, index) => {
             return (
-              <li key={index}>
-                <div className="qualities-list-item">
-                  <input
-                    type="checkbox"
-                    id={`custom-quality-checkbox-${index}`}
-                    name={name}
-                    value={name}
-                    checked={checkedQualitiesState[index]}
-                    onChange={() => onhandleQualitiesChange(index)}
-                  />
-                  <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
+              <div key={index}>
+                <div className="qualities-list-item" id="quality-button">
+                  <div className="single-quality-button">
+                    <label htmlFor={`custom-quality-checkbox-${index}`}>
+                      <input
+                        type="checkbox"
+                        hidden
+                        id={`custom-quality-checkbox-${index}`}
+                        name={name}
+                        value={name}
+                        checked={checkedQualitiesState[index]}
+                        onChange={() => onhandleQualitiesChange(index)}
+                      />
+                      <span>{name}</span>
+                    </label>
+                  </div>
                 </div>
-              </li>
+              </div>
             );
           })}
-        </ul>
+        </div>
       </form>
 
       <div>

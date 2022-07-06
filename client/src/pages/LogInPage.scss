@@ -2,8 +2,8 @@
 
 .login-form {
   height: 100vh;
-  background-color: v.$firstcolor;
-  color: white;
+  background-color: v.$fourthcolor;
+  color: black;
   h1 {
     padding-top: 3.2rem;
     margin-block-start: 0em;
@@ -11,7 +11,9 @@
   }
   button {
     padding: 0.5rem 1rem;
-    background-color: white;
-    color: black;
+    color: white;
+  }
+  label {
+    margin-left: 1rem;
   }
 }
