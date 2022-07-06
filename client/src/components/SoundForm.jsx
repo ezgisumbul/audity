@@ -2,6 +2,7 @@ import { useState } from 'react';
 import SoundInputMap from './SoundInputMap';
 import { tags } from './../utils/tags';
 import TagsCheckboxComponent from './TagsCheckboxComponent';
+import './SoundForm.scss';
 
 const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
   const [checkedState, setCheckedState] = useState(
@@ -65,7 +66,9 @@ const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
   return (
     <div>
       <form onSubmit={(event) => handleFormSubmit(event)}>
-        <label htmlFor="titleInput">Title</label>
+        <label htmlFor="titleInput" className="custom-name-label">
+          Title
+        </label>
         <input
           type="text"
           id="titleInput"
@@ -76,7 +79,9 @@ const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
           placeholder="A title for your sound"
         />
 
-        <label htmlFor="dateInput">Recorded at</label>
+        <label htmlFor="dateInput" className="custom-name-label">
+          Recorded at
+        </label>
         <input
           type="date"
           id="dateInput"
@@ -87,8 +92,11 @@ const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
           placeholder="A title for your sound"
         />
 
-        <label htmlFor="descriptionInput">Description</label>
+        <label htmlFor="descriptionInput" className="custom-name-label">
+          Description
+        </label>
         <textarea
+          className="textarea"
           id="descriptionInput"
           onChange={(event) =>
             onSoundChange({ ...sound, description: event.target.value })
@@ -101,25 +109,32 @@ const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
           position={sound.position}
           onPositionChange={(position) => onSoundChange({ ...sound, position })}
         />
-
-        <label htmlFor="uploadInput">Upload file</label>
-        <input
-          id="uploadInput"
-          type="file"
-          accept="audio/*"
-          name="soundFile"
-          //value={sound.soundFile}  // <-- when I uncomment this it throws in error: Has to do with type: file (but there is a string stored in the db still)
-          onChange={handleFileInputChange}
-        />
-
-        <h3>Add Tags</h3>
+        <br sound-input-map />
+        <label htmlFor="input-picture" className="custom-name-label">
+          Upload Audio File
+        </label>
+        <label htmlFor="uploadInput" className="custom-file-upload">
+          <input
+            id="uploadInput"
+            type="file"
+            accept="audio/*"
+            name="soundFile"
+            //value={sound.soundFile}  // <-- when I uncomment this it throws in error: Has to do with type: file (but there is a string stored in the db still)
+            onChange={handleFileInputChange}
+          />
+        </label>
+        <div className="headline">
+          <h3>Add Tags</h3>
+        </div>
 
         <TagsCheckboxComponent
           checkedStateArray={checkedState}
           onhandleTagListChange={handleTagListChange}
         />
 
-        <label htmlFor="qualityInput">Quality of the Recording</label>
+        <label htmlFor="qualityInput" className="custom-name-label">
+          Quality of the Recording
+        </label>
         <select
           id="qualityInput"
           onChange={(event) =>
@@ -132,9 +147,9 @@ const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
           <option value="high">high</option>
         </select>
 
-        <label htmlFor="positionInput">Location of Recording</label>
-
-        <label htmlFor="priceInput">Price</label>
+        <label htmlFor="priceInput" className="custom-name-label">
+          Price
+        </label>
         <input
           type="number"
           min="0"
@@ -145,17 +160,18 @@ const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
           value={sound.price}
         />
 
-        <label htmlFor="publishInput">
+        <label htmlFor="publishInput" className="custom-name-label">
           {sound.published ? 'set private' : 'set public'}
+
+          <input
+            type="checkbox"
+            checked={!sound.published}
+            onChange={(event) =>
+              onSoundChange({ ...sound, published: !event.target.checked })
+            }
+            value={sound.published}
+          />
         </label>
-        <input
-          type="checkbox"
-          checked={!sound.published}
-          onChange={(event) =>
-            onSoundChange({ ...sound, published: !event.target.checked })
-          }
-          value={sound.published}
-        />
 
         <button>{buttonLabel}</button>
       </form>

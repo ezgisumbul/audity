@@ -1,12 +1,5 @@
 @use './../utils/variables.scss' as v;
 
-.authentication-form {
-  margin: 0 1rem;
-  label {
-    font-size: v.$small;
-  }
-}
-
 .send-button {
   border: none;
   margin: 0 auto;
@@ -19,13 +12,13 @@
 }
 
 .custom-file-upload {
-  font: inherit;
   border: 1px solid #000;
   line-height: inherit;
   color: inherit;
   padding: 1rem;
   background: transparent;
-  margin-bottom: 1rem;
+  margin: 0 1rem 1rem 1rem;
+
   border-radius: 5rem;
   font-size: v.$h4;
 }

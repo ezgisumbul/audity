@@ -4,16 +4,13 @@
   display: flex;
   justify-content: left;
   flex-wrap: wrap;
-}
-
-#ck-button {
-  margin: 4px;
+  margin: 0 1rem 2rem 1rem;
 }
 
 #ck-button label span {
   background-color: v.$fourthcolor;
   float: none;
-  color: v.$firstcolor;
+  color: black;
   font-size: v.$small;
   padding: 0.2em 1.2em;
   border: 2px solid white;
@@ -26,15 +23,12 @@
   border-radius: 2em;
 }
 
-#ck-button label input {
-  // position: absolute;
-  top: -20px;
-}
+// use this style only for widescreen
 
-#ck-button input:hover + span {
+/* #ck-button input:hover + span {
   background-color: v.$firstcolor;
   color: #fff;
-}
+} */
 
 #ck-button input:checked + span {
   background-color: v.$firstcolor;
@@ -48,5 +42,5 @@
 }
 
 .single-button {
-  margin-right: 1em;
+  margin: 0.25rem 0.25em;
 }
