@@ -142,11 +142,11 @@ const ProfilePage = () => {
           {(sounds.length !== 0 && (
             <div id="profile-sounds-div">
               <h3>Sounds</h3>
-              {/* <SoundMapAndListToggle
+              <SoundMapAndListToggle
                 mapView={mapView}
                 setMapView={setMapView}
                 sounds={sounds}
-              /> */}
+              />
             </div>
           )) ||
             (user._id === profile._id && (
@@ -154,7 +154,7 @@ const ProfilePage = () => {
             ))}
 
           <div id="profile-libraries">
-            {/* {libraries && (
+            {libraries && (
               <>
                 <h4>
                   <Link to={`/library/${id}/list`}>Sound Lists</Link>
@@ -177,7 +177,7 @@ const ProfilePage = () => {
                   );
                 })}
               </>
-            )} */}
+            )}
           </div>
 
           {/* {user && profile._id === user._id && (

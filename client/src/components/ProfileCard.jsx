@@ -28,15 +28,15 @@ const ProfileCard = ({ handleUnfollowUser, unfollowBtn, profile }) => {
       {profile && (
         <>
           <Link className="profile-card-link" to={`/profile/${profile._id}`}>
-            {/* <div>
+            <div>
               <img
                 src={
                   profile.picture ||
-                  "https://images.unsplash.com/photo-1570499911518-9b95b0660755?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2346&q=80"
+                  'https://images.unsplash.com/photo-1570499911518-9b95b0660755?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2346&q=80'
                 }
                 alt={profile.name}
               />
-            </div> */}
+            </div>
             <div id="profile-main-info-div">
               <h4>{profile.name}</h4>
               {sounds.length !== 0 && (
