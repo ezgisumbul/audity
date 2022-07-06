@@ -1,4 +1,4 @@
-@use './../utils/variables.scss' as v;
+@use "./../utils/variables.scss" as v;
 
 li,
 h2 {
@@ -7,22 +7,35 @@ h2 {
   font-weight: 300;
 }
 
-nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 1rem;
+.navBar {
+  div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 1rem;
+
+    #nav-message-btn {
+      margin: 0 auto;
+    }
+  }
+
   ul {
     padding-top: 0;
     margin-top: 63px;
   }
-}
 
-.navBar {
   a {
     z-index: 11;
   }
+}
+
+.fixed-menu {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
 }
 
 .link {
