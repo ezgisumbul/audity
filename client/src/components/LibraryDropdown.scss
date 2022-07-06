@@ -1,0 +1,29 @@
+@use './../utils/variables.scss' as v;
+
+.library-dropdown {
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  margin: 0 auto;
+  max-width: 600px;
+  width: 90vw;
+  select {
+    flex-grow: 2;
+    margin-left: 0;
+  }
+
+  form {
+    label {
+      margin-left: 1rem;
+    }
+  }
+}
+
+.add-button {
+  button {
+    font-size: v.$h3;
+    border-radius: 50%;
+    height: 61px;
+    width: 61px;
+  }
+}

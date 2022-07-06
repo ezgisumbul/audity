@@ -1,4 +1,5 @@
 // scss variables
+// font sizes
 
 $h1: 2.5rem;
 $h2: 2rem;
@@ -7,9 +8,21 @@ $h4: 1.2rem;
 $p: 1rem;
 $small: 0.8rem;
 
+// line-heights
+
+$h1-lh: 100%;
+$h2-lh: 105%;
+$h3-lh: 105%;
+$h4-lh: 120%;
+$p-lh: 120%;
+$small-lh: 120%;
+
+// colors
+
 $firstcolor: #8941e7;
 $secondcolor: #ff4747;
 $thirdcolor: #f0f3f4;
 $fourthcolor: #ded1ee;
 $fifthcolor: #b7b7b7;
 $green: #36cd85;
+$dark: #303030;

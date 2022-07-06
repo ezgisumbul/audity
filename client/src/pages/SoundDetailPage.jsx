@@ -72,45 +72,64 @@ const SoundDetailPage = () => {
     <div>
       {sound && (
         <>
-          <h1>{sound[0].title}</h1>
-          <span>
-            {sound[0].recordedAt &&
-              new Date(sound[0].recordedAt).toLocaleDateString('de-DE')}
-          </span>
-          <h2>
-            A sound by{' '}
-            <Link to={`/profile/${sound[0].owner._id}`}>
-              {sound[0].owner.name}
-            </Link>
-          </h2>
-          <p>{sound[0].description}</p>
-          <ul>
+          <hr />
+          <div className="basic-infos">
+            <h3>{sound[0].title} </h3>
+            <small>
+              {sound[0].recordedAt &&
+                new Date(sound[0].recordedAt).toLocaleDateString('de-DE')}
+            </small>
+            <small>
+              recorded by{' '}
+              <Link to={`/profile/${sound[0].owner._id}`}>
+                {sound[0].owner.name}
+              </Link>
+            </small>
+            <div>
+              <h4>{sound[0].description}</h4>
+            </div>
+          </div>
+
+          <div className="tag-cloud">
             {sound[0].tags.map((item) => (
-              <li key={item}>{item}</li>
+              <div className="tag" key={item}>
+                {item}
+              </div>
             ))}
-          </ul>
+          </div>
           {(isLoading && <div>Loading...</div>) ||
             (isError && <div>Error!</div>) || <SoundMap sounds={sound} />}
-          <audio controls>
-            <source
-              src={sound[0].soundFile}
-              // type="mp3"
-            />
-          </audio>
+          <div className="audio-player">
+            <div>
+              <audio controls>
+                <source
+                  src={sound[0].soundFile}
+                  // type="mp3"
+                />
+              </audio>
+            </div>
+          </div>
           {/* <CustomPlayer source={sound[0]} /> */}
           {/* <Player source={sound[0]} /> */}
 
           {/* <AudioPlayer /> */}
           {/* <audio-player /> */}
-          <small>
-            {sound[0].price === 0
-              ? 'you can use it for free'
-              : 'price: ' + formatPrice(sound[0].price)}
-          </small>
+
+          <div>
+            {sound[0].owner._id !== user._id && (
+              <small>
+                {sound[0].price === 0
+                  ? 'you can use it for free'
+                  : 'price: ' + formatPrice(sound[0].price)}
+              </small>
+            )}
+          </div>
 
           {/* <button>add to sound library</button> */}
           {sound[0].owner._id === user._id && (
-            <Link to={`/sound/${id}/edit`}>Edit Sound</Link>
+            <div className="send-button edit-btn">
+              <Link to={`/sound/${id}/edit`}>Edit Sound</Link>
+            </div>
           )}
           <br></br>
 

@@ -1,0 +1,7 @@
+@use './../utils/variables.scss' as v;
+
+.sound-ceate-page {
+  h1 {
+    line-height: v.$h1-lh;
+  }
+}

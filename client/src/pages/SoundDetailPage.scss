@@ -1,7 +1,70 @@
+@use './../utils/variables.scss' as v;
+
+.basic-infos {
+  margin: 0 1rem;
+  h3 {
+    font-size: v.$h3;
+    line-height: v.$h3-lh;
+    margin-block-start: 1rem;
+    margin-block-end: 0.2rem;
+  }
+
+  h4 {
+    font-size: v.$h4;
+    line-height: v.$h4-lh;
+    margin-block-start: 0.6rem;
+    margin-block-end: 0rem;
+  }
+
+  small {
+    font-size: v.$small;
+    line-height: v.$small-lh;
+    margin-right: 1rem;
+  }
+}
+
+.tag-cloud {
+  display: flex;
+  flex-direction: row;
+  margin-left: 1rem;
+}
+
+.tag {
+  font-size: v.$small;
+  background-color: transparent;
+  color: v.$dark;
+  border: 1px solid v.$dark;
+  padding: 0.2rem 0.5rem;
+  border-radius: 1rem;
+  margin: 1rem 0.5rem 1rem 0;
+}
+
 .successdiv {
   width: 20%;
   position: fixed;
   top: 40%;
   left: 40%;
   background-color: transparent;
+}
+
+.audio-player {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+
+  audio {
+    width: 100vw;
+    max-width: 600px;
+  }
+}
+
+.edit-btn {
+  margin-top: 2rem;
+  width: 9rem;
+  height: 2.5rem;
+  background-color: v.$thirdcolor;
+  text-align: center;
+  a {
+    color: black;
+  }
 }

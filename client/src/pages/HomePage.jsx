@@ -51,7 +51,7 @@ const HomePage = () => {
           </div>
         )}
       </section>
-      <footer>Lorem ipsum dolor sit amet</footer>
+      {/* <footer>Lorem ipsum dolor sit amet</footer> */}
     </div>
   );
 };

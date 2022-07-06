@@ -6,6 +6,7 @@ import { useParams, Link } from 'react-router-dom';
 // import formateDate from '../utils/format-date';
 // import { addBookmark } from '../services/item';
 import { listAvailableLibraries } from '../services/sound';
+import './LibraryDropdown.scss';
 
 import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
@@ -39,29 +40,32 @@ const LibraryDropdown = () => {
     <div>
       <ToastContainer />
       <form onSubmit={handleAddBookmark}>
-        <label htmlFor="input-sound-library">Add to a library:</label>
-
-        <select
-          id="input-sound-library"
-          onChange={(event) => {
-            setSelectedLibraryName(event.target.value);
-          }}
-          value={selectedLibraryName}
-        >
-          {/* <option selected="selected" disabled>
+        <label htmlFor="input-sound-library">Add to a library</label>
+        <div className="library-dropdown">
+          <select
+            id="input-sound-library"
+            onChange={(event) => {
+              setSelectedLibraryName(event.target.value);
+            }}
+            value={selectedLibraryName}
+          >
+            {/* <option selected="selected" disabled>
             Select library...
           </option> */}
-          <optgroup label="Select library...">
-            <option>Create playlist</option>
-            {
-              //   (isLoading && <option>... Loading</option>) ||
-              libraries.map((library) => (
-                <option key={library._id}>{library.title}</option>
-              ))
-            }
-          </optgroup>
-        </select>
-        <button>+</button>
+            <optgroup label="Select library...">
+              <option>Create playlist</option>
+              {
+                //   (isLoading && <option>... Loading</option>) ||
+                libraries.map((library) => (
+                  <option key={library._id}>{library.title}</option>
+                ))
+              }
+            </optgroup>
+          </select>
+          <div className="add-button">
+            <button>+</button>
+          </div>
+        </div>
       </form>
     </div>
   );

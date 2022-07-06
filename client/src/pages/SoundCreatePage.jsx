@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { soundCreate } from './../services/sound';
 import SoundForm from './../components/SoundForm';
 import { useNavigate } from 'react-router-dom';
+import './SoundCreatePage.scss';
 
 const SoundCreatePage = () => {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const SoundCreatePage = () => {
   };
 
   return (
-    <div>
+    <div className="sound-ceate-page">
       <hr />
       <h1>Add a new sound to your Archive</h1>
       <SoundForm

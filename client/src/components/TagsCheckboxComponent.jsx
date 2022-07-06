@@ -12,7 +12,7 @@ const TagsCheckboxComponent = ({
           return (
             <div key={index}>
               <div className="tags-list-item" id="ck-button">
-                <div class="single-button">
+                <div className="single-button">
                   <label htmlFor={`custom-checkbox-${index}`}>
                     <input
                       type="checkbox"

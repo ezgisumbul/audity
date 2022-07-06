@@ -160,20 +160,26 @@ const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
           value={sound.price}
         />
 
-        <label htmlFor="publishInput" className="custom-name-label">
-          {sound.published ? 'set private' : 'set public'}
-
-          <input
-            type="checkbox"
-            checked={!sound.published}
-            onChange={(event) =>
-              onSoundChange({ ...sound, published: !event.target.checked })
-            }
-            value={sound.published}
-          />
-        </label>
-
-        <button>{buttonLabel}</button>
+        <div className="tags-list-item" id="publish-button">
+          <div className="publish-button">
+            <label htmlFor="publishInput" className="custom-name-label">
+              <input
+                type="checkbox"
+                hidden
+                id="publishInput"
+                checked={!sound.published}
+                onChange={(event) =>
+                  onSoundChange({ ...sound, published: !event.target.checked })
+                }
+                value={sound.published}
+              />
+              <span>{sound.published ? 'set private' : 'set public'}</span>
+            </label>
+          </div>
+        </div>
+        <div className="send-button">
+          <button>{buttonLabel}</button>
+        </div>
       </form>
     </div>
   );
