@@ -1,7 +1,7 @@
-import { signOutUser } from './../services/authentication';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import AuthenticationContext from '../context/authentication';
+import { signOutUser } from "./../services/authentication";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import AuthenticationContext from "../context/authentication";
 
 const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
   const handleSignOut = () => {
     signOutUser().then(() => {
       setUser(null);
-      navigate('/');
+      navigate("/");
     });
   };
 
@@ -26,20 +26,31 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
       id: 1
     }, */
     {
-      path: '/profile/search',
-      text: 'Search for Users',
-      id: 2
+      path: "/profile/search",
+      text: "Search for Users",
+      id: 2,
     },
     {
-      path: '/sound/search',
-      text: 'Search for Sounds',
-      id: 3
-    }
+      path: "/sound/search",
+      text: "Search for Sounds",
+      id: 3,
+    },
   ];
 
   return (
-    <ul className={`menuNav ${navbarOpen ? ' showMenu' : ''}`}>
-      <hr />
+    <ul className={`menuNav ${navbarOpen ? " showMenu" : ""}`}>
+      {mobile && <hr />}
+      {!mobile && (
+        <li>
+          <NavLink
+            className="link"
+            to={"/"}
+            // activeClassName="active-link"
+          >
+            AUDITY
+          </NavLink>
+        </li>
+      )}
       {linkList.map((link) => (
         <li key={link.id}>
           <NavLink
@@ -50,7 +61,7 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
           >
             {link.text}
           </NavLink>
-          <hr />
+          {mobile && <hr />}
         </li>
       ))}
       {(user && (
@@ -58,25 +69,37 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
           <li>
             <NavLink
               className="link"
-              to={'/sound-create'}
+              to={"/sound-create"}
               onClick={() => closeMenu()}
               // activeClassName="active-link"
             >
               Create Sound
             </NavLink>
           </li>
-          <hr />
+          {mobile && <hr />}
           <li>
             <NavLink
               className="link"
-              to={'/library/my-libraries'}
+              to={"/library/my-libraries"}
               onClick={() => closeMenu()}
               // activeClassName="active-link"
             >
               Libraries
             </NavLink>
           </li>
-          <hr />
+          {mobile && <hr />}
+          {!mobile && (
+            <li>
+              <NavLink
+                className="link"
+                to={"/message/list"}
+                // activeClassName="active-link"
+              >
+                Messages
+              </NavLink>
+            </li>
+          )}
+
           <li>
             <NavLink
               className="link"
@@ -87,7 +110,7 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
               {user.name}'s Profile
             </NavLink>
           </li>
-          <hr />
+          {mobile && <hr />}
           {/*     <li>
             <NavLink
               className="link"
@@ -111,7 +134,7 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
               Sign Out
             </NavLink>
           </li>
-          <hr />
+          {mobile && <hr />}
         </>
       )) || (
         <>
@@ -125,7 +148,7 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
               Log In
             </NavLink>
           </li>
-          <hr />
+          {mobile && <hr />}
           <li>
             <NavLink
               className="link"
@@ -136,7 +159,7 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
               Register
             </NavLink>
           </li>
-          <hr />
+          {mobile && <hr />}
         </>
       )}
     </ul>
