@@ -26,15 +26,17 @@ const LogInPage = () => {
   };
 
   return (
-    <div className="login-form">
-      <h1>Welcome Back</h1>
-      <AuthenticationForm
-        user={user}
-        buttonLabel="Log in"
-        displayInputs={['email', 'password']}
-        onUserChange={setUserState}
-        onAuthenticationSubmit={handleLogIn}
-      />
+    <div className="login-form-wrapper">
+      <div className="login-form">
+        <h1>Welcome Back</h1>
+        <AuthenticationForm
+          user={user}
+          buttonLabel="Log in"
+          displayInputs={['email', 'password']}
+          onUserChange={setUserState}
+          onAuthenticationSubmit={handleLogIn}
+        />
+      </div>
     </div>
   );
 };

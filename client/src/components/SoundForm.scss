@@ -1,51 +1,59 @@
 @use './../utils/variables.scss' as v;
 
-#publish-button label span {
-  color: white;
-  font-size: v.$small;
-  padding: 0.2em 1.2em;
-  border-radius: 2em;
-}
+.sound-form {
+  .headline {
+    padding-left: 1rem;
+  }
 
-#publish-button label span {
-  text-align: center;
-  display: block;
-  justify-content: center;
-  border-radius: 2em;
-  background-color: v.$green;
-}
+  input[type='text'],
+  input[type='date'],
+  input[type='number'],
+  select {
+    margin: 0 1rem 1rem 1rem;
+  }
 
-// use this style only for widescreen
+  .custom-file-upload {
+    margin: 0 1rem 1rem 1rem;
+  }
 
-/* #ck-button input:hover + span {
+  // Tags
+
+  #publish-button label span {
+    color: white;
+    font-size: v.$small;
+    padding: 0.2em 1.2em;
+    border-radius: 2em;
+  }
+  #publish-button label span {
+    text-align: center;
+    display: block;
+    justify-content: center;
+    border-radius: 2em;
+    background-color: v.$green;
+  }
+  #publish-button input:checked + span {
+    background-color: v.$fourthcolor;
+    color: #fff;
+  }
+  #publish-button input:checked:hover + span {
+    background-color: v.$thirdcolor;
+    border-color: transparent;
+    color: v.$fifthcolor;
+  }
+  .publish-button {
+    margin: 0 auto 1rem auto;
+    max-width: fit-content;
+  }
+  .single-button {
+    margin: 0.2rem 0.2rem 0 0;
+  }
+  .custom-name-label {
+    margin-left: 1rem;
+  }
+
+  // use this style only for widescreen
+  /* #ck-button input:hover + span {
   background-color: v.$firstcolor;
   color: #fff;
-} */
-
-#publish-button input:checked + span {
-  background-color: v.$fourthcolor;
-  color: #fff;
-}
-
-#publish-button input:checked:hover + span {
-  background-color: v.$thirdcolor;
-  border-color: transparent;
-  color: v.$fifthcolor;
-}
-
-.publish-button {
-  margin: 0 auto 2rem auto;
-  max-width: fit-content;
-}
-
-.single-button {
-  margin: 0.25rem 0.25em;
-}
-
-.custom-name-label {
-  margin-left: 1rem;
-}
-
-.headline {
-  padding-left: 1rem;
+  } */
 }

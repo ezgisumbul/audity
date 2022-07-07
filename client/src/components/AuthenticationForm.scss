@@ -1,35 +1,44 @@
 @use './../utils/variables.scss' as v;
 
-.send-button {
-  border: none;
+.authentication-form {
+  max-width: 800px;
   margin: 0 auto;
-  width: fit-content;
-  margin-bottom: 1rem;
-  padding: 0.5rem 0;
-  background-color: v.$firstcolor;
-  font-size: v.$h4;
-  color: white;
-  border-radius: 4rem;
+  .send-button {
+    border: none;
+    margin: 1rem auto 2rem auto;
+
+    font-size: v.$h4;
+    color: white;
+    border-radius: 4rem;
+  }
+
+  .custom-file-upload {
+    border: 1px solid v.$fifthcolor;
+    line-height: inherit;
+    color: inherit;
+    padding: 1rem;
+    background: white;
+    margin: 0 0 1rem 0;
+    border-radius: 1rem;
+    font-size: v.$h4;
+  }
+
+  input::file-selector-button {
+    font-family: 'DM Sans', sans-serif;
+    font-size: v.$small;
+    padding: 0.5em 0.7rem;
+    /*   border: thin solid rgb(0, 0, 0); */
+    border-style: none;
+    background-color: v.$fourthcolor;
+    border-radius: 0.4rem;
+  }
 }
 
-.custom-file-upload {
-  border: 1px solid #000;
-  line-height: inherit;
-  color: inherit;
-  padding: 1rem;
-  background: transparent;
-  margin: 0 1rem 1rem 1rem;
-
-  border-radius: 5rem;
-  font-size: v.$h4;
-}
-
-input::file-selector-button {
-  font-family: 'DM Sans', sans-serif;
-  font-size: v.$small;
-  padding: 0.5em;
-  /*   border: thin solid rgb(0, 0, 0); */
-  border-style: none;
-  background-color: v.$fourthcolor;
-  border-radius: 5rem;
+@media (min-width: 900px) {
+  .authentication-form {
+    label {
+      font-size: v.$small-sc;
+      margin-bottom: 0.4rem;
+    }
+  }
 }

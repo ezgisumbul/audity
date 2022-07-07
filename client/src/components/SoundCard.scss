@@ -29,14 +29,29 @@
     // justify-content: center;
     // margin: 0 auto;
     gap: 0.5rem;
+
+    // (Martin) added max with to player when less then 900 px :)
+    audio {
+      width: 75vw;
+      max-width: 800px;
+    }
     @media (min-width: 900px) {
       gap: 1rem;
       // margin: 0;
 
       // margin: 0 auto;
       // align-items: center;
+      /* justify-content: center; */
       justify-content: center;
+
+      // (Martin) added max with to player when bigger then 900 px :)
+      audio {
+        width: 100vw;
+        max-width: 600px;
+      }
     }
+    margin-bottom: 2px;
+    background-color: white;
   }
   .soundcard-left {
     display: flex;

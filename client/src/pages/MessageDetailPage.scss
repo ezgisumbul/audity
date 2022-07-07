@@ -4,51 +4,73 @@
   background-color: v.$thirdcolor;
 }
 
-.message-sent {
-  background-color: v.$firstcolor;
-  color: white;
-  align-self: flex-end;
-}
+.message-detail-page {
+  height: 100vh;
+  background-color: v.$thirdcolor;
 
-.message-received {
-  background-color: white;
-}
+  .message-sent {
+    background-color: v.$firstcolor;
+    color: white;
+    align-self: flex-end;
+  }
 
-.message-sent,
-.message-received {
-  margin: 1rem 0;
-  border-radius: 0.25rem;
-  padding: 0.5rem 0.75rem;
-  max-width: 70vw;
-  box-shadow: 2px 2px 7px 1px rgba(0, 0, 0, 0.1);
-}
+  .message-received {
+    background-color: white;
+  }
 
-.message-list {
-  padding: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  .message-sent,
+  .message-received {
+    margin: 1rem 0;
+    border-radius: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    max-width: 70vw;
+    box-shadow: 2px 2px 7px 1px rgba(0, 0, 0, 0.1);
+  }
 
-  small {
-    font-size: v.$small;
-    letter-spacing: 0.5px;
+  .message-list {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* margin-bottom: 180px; */
+
+    small {
+      font-size: v.$small;
+      letter-spacing: 0.5px;
+    }
+  }
+
+  .message-user {
+    padding: 1rem 0 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.8rem;
+    background-color: white;
+
+    img {
+      width: 4rem;
+      height: 4rem;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  }
+  .send-form {
+    padding-top: 0.5rem;
+  }
+  textarea {
+    margin-bottom: 0;
+  }
+  .message-send-field {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1rem;
   }
 }
 
-.message-user {
-  margin: 1rem 0 1rem 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  font-size: 1.8rem;
-
-  img {
-    width: 4rem;
-    height: 4rem;
-    object-fit: cover;
-    border-radius: 50%;
-  }
-}
-.send-form {
-  padding-top: 1rem;
+.input-fixed {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }

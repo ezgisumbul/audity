@@ -1,11 +1,13 @@
 @use './../utils/variables' as v;
 
 .sound-search-page {
-  background-color: v.$fourthcolor;
-
+  background-color: v.$thirdcolor;
+  height: 100vh;
   h1 {
     margin-block-start: 0em;
-    padding-top: 2rem;
+    margin-bottom: 0;
+    padding: 2rem 1rem 2rem 1rem;
+    background-color: v.$thirdcolor;
   }
 }
 
@@ -13,17 +15,19 @@
   display: flex;
   justify-content: center;
   input {
-    width: 98vw;
+    width: 90vw;
     max-width: 600px;
   }
 }
 
 .quality-wrapper {
+  background-color: v.$thirdcolor;
   display: flex;
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 0 1rem 2rem 1rem;
+  margin: 0 1rem 0rem 1rem;
+  padding-bottom: 2rem;
 }
 
 #quality-button label span {
@@ -32,7 +36,6 @@
   color: black;
   font-size: v.$p;
   padding: 0.2em 1.2em;
-  border: 2px solid white;
   border-radius: 2em;
 }
 
@@ -61,5 +64,5 @@
 }
 
 .single-quality-button {
-  margin: 0 0.25rem;
+  margin: 0 0.5rem;
 }

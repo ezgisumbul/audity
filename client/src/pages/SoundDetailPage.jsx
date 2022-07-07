@@ -69,7 +69,7 @@ const SoundDetailPage = () => {
   const { user } = useContext(AuthenticationContext);
 
   return (
-    <div>
+    <div className="sound-detail-page">
       {sound && (
         <>
           <hr />
@@ -89,7 +89,6 @@ const SoundDetailPage = () => {
               <h4>{sound[0].description}</h4>
             </div>
           </div>
-
           <div className="tag-cloud">
             {sound[0].tags.map((item) => (
               <div className="tag" key={item}>
@@ -111,10 +110,8 @@ const SoundDetailPage = () => {
           </div>
           {/* <CustomPlayer source={sound[0]} /> */}
           {/* <Player source={sound[0]} /> */}
-
           {/* <AudioPlayer /> */}
           {/* <audio-player /> */}
-
           <div>
             {sound[0].owner._id !== user._id && (
               <small>
@@ -124,28 +121,23 @@ const SoundDetailPage = () => {
               </small>
             )}
           </div>
-
           {/* <button>add to sound library</button> */}
           {sound[0].owner._id === user._id && (
             <div className="send-button edit-btn">
               <Link to={`/sound/${id}/edit`}>Edit Sound</Link>
             </div>
           )}
-          <br></br>
-
+          <hr />
           <LibraryDropdown />
-
           {/* <form onSubmit={handleAddBookmark}>
             <label htmlFor="input-sound-library">
               Choose a library to add:
             </label> */}
-
           {/* <ul>
               {libraries.map((library) => (
                 <li key={library._id}>{library.title}</li>
               ))}
             </ul> */}
-
           {/* <select
               id="input-sound-library"
               // onChange={handleLibraryToAdd}

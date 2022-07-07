@@ -1,9 +1,10 @@
 @use './../utils/variables.scss' as v;
 
-.sound-ceate-page {
+.sound-edit-page {
   background-color: v.$thirdcolor;
   h1 {
     line-height: v.$h1-lh;
-    padding: 0 1rem;
+    padding: 2rem 1rem 0 1rem;
+    margin-top: 0;
   }
 }

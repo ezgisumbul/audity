@@ -1,5 +1,5 @@
 // scss variables
-// font sizes
+// font sizes MOBILE (max-width 900px)
 
 $h1: 2.5rem;
 $h2: 2rem;
@@ -20,13 +20,25 @@ $small-lh: 120%;
 // colors
 
 $firstcolor: #8941e7;
+$firstcolor-hover: #6c3fa8;
 $secondcolor: #ff4747;
+$secondcolor-hover: #bb1c1c;
 $thirdcolor: #f0f3f4;
 $fourthcolor: #ded1ee;
 $fifthcolor: #b7b7b7;
 $green: #36cd85;
+$green-hover: #3caa75;
 $dark: #303030;
 
 // effects
 
 $box-shadow: 2px 2px 7px 1px rgba(0, 0, 0, 0.1);
+
+// font sizes SCREEN (min-width 900px)
+
+$h1-sc: 4.5rem;
+$h2-sc: 2rem;
+$h3-sc: 1.9rem;
+$h4-sc: 1.2rem;
+$p-sc: 1rem;
+$small-sc: 1.2rem;

@@ -3,6 +3,7 @@ import { soundEdit, soundLoad } from './../services/sound';
 import SoundForm from './../components/SoundForm';
 import { useNavigate, useParams } from 'react-router-dom';
 import AuthenticationContext from '../context/authentication';
+import './SoundEditPage.scss';
 
 const SoundEditPage = () => {
   const { id } = useParams();
@@ -31,8 +32,7 @@ const SoundEditPage = () => {
   };
 
   return (
-    <div>
-      <hr />
+    <div className="sound-edit-page">
       <h1>Add a new sound to your Archive</h1>
       {(sound && isOwner && (
         <SoundForm

@@ -1,28 +1,30 @@
-@use './../utils/variables.scss' as v;
+@use './../utils/variables' as v;
 
-.login-form-wrapper {
-  height: 100vh;
-  background-image: linear-gradient(v.$thirdcolor, v.$fourthcolor);
-  .login-form {
-    padding: 0 1rem 2rem 1rem;
-    color: black;
+.register-page-wrapper {
+  background-image: linear-gradient(v.$fourthcolor, v.$thirdcolor);
+  height: 100%;
+
+  .register-page {
+    padding: 0rem 1rem 0rem 1rem;
+
     h1 {
       padding-top: 2rem;
       margin-block-start: 0em;
     }
-    button {
-      padding: 0.5rem 1rem;
-      color: white;
+
+    textarea {
+      margin-left: 0;
+      margin-right: 0;
     }
   }
 }
 
 @media (min-width: 900px) {
-  .login-form-wrapper {
+  .register-page-wrapper {
     height: 100vh;
     background-image: linear-gradient(v.$thirdcolor, v.$fourthcolor);
 
-    .login-form {
+    .register-page {
       margin: 0 auto;
       padding: 04.5rem 1rem 2rem 1rem;
       max-width: 800px;
@@ -30,7 +32,7 @@
       color: black;
       h1 {
         font-size: v.$h1-sc;
-        padding-top: 2rem;
+        padding-top: 0rem;
         margin-block-start: 0em;
       }
       button {

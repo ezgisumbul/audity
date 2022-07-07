@@ -1,30 +1,69 @@
 @use './../utils/variables.scss' as v;
 
-.message-card {
+.thread-list {
   background-color: v.$thirdcolor;
-  color: #000;
-  display: flex;
-  flex-direction: row;
-  padding: 1rem 1.5rem;
-  gap: 2rem;
-  line-height: 0.8rem;
 
-  img {
-    width: 4rem;
-    height: 4rem;
-    object-fit: cover;
-    border-radius: 50%;
-    box-shadow: 2px 2px 7px 1px rgba(0, 0, 0, 0.1);
-    border: 1px solid v.$firstcolor;
+  .message-card {
+    display: flex;
+    flex-direction: row;
+    color: #000;
+    padding: 1rem 1.5rem;
+    gap: 2rem;
+    line-height: 0.8rem;
+    margin: 0 auto;
+    img {
+      width: 4rem;
+      height: 4rem;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 2px 2px 7px 1px rgba(0, 0, 0, 0.1);
+      border: 1px solid v.$firstcolor;
+    }
+
+    small {
+      font-size: v.$small;
+      color: v.$firstcolor;
+      line-height: 0;
+    }
+
+    h4 {
+      font-size: v.$h4;
+    }
   }
+}
 
-  small {
-    font-size: v.$small;
-    color: v.$firstcolor;
-    line-height: 0;
-  }
+@media (min-width: 900px) {
+  .thread-list-wrapper {
+    margin: 0 30% 0 30%;
 
-  h4 {
-    font-size: v.$h4;
+    .message-card {
+      display: flex;
+      flex-direction: row;
+      color: #000;
+      padding: 1rem 1.5rem;
+      gap: 2rem;
+      line-height: 0.8rem;
+      margin: 0 auto;
+
+      img {
+        width: 5rem;
+        height: 5rem;
+        object-fit: cover;
+        border-radius: 50%;
+        box-shadow: 2px 2px 7px 1px rgba(0, 0, 0, 0.1);
+        border: 1px solid v.$firstcolor;
+      }
+
+      small {
+        font-size: v.$small-sc;
+        line-height: 110%;
+        color: v.$firstcolor;
+      }
+
+      h4 {
+        font-size: v.$h4-sc;
+        line-height: 100%;
+      }
+    }
   }
 }

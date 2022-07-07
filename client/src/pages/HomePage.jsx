@@ -29,10 +29,11 @@ const HomePage = () => {
   };
 
   return (
-    <div>
+    <div className="home-page">
       {sounds && (
         <>
           <SoundMap sounds={sounds} onMove={handleMapMove} />
+
           <SoundCard
             sound={sounds[Math.floor(Math.random() * (sounds.length - 1))]}
           />

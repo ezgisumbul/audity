@@ -52,18 +52,22 @@ input[type='password'],
 input[type='date'],
 select {
   font: inherit;
-  margin: 0 1rem 1rem 1rem;
-  border: 1px solid #000;
+  margin: 0 0 1rem 0;
+  border: 1px solid v.$fifthcolor;
   line-height: inherit;
   color: black;
   padding: 1rem;
   background: white;
 
-  border-radius: 5rem;
+  border-radius: 1rem;
   font-size: v.$h4;
 }
 input:focus {
   outline: 1px solid v.$firstcolor;
+}
+
+select {
+  padding: 1rem 1rem 1rem 0.8rem;
 }
 
 input:-webkit-autofill,
@@ -81,18 +85,26 @@ button {
   font-size: v.$h4;
   color: white;
   border-radius: 4rem;
+  width: fit-content;
+  padding: 0.5rem 0.8rem;
+}
+
+button:hover {
+  background-color: v.$firstcolor-hover;
 }
 
 textarea {
   font-family: 'DM Sans', sans-serif;
   margin: 0 1rem 1rem 1rem;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
+  padding: 0.75rem;
+  border-radius: 1rem;
   border-color: v.$fifthcolor;
+  font-size: v.$h4;
 }
 
 textarea:focus {
   outline: 0.5px solid v.$firstcolor;
+  font-size: v.$h4;
 }
 
 a {
@@ -118,6 +130,10 @@ hr {
   font-size: v.$h4;
   color: white;
   border-radius: 4rem;
+}
+
+.btn:hover {
+  background-color: v.$firstcolor-hover;
 }
 
 label {
