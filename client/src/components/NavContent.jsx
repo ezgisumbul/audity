@@ -41,16 +41,19 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
     <ul className={`menuNav ${navbarOpen ? " showMenu" : ""}`}>
       {mobile && <hr />}
       {!mobile && (
-        <li>
-          <NavLink
-            className="link"
-            to={"/"}
-            // activeClassName="active-link"
-          >
-            AUDITY
-          </NavLink>
-        </li>
+        <div className="nav-first-div">
+          <li>
+            <NavLink
+              className="link"
+              to={"/"}
+              // activeClassName="active-link"
+            >
+              AUDITY
+            </NavLink>
+          </li>
+        </div>
       )}
+
       {linkList.map((link) => (
         <li key={link.id}>
           <NavLink
@@ -87,78 +90,74 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
               Libraries
             </NavLink>
           </li>
+
           {mobile && <hr />}
           {!mobile && (
+            <div className="nav-message-div">
+              <li>
+                <NavLink
+                  className="link"
+                  to={"/message/list"}
+                  // activeClassName="active-link"
+                >
+                  Messages
+                </NavLink>
+              </li>
+            </div>
+          )}
+          <div className="nav-last-div-logedin">
             <li>
               <NavLink
                 className="link"
-                to={"/message/list"}
+                to={`/profile/${user._id}`}
+                onClick={() => closeMenu()}
                 // activeClassName="active-link"
               >
-                Messages
+                {user.name}'s Profile
               </NavLink>
             </li>
-          )}
-
-          <li>
-            <NavLink
-              className="link"
-              to={`/profile/${user._id}`}
-              onClick={() => closeMenu()}
-              // activeClassName="active-link"
-            >
-              {user.name}'s Profile
-            </NavLink>
-          </li>
-          {mobile && <hr />}
-          {/*     <li>
-            <NavLink
-              className="link"
-              to="/message/list"
-              onClick={() => closeMenu()}
-              // activeClassName="active-link"
-            >
-              Messages
-            </NavLink>
-          </li> */}
-          <li>
-            <NavLink
-              className="link"
-              to="/"
-              onClick={() => {
-                closeMenu();
-                handleSignOut();
-              }}
-              // activeClassName="active-link"
-            >
-              Sign Out
-            </NavLink>
-          </li>
+            {mobile && <hr />}
+            <li>
+              <NavLink
+                className="link"
+                to="/"
+                onClick={() => {
+                  closeMenu();
+                  handleSignOut();
+                }}
+                // activeClassName="active-link"
+              >
+                Sign Out
+              </NavLink>
+            </li>
+          </div>
           {mobile && <hr />}
         </>
       )) || (
         <>
-          <li>
-            <NavLink
-              className="link"
-              to="/log-in"
-              onClick={() => closeMenu()}
-              // activeClassName="active-link"
-            >
-              Log In
-            </NavLink>
-          </li>
-          {mobile && <hr />}
-          <li>
-            <NavLink
-              className="link"
-              to="/register"
-              onClick={() => closeMenu()}
-              // activeClassName="active-link"
-            >
-              Register
-            </NavLink>
-          </li>
+          <div className="nav-last-div-logedin">
+            <li>
+              <NavLink
+                className="link"
+                to="/log-in"
+                onClick={() => closeMenu()}
+                // activeClassName="active-link"
+              >
+                Sign In
+              </NavLink>
+            </li>
+            {mobile && <hr />}
+            <li>
+              <NavLink
+                className="link"
+                to="/register"
+                onClick={() => closeMenu()}
+                // activeClassName="active-link"
+              >
+                Register
+              </NavLink>
+            </li>
+          </div>
           {mobile && <hr />}
         </>
       )}

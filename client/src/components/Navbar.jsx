@@ -1,16 +1,18 @@
-import { useState } from "react";
-import "./Navbar.scss";
-import { MdClose } from "react-icons/md";
-import { FiMenu } from "react-icons/fi";
+import { useContext, useState } from "react";
+import AuthenticationContext from "../context/authentication";
+
 import { VscClose } from "react-icons/vsc";
 import { AiOutlineMenu } from "react-icons/ai";
 import { VscComment } from "react-icons/vsc";
+import "./Navbar.scss";
 
 import NavContent from "./NavContent";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
+
+  const { user } = useContext(AuthenticationContext);
 
   const handleToggleMenu = () => {
     setNavbarOpen(!navbarOpen);
@@ -20,8 +22,6 @@ const Navbar = () => {
     setNavbarOpen(false);
   };
 
-  //{`navBar ${navbarOpen ? "fixed-menu" : ""}`}
-
   return (
     <nav className="navBar">
       <div id="nav-top" className={navbarOpen ? "fixed-menu" : ""}>
@@ -29,7 +29,11 @@ const Navbar = () => {
           <h2 onClick={handleCloseMenu}>AUDITY</h2>
         </Link>
 
-        <Link to={"/message/list"} id="nav-message-btn">
+        <Link
+          to={"/message/list"}
+          className={user ? "" : "hide"}
+          id="nav-message-btn"
+        >
           <VscComment
             onClick={handleCloseMenu}
             style={{
