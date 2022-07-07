@@ -3,14 +3,39 @@
 .profile-page-div {
   .profile-header {
     padding: 0 2rem;
+
     h1 {
       font-size: v.$h1;
+
+      @media (min-width: 900px) {
+        text-align: center;
+      }
     }
 
-    div {
+    .profile-header-top {
+      @media (min-width: 900px) {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      .profile-aside {
+        max-width: 40rem;
+      }
+    }
+
+    .profile-img-div {
       display: flex;
 
-      div {
+      @media (min-width: 900px) {
+        flex-direction: column;
+        margin-right: 4rem;
+      }
+
+      .edit-profile-div {
+        @media (min-width: 900px) {
+          margin-top: 2rem;
+        }
         display: flex;
         flex-direction: column;
         flex-grow: 1;
@@ -22,6 +47,10 @@
           height: 2.5rem;
           color: black;
           background-color: v.$thirdcolor;
+        }
+
+        #follower {
+          margin-top: 1rem;
         }
 
         small {
@@ -41,14 +70,33 @@
       border-width: 3px;
       border-style: solid;
       border-color: v.$firstcolor;
+
+      @media (min-width: 900px) {
+        width: 20rem;
+        height: 20rem;
+      }
     }
+
     #profile-message-follow-div {
+      display: flex;
+      align-items: center;
       margin-top: 2rem;
       justify-content: space-between;
+      @media (min-width: 900px) {
+        justify-content: flex-start;
+      }
+
+      div {
+        margin-left: 0;
+      }
 
       a,
       button {
         font-size: 1rem;
+        height: 2.4rem;
+        @media (min-width: 900px) {
+          margin-right: 2rem;
+        }
       }
 
       button {
@@ -60,11 +108,11 @@
         background-color: v.$secondcolor;
       }
     }
+  }
 
-    p {
-      margin-top: 1rem;
-      font-size: 1rem;
-    }
+  p {
+    margin-top: 1rem;
+    font-size: 1rem;
   }
 
   #profile-sounds-div {
