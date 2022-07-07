@@ -71,7 +71,6 @@ const ProfilePage = () => {
         setFollower(data.follower);
         const followerIdArray = data.follower.map((document) => document._id);
         setFollowerIds(followerIdArray);
-        console.log(data.follower);
       });
   };
 
@@ -80,7 +79,7 @@ const ProfilePage = () => {
       {profile && (
         <>
           <div className="profile-header">
-            <h1>Hi, I'm {profile.name}</h1>
+            {/* <h1>Hi, I'm {profile.name}</h1> */}
             <div className="profile-header-top">
               <div className="profile-img-div">
                 <img
@@ -90,9 +89,6 @@ const ProfilePage = () => {
                   }
                   alt={profile.name}
                 />
-                {/* <p className="profile-description-wide">
-                  {profile.description}
-                </p> */}
                 <div className="edit-profile-div">
                   <div id="follower">
                     <small>
@@ -102,10 +98,11 @@ const ProfilePage = () => {
                       </Link>
                     </small>
                     <br />
+
                     <small>
                       <Link to={`/profile/${id}/follower`}>
                         {follower.length !== 0 &&
-                          `Followers ${follower.length}`}
+                          ` ${follower.length} Followers`}
                       </Link>
                     </small>
                   </div>
@@ -120,6 +117,7 @@ const ProfilePage = () => {
               </div>
               <div className="profile-aside">
                 <div className="audio-description-div">
+                  <h1>Hi, I'm {profile.name}</h1>
                   <p className="profile-description-mobile">
                     {profile.description}
                   </p>
@@ -155,54 +153,53 @@ const ProfilePage = () => {
           </div>
         </>
       )}
+      <div className="profile-bottom-div">
+        {profile && (
+          <>
+            {(sounds.length !== 0 && (
+              <div id="profile-sounds-div">
+                <h3>Sounds</h3>
+                <SoundMapAndListToggle
+                  mapView={mapView}
+                  setMapView={setMapView}
+                  sounds={sounds}
+                />
+              </div>
+            )) ||
+              (user._id === profile._id && (
+                <Link to={"/sound-create"}>Create your first sound</Link>
+              ))}
 
-      {profile && (
-        <>
-          {(sounds.length !== 0 && (
-            <div id="profile-sounds-div">
-              <h3>Sounds</h3>
-              <SoundMapAndListToggle
-                mapView={mapView}
-                setMapView={setMapView}
-                sounds={sounds}
-              />
+            <div id="profile-libraries">
+              {libraries && (
+                <>
+                  <Link to={`/library/${id}/list`}>
+                    <h3>Libraries</h3>
+                  </Link>
+
+                  {libraries.map((library) => {
+                    return (
+                      <>
+                        <div>
+                          <>
+                            <Link
+                              key={library._id}
+                              to={`/library/${library._id}`}
+                            >
+                              {library.title}
+                            </Link>
+                            <small>{`${library.sound.length} sounds`}</small>
+                          </>
+                        </div>
+                      </>
+                    );
+                  })}
+                </>
+              )}
             </div>
-          )) ||
-            (user._id === profile._id && (
-              <Link to={"/sound-create"}>Create your first sound</Link>
-            ))}
-
-          <div id="profile-libraries">
-            {libraries && (
-              <>
-                <h4>
-                  <Link to={`/library/${id}/list`}>Sound Lists</Link>
-                </h4>
-                {libraries.map((library) => {
-                  return (
-                    <>
-                      <div>
-                        <>
-                          <Link
-                            key={library._id}
-                            to={`/library/${library._id}`}
-                          >
-                            {library.title}
-                          </Link>
-                          <small>{`${library.sound.length} sounds`}</small>
-                        </>
-                      </div>
-                    </>
-                  );
-                })}
-              </>
-            )}
-          </div>
-        </>
-      )}
-      {/* {user && profile._id === user._id && (
-            <Link to={"/library/list"}>See {profile.name}'s sound library</Link>
-          )} */}
+          </>
+        )}
+      </div>
     </div>
   );
 };
