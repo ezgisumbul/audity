@@ -122,7 +122,8 @@ const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
             type="file"
             // accept="audio/*"
             // accept=".wav,.aif,.aiff,.flac,.alac,.aac,.ogg,.mp3,.mp4"
-            accept="audio/wav, audio/aif, audio/aiff, audio/flac, audio/alac, aduio/aac, audio/ogg, audio/mp3, audio/*, .wav,.aif,.aiff,.flac,.alac,.aac,.ogg,.mp3"
+            accept="audio/wav, audio/mp3"
+            // , audio/aiff, audio/flac, audio/alac, aduio/aac, audio/ogg, audio/mp3, audio/*, .wav,.aif,.aiff,.flac,.alac,.aac,.ogg,.mp3"
             name="soundFile"
             //value={sound.soundFile}  // <-- when I uncomment this it throws in error: Has to do with type: file (but there is a string stored in the db still)
             onChange={handleFileInputChange}
