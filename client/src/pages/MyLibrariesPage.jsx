@@ -61,6 +61,9 @@ const MyLibrariesPage = () => {
       <div className="library-list">
         {user && (
           <>
+            <div className="library-single-border">
+              <p></p>
+            </div>
             {libraries &&
               libraries.map((library) => {
                 return (
