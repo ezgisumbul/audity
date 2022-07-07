@@ -1,4 +1,4 @@
-@use "./../utils/variables.scss" as v;
+@use './../utils/variables.scss' as v;
 
 .profile-page-div {
   .profile-header {
@@ -22,6 +22,10 @@
           height: 2.5rem;
           color: black;
           background-color: v.$thirdcolor;
+        }
+
+        .edit-btn:hover {
+          background-color: v.$fifthcolor;
         }
 
         small {
@@ -55,9 +59,16 @@
         background-color: v.$green;
         margin-right: 1rem;
       }
+      button:hover {
+        background-color: v.$green-hover;
+      }
 
       .red-btn {
         background-color: v.$secondcolor;
+      }
+
+      .red-btn:hover {
+        background-color: v.$secondcolor-hover;
       }
     }
 

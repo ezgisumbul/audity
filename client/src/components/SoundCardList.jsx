@@ -1,14 +1,13 @@
-import SoundCard from './SoundCard'
+import SoundCard from './SoundCard';
 
-const SoundCardList = ({sounds}) => {
+const SoundCardList = ({ sounds }) => {
   return (
     <div>
-      {sounds.map((sound) => 
-      <SoundCard sound={sound} key={sound._id}/>
-      )}
-  
+      {sounds.map((sound) => (
+        <SoundCard sound={sound} key={sound._id} />
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default SoundCardList
+export default SoundCardList;

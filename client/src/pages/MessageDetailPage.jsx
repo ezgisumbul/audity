@@ -51,7 +51,7 @@ const MessageDetailPage = () => {
   const { user } = useContext(AuthenticationContext);
 
   return (
-    <div>
+    <div className="message-detail-page">
       <hr />
       {/* //Shows  ALL users the person has threads with. I just want to show the onbe who is owner of the thread */}
       {profile && (
@@ -60,7 +60,6 @@ const MessageDetailPage = () => {
           <span>{profile.name}</span>
         </div>
       )}
-      <hr />
       <div className="message-list background">
         {messages.map((message) => (
           <div
@@ -75,19 +74,24 @@ const MessageDetailPage = () => {
           </div>
         ))}
       </div>
-      <hr />
-      <form
-        onSubmit={handleMessageFormSubmission}
-        className="background send-form"
-      >
-        <textarea
-          value={content}
-          onChange={(event) => setContent(event.target.value)}
-        />
-        <div className="send-button ">
-          <button>Send</button>
-        </div>
-      </form>
+      <div className="input-fixed">
+        <hr />
+        <form
+          onSubmit={handleMessageFormSubmission}
+          className="background send-form"
+        >
+          <div className="message-send-field">
+            <textarea
+              rows="1"
+              value={content}
+              onChange={(event) => setContent(event.target.value)}
+            />
+            <div>
+              <button>Send</button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

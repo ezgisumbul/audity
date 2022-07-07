@@ -92,7 +92,8 @@ const AuthenticationForm = (props) => {
         {props.displayInputs.includes('description') && (
           <>
             <label htmlFor="input-description">Description</label>
-            <input
+            <textarea
+              rows="4"
               id="input-description"
               type="text"
               placeholder="Add a description"

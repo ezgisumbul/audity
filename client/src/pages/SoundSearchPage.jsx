@@ -93,7 +93,6 @@ const SoundSearchPage = () => {
         </div>
       </div>
       <h1>Filter by Tags</h1>
-
       <form onSubmit={(event) => handleFormSubmit(event)}>
         <TagsCheckboxComponent
           checkedStateArray={checkedState}
@@ -127,8 +126,9 @@ const SoundSearchPage = () => {
           })}
         </div>
       </form>
-
-      <div>
+      <hr />
+      <h1>Search Results</h1>
+      <div className="background">
         <ul>
           {sounds.length !== 0 && (
             <>

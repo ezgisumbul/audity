@@ -64,7 +64,7 @@ const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
   };
 
   return (
-    <div>
+    <div className="sound-form">
       <form onSubmit={(event) => handleFormSubmit(event)}>
         <label htmlFor="titleInput" className="custom-name-label">
           Title
@@ -96,6 +96,7 @@ const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
           Description
         </label>
         <textarea
+          rows="3"
           className="textarea"
           id="descriptionInput"
           onChange={(event) =>
@@ -104,7 +105,9 @@ const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
           value={sound.description}
           placeholder="A short description"
         />
-
+        <label htmlFor="descriptionInput" className="custom-name-label">
+          Choose loaction
+        </label>
         <SoundInputMap
           position={sound.position}
           onPositionChange={(position) => onSoundChange({ ...sound, position })}
@@ -126,7 +129,7 @@ const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
           />
         </label>
         <div className="headline">
-          <h3>Add Tags</h3>
+          <label>Add Tags</label>
         </div>
 
         <TagsCheckboxComponent
