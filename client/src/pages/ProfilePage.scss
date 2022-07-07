@@ -17,11 +17,11 @@
         margin-left: 1rem;
 
         .edit-btn {
+          margin: 0;
           width: 9rem;
           height: 2.5rem;
           color: black;
           background-color: v.$thirdcolor;
-          text-align: center;
         }
 
         small {
@@ -54,6 +54,10 @@
       button {
         background-color: v.$green;
         margin-right: 1rem;
+      }
+
+      .red-btn {
+        background-color: v.$secondcolor;
       }
     }
 

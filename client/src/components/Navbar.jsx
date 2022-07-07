@@ -1,10 +1,9 @@
 import { useState } from "react";
-import "./Navbar.scss";
-import { MdClose } from "react-icons/md";
-import { FiMenu } from "react-icons/fi";
+
 import { VscClose } from "react-icons/vsc";
 import { AiOutlineMenu } from "react-icons/ai";
 import { VscComment } from "react-icons/vsc";
+import "./Navbar.scss";
 
 import NavContent from "./NavContent";
 import { Link } from "react-router-dom";
@@ -19,8 +18,6 @@ const Navbar = () => {
   const handleCloseMenu = () => {
     setNavbarOpen(false);
   };
-
-  //{`navBar ${navbarOpen ? "fixed-menu" : ""}`}
 
   return (
     <nav className="navBar">
