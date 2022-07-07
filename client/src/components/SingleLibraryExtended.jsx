@@ -9,7 +9,7 @@ import {
 import AuthenticationContext from '../context/authentication';
 import SoundCard from './SoundCard';
 
-import './LibrarySoundList.scss';
+import './SingleLibraryExtended.scss';
 
 const LibrarySoundList = ({ library, libraries, setLibraries }) => {
   // These states are pointing to the same object but
@@ -19,7 +19,7 @@ const LibrarySoundList = ({ library, libraries, setLibraries }) => {
   const [libraryClone, setLibraryClone] = useState(library);
 
   const navigate = useNavigate();
-
+ 
   useEffect(() => {
     loadLibrary(library._id).then((data) => {
       setLibraryUpdated(data.library);

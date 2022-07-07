@@ -20,9 +20,9 @@ import { loadUserInformation } from './services/authentication';
 import ItemCreate from './pages/ItemCreate';
 import ItemPage from './pages/ItemPage';
 
-import LibraryCreate from './pages/LibraryCreate';
+import LibraryCreatePage from './pages/LibraryCreatePage';
 import LibraryDetailPage from './pages/LibraryDetailPage';
-import LibraryListPage from './pages/LibraryListPage';
+import UserLibrariesPage from './pages/UserLibrariesPage';
 import MessageThreadPage from './pages/MessageThreadPage';
 import MessageDetailPage from './pages/MessageDetailPage';
 import LibraryEditPage from './pages/LibraryEditPage';
@@ -53,10 +53,10 @@ const App = () => {
           <Route path="/sound-create" element={<SoundCreatePage />} />
           <Route path="/item/create" element={<ItemCreate />} />
           <Route path="/item/:id" element={<ItemPage />} />
-          <Route path="/library/create" element={<LibraryCreate />} />
+          <Route path="/library/create" element={<LibraryCreatePage />} />
           <Route path="/library/:id/edit" element={<LibraryEditPage />} />
           <Route path="/library/:id" element={<LibraryDetailPage />} />
-          <Route path="/library/:userId/list" element={<LibraryListPage />} />
+          <Route path="/library/:userId/list" element={<UserLibrariesPage />} />
           <Route path="/library/my-libraries" element={<MyLibrariesPage />} />
           <Route path="/sound/:id/edit" element={<SoundEditPage />} />
           <Route path="/sound/:id" element={<SoundDetailPage />} />

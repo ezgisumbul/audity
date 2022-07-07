@@ -1,0 +1,33 @@
+@use './../utils/variables.scss' as v;
+.library-detail-page {
+  h1 {
+    font-size: v.$h1;
+    @media (min-width: 900px) {
+      text-align: center;
+    }
+  }
+
+  .library-extended-view {
+    display: flex;
+    flex-direction: column;
+
+    .edit-delete-buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 1.1rem;
+      align-items: center;
+      margin: 1.8rem 1.25rem;
+    }
+    .delete {
+      background-color: v.$secondcolor;
+    }
+    .remove {
+      background-color: v.$secondcolor;
+      width: 2.4rem;
+      padding: 0;
+      height: 1.5rem;
+      font-size: 0.5rem;
+    }
+  }
+}

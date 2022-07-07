@@ -1,34 +1,19 @@
-import { useContext, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { listLibraries } from '../services/library';
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import AuthenticationContext from '../context/authentication';
 import LibraryList from '../components/LibraryList';
-import { profileLoad } from '../services/profile';
 
-import './LibraryListPage.scss';
-
-const LibraryListPage = () => {
-  const [libraries, setLibraries] = useState([]);
-  const [profile, setProfile] = useState(null);
-  const { userId } = useParams();
-
-  //   const [selectedLibraryName, setSelectedLibraryName] = useState('');
-
-  useEffect(() => {
-    profileLoad(userId).then((data) => {
-      // console.log(data);
-      setProfile(data.profile);
-    });
-    listLibraries(userId).then((data) => {
-      // console.log(data.libraries);
-      setLibraries(data.libraries);
-    });
-  }, [userId]);
-
+const UserLibraries = ({
+  libraries,
+  setLibraries,
+  profile,
+  setProfile,
+  userId
+}) => {
   const { user } = useContext(AuthenticationContext);
 
   return (
-    <div className="library-list-page">
+    <div>
       {profile && (
         <div className="library-header">
           <div>
@@ -64,18 +49,21 @@ const LibraryListPage = () => {
       <div className="library-list">
         {user && (
           <>
+            <div className="library-single-border">
+              <p></p>
+            </div>
             {libraries &&
               libraries.map((library) => {
                 return (
                   // <div className="library-single">
+
                   <LibraryList
-                    library={library}
                     key={library._id}
+                    library={library}
                     libraries={libraries}
                     setLibraries={setLibraries}
                     userId={userId}
                   />
-                  // </div>
                 );
               })}
           </>
@@ -85,4 +73,4 @@ const LibraryListPage = () => {
   );
 };
 
-export default LibraryListPage;
+export default UserLibraries;

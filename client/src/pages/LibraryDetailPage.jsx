@@ -1,7 +1,14 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { loadLibrary, removeFromLibrary } from '../services/library';
+import {
+  libraryDelete,
+  loadLibrary,
+  removeFromLibrary
+} from '../services/library';
 import AuthenticationContext from '../context/authentication';
+import SoundCard from '../components/SoundCard';
+
+import './LibraryDetailPage.scss';
 
 const LibraryDetailPage = () => {
   const [library, setLibrary] = useState(null);
@@ -40,63 +47,81 @@ const LibraryDetailPage = () => {
       .catch((error) => console.log(error));
   };
 
+  const handleLibraryDeletion = (libraryId) => {
+    libraryDelete(libraryId)
+      .then(() => {
+        navigate('/library/my-libraries');
+      })
+      // (result) => console.log('deletion result', result)
+
+      .catch((error) => console.log(error));
+  };
+
   const { user } = useContext(AuthenticationContext);
 
   return (
     libraryUpdated && (
-      <div>
+      <div className="library-detail-page">
+        {/* <div className="library-detail-title"> */}
         <h1>{libraryUpdated.title}</h1>
+        {/* </div> */}
 
-        {user && (
-          <>
-            {libraryUpdated.user === user._id && (
-              <>
-                <Link to={`/library/${id}/edit`} className="btn">
-                  Edit library
-                </Link>
-                <Link to={`/library/${id}/delete`} className="btn">
-                  Delete library
-                </Link>
-              </>
-            )}
-          </>
-        )}
-
-        {libraryUpdated.sound &&
-          libraryUpdated.sound.map(
-            (sound, index) =>
-              sound && (
-                <div key={sound._id || index}>
-                  <h4>{sound.title}</h4>
-                  {/* <h4>{sound.owner && sound.owner.name}</h4> */}
+        <div className="library-extended-view">
+          {libraryUpdated.sound &&
+            libraryUpdated.sound.map(
+              (sound, index) =>
+                sound && (
+                  <div key={sound._id || index}>
+                    {/* <h4>{sound.title}</h4>
                   <audio></audio>
                   <audio controls>
-                    <source
-                      src={sound.soundFile}
-                      // type="mp3"
-                    />
-                  </audio>{' '}
-                  {user && (
-                    <>
-                      {libraryUpdated.user === user._id && (
+                    <source src={sound.soundFile} />
+                  </audio> */}
+                    <div>
+                      <SoundCard sound={sound} />
+
+                      {user && (
                         <div>
-                          <button
-                            onClick={() => {
-                              handleSoundRemovalFromLibrary(sound._id);
-                            }}
-                          >
-                            Remove from the library
-                          </button>
+                          {libraryUpdated.user === user._id && (
+                            <button
+                              className="btn remove"
+                              onClick={() => {
+                                handleSoundRemovalFromLibrary(sound._id);
+                              }}
+                            >
+                              <p>Remove</p>
+                            </button>
+                          )}
+                          {/* <Link to={`/sound/${sound._id}`} className="btn">
+                        Go to details
+                      </Link> */}
                         </div>
                       )}
-                      <Link to={`/sound/${sound._id}`} className="btn">
-                        Go to details
-                      </Link>
-                    </>
-                  )}
+                    </div>
+                  </div>
+                )
+            )}
+
+          {user && (
+            <>
+              {libraryUpdated.user === user._id && (
+                <div className="edit-delete-buttons">
+                  <Link to={`/library/${id}/edit`} className="btn">
+                    Edit library
+                  </Link>
+                  <button
+                    onClick={() => {
+                      handleLibraryDeletion(libraryUpdated._id);
+                    }}
+                    className="btn delete"
+                  >
+                    Delete library
+                  </button>
                 </div>
-              )
+              )}
+            </>
           )}
+        </div>
       </div>
     )
   );

@@ -5,7 +5,7 @@ import AuthenticationContext from '../context/authentication';
 import LibraryList from '../components/LibraryList';
 import { profileLoad } from '../services/profile';
 
-import './LibraryListPage.scss';
+import './UserLibrariesPage.scss';
 
 const MyLibrariesPage = () => {
   const [libraries, setLibraries] = useState([]);

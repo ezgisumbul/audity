@@ -1,10 +1,11 @@
 import { useContext, useState } from 'react';
 import AuthenticationContext from '../context/authentication';
-import LibrarySoundList from '../components/LibrarySoundList';
+import SingleLibraryExtended from './SingleLibraryExtended';
 
 import { BsChevronDown } from 'react-icons/bs';
 import { BsChevronRight } from 'react-icons/bs';
 import './LibraryList.scss';
+import { Link } from 'react-router-dom';
 
 const LibraryList = ({ library, libraries, setLibraries }) => {
   const [isExtended, setIsExtended] = useState(false);
@@ -15,14 +16,15 @@ const LibraryList = ({ library, libraries, setLibraries }) => {
   const { user } = useContext(AuthenticationContext);
 
   return (
-    <div>
+    <div className="library-list-component">
       {user && (
-        <>
+        <div className="library-single-wrapper">
           {library && (
             <div className="library-single">
               <div className="library-single-header">
-                <h4>{library.title}</h4>
-
+                <Link to={`/library/${library._id}`}>
+                  <h4>{library.title}</h4>
+                </Link>
                 <button
                   className="library-chevron"
                   onClick={handleLibraryExtend}
@@ -38,8 +40,9 @@ const LibraryList = ({ library, libraries, setLibraries }) => {
                   )}
                 </button>
               </div>
+
               {isExtended && (
-                <LibrarySoundList
+                <SingleLibraryExtended
                   library={library}
                   libraries={libraries}
                   setLibraries={setLibraries}
@@ -47,7 +50,7 @@ const LibraryList = ({ library, libraries, setLibraries }) => {
               )}
             </div>
           )}
-        </>
+        </div>
       )}
     </div>
   );

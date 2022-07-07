@@ -1,0 +1,84 @@
+@use './../utils/variables.scss' as v;
+
+.library-list-page {
+  margin-top: 1rem;
+
+  .library-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 0.7rem;
+    gap: 0.7rem;
+
+    h4 {
+      font-size: v.$h4;
+      padding-bottom: v.$h4;
+    }
+
+    img {
+      width: 4rem;
+      height: 4rem;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    @media (min-width: 900px) {
+      margin-top: 8rem;
+      justify-content: center;
+      gap: 1.7rem;
+      h4 {
+        font-size: v.$h1;
+      }
+      img {
+        width: 4.6rem;
+        height: 4.6rem;
+      }
+    }
+  }
+
+  .create-btn {
+    display: flex;
+    background-color: v.$fourthcolor;
+    align-items: center;
+    justify-content: center;
+    border: 1px;
+    border-radius: 0.5rem;
+    width: 100%;
+    height: 2.1rem;
+    margin-top: 2rem;
+    p {
+      color: black;
+    }
+
+    @media (min-width: 900px) {
+      width: 14rem;
+      margin: 0 auto;
+      margin-top: 4.9rem;
+    }
+  }
+
+  .library-list {
+    // width: fit-content;
+    margin-top: 1.1rem;
+    // border-top: 1px solid black;
+    //   border-bottom: 1px solid black;
+    @media (min-width: 900px) {
+      // margin: 1.1rem 26rem 0rem 26rem;
+      margin: 0 auto;
+      margin-top: 1.1rem;
+    }
+  }
+
+  .library-single-border {
+    border-bottom: 1px solid black;
+    padding: 0;
+
+    @media (min-width: 900px) {
+      width: 30rem;
+      margin: 0 auto;
+    }
+  }
+}
+
+// media query for big screens

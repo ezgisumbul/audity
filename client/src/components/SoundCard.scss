@@ -17,14 +17,26 @@
   //   background-color: transparent;
 
   .soundcard-wrapper {
-    margin: 0 0 0 0.6rem;
+    // margin: 0 0 0 0.6rem;
+    width: 100%;
     // padding: 1rem 0;
     // border: 1px solid black;
     display: flex;
     flex-direction: row;
-    align-items: space-between;
+    // align-items: space-between;
+    // justify-content: center;
     justify-content: space-between;
-    // gap: 0.5rem;
+    // justify-content: center;
+    // margin: 0 auto;
+    gap: 0.5rem;
+    @media (min-width: 900px) {
+      gap: 1rem;
+      // margin: 0;
+
+      // margin: 0 auto;
+      // align-items: center;
+      justify-content: center;
+    }
   }
   .soundcard-left {
     display: flex;
@@ -32,11 +44,12 @@
     align-items: flex-start;
     margin: 0;
     padding: 0.5rem 0 0.5rem 0.5rem;
+    gap: 0.5rem;
     // width: 80%;
 
-    audio {
-      // width: 90%;
-    }
+    // audio {
+    //   width: 180px;
+    // }
   }
 
   // a {

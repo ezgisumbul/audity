@@ -10,12 +10,13 @@ const SoundCard = ({ sound }) => {
           <div className="soundcard-left">
             <div className="soundcard-title">
               <small>{sound.title} </small>
-              <small>by </small>
-              <small>
+              {/* Disabled as it looked too crowded for sound card
+              User's can see these info from details */}
+              {/* <small>
                 {sound.recordedAt &&
                   new Date(sound.recordedAt).toLocaleDateString('de-DE')}
               </small>
-              <small>{sound.owner && sound.owner.name}</small>
+              <small>by {sound.owner && sound.owner.name}</small> */}
             </div>
 
             <audio controls>
