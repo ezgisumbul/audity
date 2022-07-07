@@ -56,21 +56,22 @@ app.use(
 app.use(basicAuthenticationDeserializer);
 app.use(bindUserToViewLocals);
 
-// app.use('/sound', soundRouter);
-// app.use('/', baseRouter);
-// app.use('/authentication', authenticationRouter);
-// app.use('/profile', profileRouter);
-// app.use('/message', messageRouter);
-// app.use('/library', libraryRouter);
+app.use('/sound', soundRouter);
+app.use('/', baseRouter);
+app.use('/authentication', authenticationRouter);
+app.use('/profile', profileRouter);
+app.use('/message', messageRouter);
+app.use('/library', libraryRouter);
 
-// to debug iOS - Safari
+// // to debug iOS - Safari
 
-app.use('/api/sound', soundRouter);
-app.use('/api/', baseRouter);
-app.use('/api/authentication', authenticationRouter);
-app.use('/api/profile', profileRouter);
-app.use('/api/message', messageRouter);
-app.use('/api/library', libraryRouter);
+// app.use('/api/sound', soundRouter);
+// app.use('/api/', baseRouter);
+// app.use('/api/authentication', authenticationRouter);
+// app.use('/api/profile', profileRouter);
+// app.use('/api/message', messageRouter);
+// app.use('/api/library', libraryRouter);
+
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
   next(createError(404));
