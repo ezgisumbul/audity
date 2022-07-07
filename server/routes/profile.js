@@ -23,7 +23,12 @@ router.get('/search', (req, res, next) => {
     });
 });
 
-router.get('/:id', routeGuard, (req, res, next) => {
+// routeGuard is removed from below route due to iOS
+//"Prevent Cross-Site Tracking" setting causing cookies
+// to be unset and this will allow unauthenticated users
+// to at least be able to see the app.
+
+router.get('/:id', (req, res, next) => {
   const { id } = req.params;
   let user;
   User.findById(id)
