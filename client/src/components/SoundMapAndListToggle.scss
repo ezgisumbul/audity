@@ -1,1 +1,25 @@
+@use "./../utils/variables.scss" as v;
 
+.soundmaplisttoggle-div {
+  .toggle-btn-div {
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    width: 5.5rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  button {
+    padding: 0;
+    margin: 0;
+    width: 2.3rem;
+    height: 1.8rem;
+    font-size: v.$small;
+    text-align: center;
+  }
+
+  .unselected {
+    background-color: v.$thirdcolor;
+    color: black;
+  }
+}
