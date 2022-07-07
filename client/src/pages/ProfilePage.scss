@@ -34,8 +34,9 @@
 
       .edit-profile-div {
         @media (min-width: 900px) {
-          margin-top: 2rem;
+          margin-top: 1rem;
         }
+
         display: flex;
         flex-direction: column;
         flex-grow: 1;
@@ -50,7 +51,7 @@
         }
 
         #follower {
-          margin-top: 1rem;
+          margin-bottom: 1rem;
         }
 
         small {

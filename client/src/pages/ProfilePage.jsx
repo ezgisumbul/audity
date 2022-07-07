@@ -90,21 +90,25 @@ const ProfilePage = () => {
                   }
                   alt={profile.name}
                 />
-
-                <div id="follower">
-                  <small>
-                    <Link to={`/profile/${id}/following`}>
-                      {followed.length !== 0 && `Following ${followed.length}`}
-                    </Link>
-                  </small>
-                  <br />
-                  <small>
-                    <Link to={`/profile/${id}/follower`}>
-                      {follower.length !== 0 && `Followers ${follower.length}`}
-                    </Link>
-                  </small>
-                </div>
+                {/* <p className="profile-description-wide">
+                  {profile.description}
+                </p> */}
                 <div className="edit-profile-div">
+                  <div id="follower">
+                    <small>
+                      <Link to={`/profile/${id}/following`}>
+                        {followed.length !== 0 &&
+                          `Following ${followed.length}`}
+                      </Link>
+                    </small>
+                    <br />
+                    <small>
+                      <Link to={`/profile/${id}/follower`}>
+                        {follower.length !== 0 &&
+                          `Followers ${follower.length}`}
+                      </Link>
+                    </small>
+                  </div>
                   {user && profile._id === user._id && (
                     <div>
                       <Link className="btn edit-btn" to={"/profile/edit"}>
