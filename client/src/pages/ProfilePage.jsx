@@ -81,66 +81,83 @@ const ProfilePage = () => {
         <>
           <div className="profile-header">
             <h1>Hi, I'm {profile.name}</h1>
-            <div>
-              <img
-                src={
-                  profile.picture ||
-                  "https://images.unsplash.com/photo-1570499911518-9b95b0660755?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2346&q=80"
-                }
-                alt={profile.name}
-              />
-              <div>
-                {user && profile._id === user._id && (
-                  <div>
-                    <Link className="btn edit-btn" to={"/profile/edit"}>
-                      Edit Profile
-                    </Link>
+            <div className="profile-header-top">
+              <div className="profile-img-div">
+                <img
+                  src={
+                    profile.picture ||
+                    "https://images.unsplash.com/photo-1570499911518-9b95b0660755?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2346&q=80"
+                  }
+                  alt={profile.name}
+                />
+                {/* <p className="profile-description-wide">
+                  {profile.description}
+                </p> */}
+                <div className="edit-profile-div">
+                  <div id="follower">
+                    <small>
+                      <Link to={`/profile/${id}/following`}>
+                        {followed.length !== 0 &&
+                          `Following ${followed.length}`}
+                      </Link>
+                    </small>
+                    <br />
+                    <small>
+                      <Link to={`/profile/${id}/follower`}>
+                        {follower.length !== 0 &&
+                          `Followers ${follower.length}`}
+                      </Link>
+                    </small>
                   </div>
-                )}
-
-                <div>
-                  <small>
-                    <Link to={`/profile/${id}/following`}>
-                      {followed.length !== 0 && `Following ${followed.length}`}
-                    </Link>
-                  </small>
-                  <br />
-                  <small>
-                    <Link to={`/profile/${id}/follower`}>
-                      {follower.length !== 0 && `Followers ${follower.length}`}
-                    </Link>
-                  </small>
+                  {user && profile._id === user._id && (
+                    <div>
+                      <Link className="btn edit-btn" to={"/profile/edit"}>
+                        Edit Profile
+                      </Link>
+                    </div>
+                  )}
                 </div>
               </div>
-            </div>
+              <div className="profile-aside">
+                <div className="audio-description-div">
+                  <p className="profile-description-mobile">
+                    {profile.description}
+                  </p>
 
-            {user && profile._id !== user._id && (
-              <div id="profile-message-follow-div">
-                <Link className="btn" to={`/message/${id}`}>
-                  Send Message
-                </Link>
-                {!followerIds.includes(user._id) ? (
-                  <button onClick={handleFollow}>Follow</button>
-                ) : (
-                  <button className="red-btn" onClick={handleUnFollow}>
-                    Unfollow
-                  </button>
+                  {profile.sound && (
+                    <audio controls>
+                      <source
+                        src={profile.sound}
+                        // type="mp3"
+                      />
+                    </audio>
+                  )}
+                </div>
+
+                {user && profile._id !== user._id && (
+                  <div id="profile-message-follow-div">
+                    <div>
+                      <Link className="btn" to={`/message/${id}`}>
+                        Send Message
+                      </Link>
+                    </div>
+                    {!followerIds.includes(user._id) ? (
+                      <button onClick={handleFollow}>Follow</button>
+                    ) : (
+                      <button className="red-btn" onClick={handleUnFollow}>
+                        Unfollow
+                      </button>
+                    )}
+                  </div>
                 )}
               </div>
-            )}
-
-            <p>{profile.description}</p>
-
-            {profile.sound && (
-              <audio controls>
-                <source
-                  src={profile.sound}
-                  // type="mp3"
-                />
-              </audio>
-            )}
+            </div>
           </div>
+        </>
+      )}
 
+      {profile && (
+        <>
           {(sounds.length !== 0 && (
             <div id="profile-sounds-div">
               <h3>Sounds</h3>
@@ -181,12 +198,11 @@ const ProfilePage = () => {
               </>
             )}
           </div>
-
-          {/* {user && profile._id === user._id && (
-            <Link to={"/library/list"}>See {profile.name}'s sound library</Link>
-          )} */}
         </>
       )}
+      {/* {user && profile._id === user._id && (
+            <Link to={"/library/list"}>See {profile.name}'s sound library</Link>
+          )} */}
     </div>
   );
 };
