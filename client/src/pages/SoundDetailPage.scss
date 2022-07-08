@@ -1,10 +1,13 @@
 @use "./../utils/variables.scss" as v;
 
 .sound-detail-page {
+  background-color: v.$thirdcolor;
+  padding-bottom: 1rem;
   .sound-top-div {
     padding: 1rem;
 
     @media (min-width: 900px) {
+      padding-top: 3rem;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -68,7 +71,6 @@
   }
 
   .audio-player {
-    background-color: white;
     display: flex;
     justify-content: center;
 
@@ -87,7 +89,7 @@
   .edit-btn {
     width: 9rem;
     height: 2.5rem;
-    background-color: v.$thirdcolor;
+    background-color: white;
     text-align: center;
     margin: 1rem 0 1rem 1rem;
   }
