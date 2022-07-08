@@ -41,6 +41,9 @@
         max-width: 20vw;
       }
       .soundcard-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         width: 160px;
       }
     }
@@ -90,7 +93,7 @@
         font-size: 0.8rem;
       }
 
-      color: black;
+      color: v.$dark;
       font-size: v.$p;
       margin: 0 1rem;
     }

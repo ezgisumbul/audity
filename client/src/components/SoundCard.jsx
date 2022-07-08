@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import AuthenticationContext from '../context/authentication';
-import { MdRemoveCircleOutline } from 'react-icons/md';
+import { IoIosCloseCircle } from 'react-icons/io';
 import './SoundCard.scss';
 import { useContext } from 'react';
 
@@ -24,13 +24,12 @@ const SoundCard = ({ sound, onRemove, library }) => {
 
               {user && library && library.user === user._id && (
                 <button
-                  className="btn remove"
+                  className="remove-btn"
                   onClick={() => {
                     onRemove(sound._id);
                   }}
                 >
-                  Remove
-                  {/* <MdRemoveCircleOutline /> */}
+                  <IoIosCloseCircle />
                 </button>
               )}
             </div>

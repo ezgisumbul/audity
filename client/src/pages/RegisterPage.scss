@@ -2,7 +2,7 @@
 
 .register-page-wrapper {
   background-image: linear-gradient(v.$fourthcolor, v.$thirdcolor);
-  height: 100%;
+  height: 100vh;
 
   .register-page {
     padding: 0rem 1rem 0rem 1rem;
@@ -29,7 +29,7 @@
       padding: 04.5rem 1rem 2rem 1rem;
       max-width: 800px;
 
-      color: black;
+      color: v.$dark;
       h1 {
         font-size: v.$h1-sc;
         padding-top: 0rem;

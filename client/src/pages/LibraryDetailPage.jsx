@@ -115,14 +115,14 @@ const LibraryDetailPage = () => {
             <>
               {libraryUpdated.user === user._id && (
                 <div className="edit-delete-buttons">
-                  <Link to={`/library/${id}/edit`} className="btn">
-                    Edit library
+                  <Link to={`/library/${id}/edit`} className="btn-dark">
+                    Rename library
                   </Link>
                   <button
                     onClick={() => {
                       handleLibraryDeletion(libraryUpdated._id);
                     }}
-                    className="btn delete"
+                    className="btn-light"
                   >
                     Delete library
                   </button>

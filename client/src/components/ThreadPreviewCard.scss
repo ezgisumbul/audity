@@ -6,7 +6,7 @@
   .message-card {
     display: flex;
     flex-direction: row;
-    color: #000;
+    color: v.$dark;
     padding: 1rem 1.5rem;
     gap: 2rem;
     line-height: 0.8rem;
@@ -37,7 +37,7 @@
     .message-card {
       display: flex;
       flex-direction: row;
-      color: #000;
+      color: v.$dark;
       padding: 1rem 1.5rem;
       gap: 3rem;
       line-height: 0.8rem;
