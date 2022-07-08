@@ -1,4 +1,4 @@
-@use "./../utils/variables.scss" as v;
+@use './../utils/variables.scss' as v;
 .library-dropdown-div {
   form {
     label {
@@ -11,8 +11,8 @@
     flex-direction: row;
     justify-content: stretch;
     margin: 0 auto;
-    max-width: 40vw;
-    width: 90vw;
+
+    align-items: center;
     select {
       flex-grow: 2;
       margin-left: 0;
@@ -22,6 +22,7 @@
   button {
     margin-left: 1rem;
   }
+
   // .add-button {
   //   button {
   //     font-size: v.$h3;
@@ -31,4 +32,14 @@
   //     margin-left: 1rem;
   //   }
   // }
+}
+
+.grow-font-size {
+  color: v.$firstcolor;
+  font-size: v.$p;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.Toastify__progress-bar {
+  color: black;
 }
