@@ -89,7 +89,7 @@ const SoundDetailPage = () => {
                 </small>
               </div>
 
-              <div>
+              <div className="profile-description">
                 <h4>{sound[0].description}</h4>
               </div>
               <div className="price-wide-div">
@@ -97,9 +97,8 @@ const SoundDetailPage = () => {
                   <small id="sound-price-small">
                     {sound[0].price === 0
                       ? "You can use this sound for free."
-                      : "If you want to use this sound for your project, it costs you " +
-                        formatPrice(sound[0].price) +
-                        ". Please get in touch via message."}
+                      : "You can use this sound for your project for " +
+                        formatPrice(sound[0].price)}
                   </small>
                 )}
               </div>
@@ -154,9 +153,8 @@ const SoundDetailPage = () => {
                 <small id="sound-price-small">
                   {sound[0].price === 0
                     ? "You can use this sound for free."
-                    : "If you want to use this sound for your project, it costs you " +
-                      formatPrice(sound[0].price) +
-                      ". Please get in touch via message."}
+                    : "You can use this sound for your project for " +
+                      formatPrice(sound[0].price)}
                 </small>
               )}
             </div>
