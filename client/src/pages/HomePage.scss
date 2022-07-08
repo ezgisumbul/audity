@@ -1,4 +1,4 @@
-@use './../utils/variables.scss' as v;
+@use "./../utils/variables.scss" as v;
 
 @media (max-width: 900px) {
   .home-page {
@@ -10,7 +10,13 @@
       padding: 0;
       margin: -1.5px;
     }
+
+    .btn {
+      font-size: v.$small;
+      padding: 0.2rem 0.5rem;
+    }
   }
+
   section {
     padding: 0.5rem 1rem 3rem 1rem;
     background-image: linear-gradient(v.$thirdcolor, v.$fourthcolor);
@@ -24,13 +30,32 @@
       font-weight: 300;
       line-height: 1.05;
       margin-bottom: 0.8rem;
+      span {
+        margin-left: 0.5rem;
+        font-size: v.$small;
+        background: transparent;
+        color: v.$firstcolor;
+        cursor: pointer;
+      }
     }
   }
+  .about-text {
+    line-height: v.$p-lh;
+    font-size: v.$p;
+  }
 
+  .hide {
+    display: none;
+  }
   .link-wrapper {
     display: flex;
     justify-content: center;
     gap: 1rem;
+  }
+  .unfolded {
+    height: 84vh;
+    font-size: v.$small;
+    color: v.$dark;
   }
 }
 
@@ -52,7 +77,31 @@
         letter-spacing: -2.4px;
         line-height: 95%;
         max-width: 800px;
+        span {
+          margin-left: 1rem;
+          font-size: v.$small-sc;
+          background: transparent;
+          color: v.$firstcolor;
+          letter-spacing: 0;
+          cursor: pointer;
+        }
       }
+    }
+
+    .hide {
+      display: none;
+    }
+    .about-text {
+      margin: 0 auto;
+      justify-content: center;
+      max-width: 800px;
+      margin-bottom: 3rem;
+    }
+
+    .unfolded {
+      height: 40rem;
+      font-size: v.$small-sc;
+      color: v.$dark;
     }
 
     small {
