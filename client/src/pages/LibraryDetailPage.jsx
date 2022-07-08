@@ -50,7 +50,7 @@ const LibraryDetailPage = () => {
   const handleLibraryDeletion = (libraryId) => {
     libraryDelete(libraryId)
       .then(() => {
-        navigate('/library/my-libraries');
+        navigate(`/library/${user._id}/my-libraries`);
       })
       // (result) => console.log('deletion result', result)
 

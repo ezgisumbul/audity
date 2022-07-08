@@ -1,11 +1,13 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import LibraryForm from '../components/LibraryForm';
 import { libraryCreate } from '../services/library';
+import AuthenticationContext from '../context/authentication';
 
 import './LibraryCreateEditPages.scss';
 const LibraryCreate = () => {
   const navigate = useNavigate();
+  // const { userId } = useParams();
 
   const [library, setLibrary] = useState({
     title: '',
@@ -19,12 +21,13 @@ const LibraryCreate = () => {
       libraryCreate(library).then((data) => {
         setLibrary(data);
 
-        navigate(`/library/my-libraries`);
+        navigate(`/library/${user._id}/my-libraries`);
       });
     } else {
       alert('Library title cannot be empty');
     }
   };
+  const { user } = useContext(AuthenticationContext);
 
   return (
     <div className="library-form-wrapper">

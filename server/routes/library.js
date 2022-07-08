@@ -49,7 +49,7 @@ router.post('/create', routeGuard, (req, res, next) => {
   );
 });
 
-router.patch('/my-libraries', routeGuard, (req, res, next) => {
+router.patch('/:id/my-libraries', routeGuard, (req, res, next) => {
   // const { id } = req.params;
   const { id, soundToRemove } = req.body;
 
