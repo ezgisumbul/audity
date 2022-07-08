@@ -1,17 +1,17 @@
-import { signOutUser } from "./../services/authentication";
-import { NavLink, useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import AuthenticationContext from "../context/authentication";
+import { signOutUser } from './../services/authentication';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
+import { useContext } from 'react';
+import AuthenticationContext from '../context/authentication';
 
 const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
   const navigate = useNavigate();
 
   const { user, setUser } = useContext(AuthenticationContext);
-
+  // const { userId } = useParams();
   const handleSignOut = () => {
     signOutUser().then(() => {
       setUser(null);
-      navigate("/");
+      navigate('/');
     });
   };
 
@@ -26,26 +26,26 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
       id: 1
     }, */
     {
-      path: "/profile/search",
-      text: "Search for Users",
-      id: 2,
+      path: '/profile/search',
+      text: 'Search for Users',
+      id: 2
     },
     {
-      path: "/sound/search",
-      text: "Search for Sounds",
-      id: 3,
-    },
+      path: '/sound/search',
+      text: 'Search for Sounds',
+      id: 3
+    }
   ];
 
   return (
-    <ul className={`menuNav ${navbarOpen ? " showMenu" : ""}`}>
+    <ul className={`menuNav ${navbarOpen ? ' showMenu' : ''}`}>
       {mobile && <hr />}
       {!mobile && (
         <div className="nav-first-div">
           <li>
             <NavLink
               className="link"
-              to={"/"}
+              to={'/'}
               // activeClassName="active-link"
             >
               AUDITY
@@ -72,7 +72,7 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
           <li>
             <NavLink
               className="link"
-              to={"/sound-create"}
+              to={'/sound-create'}
               onClick={() => closeMenu()}
               // activeClassName="active-link"
             >
@@ -83,7 +83,7 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
           <li>
             <NavLink
               className="link"
-              to={"/library/my-libraries"}
+              to={`/library/${user._id}/my-libraries`}
               onClick={() => closeMenu()}
               // activeClassName="active-link"
             >
@@ -97,7 +97,7 @@ const NavContent = ({ mobile, navbarOpen, changeNavbarState }) => {
               <li>
                 <NavLink
                   className="link"
-                  to={"/message/list"}
+                  to={'/message/list'}
                   // activeClassName="active-link"
                 >
                   Messages
