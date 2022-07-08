@@ -1,17 +1,22 @@
-@use './../utils/variables.scss' as v;
+@use "./../utils/variables.scss" as v;
 .follower-div {
   height: 100vh;
   background-color: v.$fourthcolor;
   color: v.$dark;
   padding: 2rem 1rem;
 
+  ul {
+    list-style: none;
+  }
+
   h2 {
-    font-size: v.$h2;
+    font-size: v.$h1;
+    font-weight: 400;
     line-height: v.$h2-lh;
     margin: 0 0 2.5rem 0;
 
     @media (min-width: 900px) {
-      font-size: v.$h2-sc;
+      font-size: v.$h1-sc;
     }
   }
 
