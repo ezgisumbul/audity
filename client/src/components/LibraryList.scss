@@ -6,9 +6,8 @@
   .library-single {
     display: flex;
     flex-direction: column;
-    background-image: linear-gradient(v.$thirdcolor, v.$fourthcolor);
     border-bottom: 1px solid black;
-    padding: 0.25rem 0;
+    padding: 0.5rem 0;
 
     // .library-single-border {
     //   border-bottom: 1px solid black;
@@ -25,7 +24,7 @@
       width: 80vw;
       max-width: 80vw;
       // margin: 0 auto;
-      border-bottom: 2px solid black;
+      border-bottom: 1px solid black;
     }
   }
 
