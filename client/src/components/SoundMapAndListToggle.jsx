@@ -1,6 +1,6 @@
-import SoundCardList from "./SoundCardList";
-import SoundMap from "./SoundMap";
-import "./SoundMapAndListToggle.scss";
+import SoundCardList from './SoundCardList';
+import SoundMap from './SoundMap';
+import './SoundMapAndListToggle.scss';
 
 const SoundMapAndListToggle = ({ sounds, setMapView, mapView }) => {
   return (
@@ -9,7 +9,7 @@ const SoundMapAndListToggle = ({ sounds, setMapView, mapView }) => {
         <>
           <div className="toggle-btn-div">
             <button
-              className={mapView ? "unselected" : ""}
+              className={mapView ? 'unselected' : ''}
               onClick={() => {
                 setMapView(false);
               }}
@@ -17,17 +17,17 @@ const SoundMapAndListToggle = ({ sounds, setMapView, mapView }) => {
               List
             </button>
             <button
-              className={mapView ? "" : "unselected"}
+              className={mapView ? '' : 'unselected'}
               onClick={() => setMapView(true)}
             >
               Map
             </button>
           </div>
 
-          <div className={mapView ? "hide" : ""}>
+          <div className={mapView ? 'hide' : ''}>
             <SoundCardList sounds={sounds} />
           </div>
-          <div className={mapView ? "" : "hide"}>
+          <div className={mapView ? '' : 'hide'}>
             <SoundMap sounds={sounds} />
           </div>
         </>

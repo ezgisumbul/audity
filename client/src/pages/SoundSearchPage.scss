@@ -1,13 +1,19 @@
 @use './../utils/variables' as v;
+.sound-search-wrapper {
+  background-image: linear-gradient(v.$thirdcolor, v.$fourthcolor);
+  height: 100%;
+}
 
 .sound-search-page {
-  background-color: v.$thirdcolor;
-  height: 100vh;
+  .top-part {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
   h1 {
     margin-block-start: 0em;
     margin-bottom: 0;
     padding: 2rem 1rem 2rem 1rem;
-    background-color: v.$thirdcolor;
   }
 }
 
@@ -21,7 +27,6 @@
 }
 
 .quality-wrapper {
-  background-color: v.$thirdcolor;
   display: flex;
   justify-content: center;
   flex-direction: row;

@@ -1,4 +1,4 @@
-@use "./../utils/variables.scss" as v;
+@use './../utils/variables.scss' as v;
 
 .profile-page-div {
   .profile-header {
@@ -165,7 +165,8 @@
     audio {
       @media (min-width: 900px) {
         min-width: none;
-        max-width: 45vw;
+        // I had to adjust this so the new soundcards would fit
+        max-width: 29vw;
       }
     }
 

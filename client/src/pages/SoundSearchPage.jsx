@@ -78,68 +78,74 @@ const SoundSearchPage = () => {
   };
 
   return (
-    <div className="sound-search-page">
-      <h1>Search for Sounds</h1>
-      <div className="sound-search-results">
-        <div className="input-search-term">
-          <label htmlFor="input-search-term"></label>
-          <input
-            id="input-search-term"
-            type="text"
-            placeholder="Search for Sounds ..."
-            value={query.term}
-            onChange={handleTermInputChange}
-          />
-        </div>
-      </div>
-      <h1>Filter by Tags</h1>
-      <form onSubmit={(event) => handleFormSubmit(event)}>
-        <TagsCheckboxComponent
-          checkedStateArray={checkedState}
-          onhandleTagListChange={handleTagListChange}
-        />
-
-        <h1>Choose Quality</h1>
-
-        <div className="quality-list quality-wrapper">
-          {qualities.map((name, index) => {
-            return (
-              <div key={index}>
-                <div className="qualities-list-item" id="quality-button">
-                  <div className="single-quality-button">
-                    <label htmlFor={`custom-quality-checkbox-${index}`}>
-                      <input
-                        type="checkbox"
-                        hidden
-                        id={`custom-quality-checkbox-${index}`}
-                        name={name}
-                        value={name}
-                        checked={checkedQualitiesState[index]}
-                        onChange={() => onhandleQualitiesChange(index)}
-                      />
-                      <span>{name}</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </form>
-      <hr />
-      <h1>Search Results</h1>
-      <div className="background">
-        <ul>
-          {sounds.length !== 0 && (
-            <>
-              <SoundMapAndListToggle
-                mapView={mapView}
-                setMapView={setMapView}
-                sounds={sounds}
+    <div className="sound-search-wrapper">
+      <div className="sound-search-page">
+        <div className="top-part">
+          <h1>Search for Sounds</h1>
+          <div className="sound-search-results">
+            <div className="input-search-term">
+              <label htmlFor="input-search-term"></label>
+              <input
+                id="input-search-term"
+                type="text"
+                placeholder="Type here ..."
+                value={query.term}
+                onChange={handleTermInputChange}
               />
-            </>
-          )}
-        </ul>
+            </div>
+          </div>
+          <h1>Filter by Tags</h1>
+          <form onSubmit={(event) => handleFormSubmit(event)}>
+            <TagsCheckboxComponent
+              checkedStateArray={checkedState}
+              onhandleTagListChange={handleTagListChange}
+            />
+
+            <h1>Choose Quality</h1>
+
+            <div className="quality-list quality-wrapper">
+              {qualities.map((name, index) => {
+                return (
+                  <div key={index}>
+                    <div className="qualities-list-item" id="quality-button">
+                      <div className="single-quality-button">
+                        <label htmlFor={`custom-quality-checkbox-${index}`}>
+                          <input
+                            type="checkbox"
+                            hidden
+                            id={`custom-quality-checkbox-${index}`}
+                            name={name}
+                            value={name}
+                            checked={checkedQualitiesState[index]}
+                            onChange={() => onhandleQualitiesChange(index)}
+                          />
+                          <span>{name}</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </form>
+        </div>
+        <hr />
+        <div className="top-part">
+          <h1>Search Results</h1>
+        </div>
+        <div>
+          <ul>
+            {sounds.length !== 0 && (
+              <>
+                <SoundMapAndListToggle
+                  mapView={mapView}
+                  setMapView={setMapView}
+                  sounds={sounds}
+                />
+              </>
+            )}
+          </ul>
+        </div>
       </div>
     </div>
   );
