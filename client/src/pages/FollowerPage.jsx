@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { followerLoad } from "./../services/follow";
 import { profileLoad } from "./../services/profile";
 import ProfileCard from "../components/ProfileCard";
+import "./FollowingPage.scss";
 
 const FollowerPage = () => {
   const { id } = useParams();
@@ -19,12 +20,10 @@ const FollowerPage = () => {
   }, [id]);
 
   return (
-    <div>
+    <div className="follower-div">
       {(followers.length !== 0 && profile && (
-        <>
-          <p>
-            <span>{profile.name}</span>'s followers:
-          </p>
+        <div className="search-results-div">
+          <h2>{`${profile.name}'s Followers`}</h2>
           <ul>
             {followers.map((follower) => (
               <li key={follower._id}>
@@ -32,9 +31,9 @@ const FollowerPage = () => {
               </li>
             ))}
           </ul>
-        </>
+        </div>
       )) || (
-        <div>
+        <div className="search-results-div">
           {profile && (
             <p>
               <span>{profile.name}</span> has no followers yet.
