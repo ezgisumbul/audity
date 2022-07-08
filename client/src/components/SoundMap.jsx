@@ -22,7 +22,7 @@ const SoundMap = ({ sounds, onMove }) => {
   };
 
   return (
-    <div>
+    <div className="map-wrapper-div">
       {/* <img src="/Map-Marker-PNG-Pic.png" alt="" /> */}
       <GenericMap onMove={onMove} markerPosition={markerPosition}>
         {sounds &&
