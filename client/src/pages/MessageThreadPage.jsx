@@ -18,28 +18,34 @@ const MessageThreadPage = () => {
 
   return (
     <div className="message-thread-list">
-      <h1>Your messages</h1>
-
       {!isLoading && (
         <>
           {(threads.length !== 0 && (
-            <ul>
-              {threads.map((thread) => (
-                <li key={thread._id}>
-                  <ThreadPreviewCard profile={thread} />
-                </li>
-              ))}
-            </ul>
-          )) || (
             <>
-              <p>
-                You have not started a Conversation with any user yet. Find
-                other sound lovers and start your first conversation.
-              </p>
-              <button>
-                <Link to="/sound/search">Find Users</Link>
-              </button>
+              <h1>Your messages</h1>
+              <ul>
+                {threads.map((thread) => (
+                  <li key={thread._id}>
+                    <ThreadPreviewCard profile={thread} />
+                  </li>
+                ))}
+              </ul>
             </>
+          )) || (
+            <div className="message-empty-state-wrapper">
+              <div className="message-empty-state">
+                <div>
+                  <h1>
+                    You don't have any messages. Find content creators and start
+                    conversation.
+                  </h1>
+                </div>
+
+                <button className="btn">
+                  <Link to="/sound/search">Find Users</Link>
+                </button>
+              </div>
+            </div>
           )}
         </>
       )}

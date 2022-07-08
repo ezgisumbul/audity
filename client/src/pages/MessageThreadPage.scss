@@ -23,4 +23,36 @@
   a {
     color: white;
   }
+
+  .message-empty-state-wrapper {
+    // @media (min-width: 900px) {
+    background-image: linear-gradient(v.$thirdcolor, v.$fourthcolor);
+    display: flex;
+    width: 100vw;
+    height: 95vh;
+    margin: 0;
+    .message-empty-state {
+      margin: auto auto;
+      width: 80vw;
+      display: flex;
+      flex-direction: column;
+      gap: 5rem;
+      .div {
+        width: 90vw;
+      }
+      h1 {
+        margin: 0;
+        text-align: center;
+        font-size: v.$h1;
+        @media (min-width: 900px) {
+          font-size: v.$h1-sc;
+        }
+      }
+      .btn {
+        margin: 0 auto;
+      }
+    }
+
+    // }
+  }
 }
