@@ -1,7 +1,7 @@
 @use './../utils/variables.scss' as v;
 .library-list-component {
   a {
-    color: black;
+    color: v.$dark;
   }
   .library-single {
     display: flex;
@@ -53,7 +53,7 @@
 
     .library-chevron {
       background-color: transparent;
-      color: black;
+      color: v.$dark;
       // margin-bottom: 1rem;
       p {
         padding: 0.1rem 0 0 0;

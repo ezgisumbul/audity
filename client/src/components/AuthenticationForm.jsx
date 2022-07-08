@@ -93,7 +93,7 @@ const AuthenticationForm = (props) => {
           <>
             <label htmlFor="input-description">Description</label>
             <textarea
-              rows="4"
+              rows="3"
               id="input-description"
               type="text"
               placeholder="Add a description"

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import {
   libraryDelete,
   listMyLibraries,
@@ -21,6 +21,7 @@ const LibrarySoundList = ({ library, libraries, setLibraries }) => {
 
   const navigate = useNavigate();
 
+  const { userId } = useParams();
   useEffect(() => {
     loadLibrary(library._id).then((data) => {
       setLibraryUpdated(data.library);
@@ -40,14 +41,14 @@ const LibrarySoundList = ({ library, libraries, setLibraries }) => {
 
   const handleLibraryDeletion = (libraryId) => {
     libraryDelete(libraryId)
-      .then(() => listMyLibraries())
+      .then(() => listMyLibraries(userId))
       .then((result) => {
         setLibraries(result.libraries);
 
         // console.log('deletion result', result);
       })
       .then(() => {
-        navigate('/library/my-libraries');
+        navigate(`/library/${userId}/my-libraries`);
       })
       // (result) => console.log('deletion result', result)
 

@@ -28,6 +28,6 @@ export const loadLibrary = (id) => {
 
 export const removeFromLibrary = (id, soundToRemove) => {
   return api
-    .patch('/library/my-libraries', { id, soundToRemove })
+    .patch(`/library/${id}/my-libraries`, { id, soundToRemove })
     .then((response) => response.data);
 };

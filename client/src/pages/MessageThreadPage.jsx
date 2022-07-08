@@ -42,7 +42,7 @@ const MessageThreadPage = () => {
                 </div>
 
                 <button className="btn">
-                  <Link to="/sound/search">Find Users</Link>
+                  <Link to="/profile/search">Find Users</Link>
                 </button>
               </div>
             </div>
