@@ -25,9 +25,8 @@ const LibraryDropdown = () => {
     addBookmark(id, selectedLibraryName);
     toast.success('Sound added to the library! 💁‍♀️', {
       position: toast.POSITION.BOTTOM_CENTER,
-      className: 'black-background',
-      bodyClassName: 'grow-font-size',
-      progressClassName: 'fancy-progress-bar'
+
+      bodyClassName: 'grow-font-size'
     });
   };
 
@@ -43,9 +42,7 @@ const LibraryDropdown = () => {
   return (
     <div className="library-dropdown-div">
       <ToastContainer
-        className="black-background"
         bodyClassName="grow-font-size"
-        progressClassName="fancy-progress-bar"
         autoClose={2000}
         transition={Flip}
       />
