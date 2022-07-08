@@ -59,6 +59,31 @@ const LibrarySoundList = ({ library, libraries, setLibraries }) => {
   return (
     libraryUpdated && (
       <div className="library-extended-view">
+        {user && (
+          <>
+            {libraryUpdated.user === user._id && (
+              <div className="edit-delete-buttons">
+                <Link
+                  to={`/library/${libraryUpdated._id}/edit`}
+                  className="btn-small btn-dark"
+                >
+                  Rename library
+                </Link>
+                <div className="edit-delete-buttons">
+                  <button
+                    onClick={() => {
+                      handleLibraryDeletion(libraryUpdated._id);
+                    }}
+                    className="btn-small btn-light"
+                  >
+                    Delete library
+                  </button>
+                </div>
+              </div>
+            )}
+          </>
+        )}
+
         {libraryUpdated.sound &&
           libraryUpdated.sound.map(
             (sound, index) =>
@@ -74,29 +99,6 @@ const LibrarySoundList = ({ library, libraries, setLibraries }) => {
                 </div>
               )
           )}
-
-        {user && (
-          <>
-            {libraryUpdated.user === user._id && (
-              <div className="edit-delete-buttons">
-                <Link
-                  to={`/library/${libraryUpdated._id}/edit`}
-                  className="btn"
-                >
-                  Edit library
-                </Link>
-                <button
-                  onClick={() => {
-                    handleLibraryDeletion(libraryUpdated._id);
-                  }}
-                  className="btn delete"
-                >
-                  Delete library
-                </button>
-              </div>
-            )}
-          </>
-        )}
       </div>
     )
   );
