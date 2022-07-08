@@ -1,13 +1,12 @@
 @use "./../utils/variables.scss" as v;
 
-li,
-h2 {
-  list-style: none;
-  font-size: v.$h3;
-  font-weight: 300;
-}
-
 .navBar {
+  li,
+  h2 {
+    list-style: none;
+    font-size: v.$h3;
+    font-weight: 300;
+  }
   margin: 0;
   #nav-top {
     @media (min-width: 900px) {

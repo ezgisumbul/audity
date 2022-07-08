@@ -1,9 +1,13 @@
-@use './../utils/variables.scss' as v;
+@use "./../utils/variables.scss" as v;
 .library-dropdown-div {
   form {
     label {
       margin: 1rem;
+    }
+    h2 {
+      font-size: v.$h4;
       line-height: v.$h2-lh;
+      font-weight: 400;
     }
   }
   .library-dropdown {
@@ -37,7 +41,7 @@
 .grow-font-size {
   color: v.$firstcolor;
   font-size: v.$p;
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .Toastify__progress-bar {
