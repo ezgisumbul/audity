@@ -1,21 +1,21 @@
-import { addBookmark } from './../services/sound';
-import { useContext, useState, useEffect } from 'react';
-import AuthenticationContext from '../context/authentication';
-import { useParams, Link } from 'react-router-dom';
+import { addBookmark } from "./../services/sound";
+import { useContext, useState, useEffect } from "react";
+import AuthenticationContext from "../context/authentication";
+import { useParams, Link } from "react-router-dom";
 
 // import formateDate from '../utils/format-date';
 // import { addBookmark } from '../services/item';
-import { listAvailableLibraries } from '../services/sound';
-import './LibraryDropdown.scss';
+import { listAvailableLibraries } from "../services/sound";
+import "./LibraryDropdown.scss";
 
-import { toast } from 'react-toastify';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // toast.configure();
 
 const LibraryDropdown = () => {
   const [libraries, setLibraries] = useState([]);
-  const [selectedLibraryName, setSelectedLibraryName] = useState('');
+  const [selectedLibraryName, setSelectedLibraryName] = useState("");
 
   const { id } = useParams();
 
@@ -24,7 +24,7 @@ const LibraryDropdown = () => {
 
     addBookmark(id, selectedLibraryName);
 
-    toast.success('Sound added to the library!');
+    toast.success("Sound added to the library!");
   };
 
   useEffect(() => {
@@ -37,10 +37,12 @@ const LibraryDropdown = () => {
   }, []);
 
   return (
-    <div>
+    <div className="library-dropdown-div">
       <ToastContainer />
       <form onSubmit={handleAddBookmark}>
-        <label htmlFor="input-sound-library">Add to a library</label>
+        <label htmlFor="input-sound-library">
+          <h2>Add to a library</h2>
+        </label>
         <div className="library-dropdown">
           <select
             id="input-sound-library"
@@ -53,7 +55,7 @@ const LibraryDropdown = () => {
             Select library...
           </option> */}
             <optgroup label="Select library...">
-              <option>Create playlist</option>
+              <option>Create library</option>
               {
                 //   (isLoading && <option>... Loading</option>) ||
                 libraries.map((library) => (
@@ -62,9 +64,12 @@ const LibraryDropdown = () => {
               }
             </optgroup>
           </select>
-          <div className="add-button">
-            <button>+</button>
+          <div className="create-button">
+            <button>Add</button>
           </div>
+          {/* <div className="add-button">
+            <button>+</button>
+          </div> */}
         </div>
       </form>
     </div>
