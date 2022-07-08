@@ -167,7 +167,7 @@ const ProfilePage = () => {
               </div>
             )) ||
               (user._id === profile._id && (
-                <Link to={"/sound-create"}>Create your first sound</Link>
+                <Link to={'/sound-create'}>Create your first sound</Link>
               ))}
 
             <div id="profile-libraries">
@@ -197,48 +197,9 @@ const ProfilePage = () => {
                 </>
               )}
             </div>
-<<<<<<< HEAD
-          )) ||
-            (user._id === profile._id && (
-              <Link to={'/sound-create'}>Create your first sound</Link>
-            ))}
-
-          <div id="profile-libraries">
-            {libraries && (
-              <>
-                <h4>
-                  <Link to={`/library/${id}/list`}>Sound Libraries</Link>
-                </h4>
-                {libraries.map((library) => {
-                  return (
-                    <>
-                      <div>
-                        <>
-                          <Link
-                            key={library._id}
-                            to={`/library/${library._id}`}
-                          >
-                            {library.title}
-                          </Link>
-                          <small>{`${library.sound.length} sounds`}</small>
-                        </>
-                      </div>
-                    </>
-                  );
-                })}
-              </>
-            )}
-          </div>
-        </>
-      )}
-      {/* {user && profile._id === user._id && (
-            <Link to={"/library/list"}>See {profile.name}'s sound library</Link>
-          )} */}
-=======
           </>
         )}
       </div>
->>>>>>> 939bf9f1eaae0788e75333c9b42753187e7d6777
     </div>
   );
 };
