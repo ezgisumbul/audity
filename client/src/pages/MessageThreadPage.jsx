@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { messageThreadList } from "../services/message";
-import ThreadPreviewCard from "./../components/ThreadPreviewCard";
-import { Link } from "react-router-dom";
-import "./MessageThreadPage.scss";
+import { useEffect, useState } from 'react';
+import { messageThreadList } from '../services/message';
+import ThreadPreviewCard from './../components/ThreadPreviewCard';
+import { Link } from 'react-router-dom';
+import './MessageThreadPage.scss';
 
 const MessageThreadPage = () => {
   const [threads, setThreads] = useState([]);
@@ -18,6 +18,8 @@ const MessageThreadPage = () => {
 
   return (
     <div className="message-thread-list">
+      <h1>Your messages</h1>
+
       {!isLoading && (
         <>
           {(threads.length !== 0 && (

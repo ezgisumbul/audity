@@ -11,29 +11,20 @@
       margin: -1.5px;
     }
   }
-
-  .map-container {
-    padding: 2rem;
-    width: 100vw;
-    height: 300px;
-    background-color: #bababa;
-  }
-
-  .map-container {
-    padding: 2rem;
-    width: 100vw;
-    height: 200px;
-    background-color: #bababa;
-  }
-  h3 {
-    font-size: v.$h3;
-    font-weight: 300;
-    line-height: 1.05;
-    margin-bottom: 0.8rem;
-  }
   section {
-    padding: 0.5rem 1rem 1.8rem 1rem;
+    padding: 0.5rem 1rem 3rem 1rem;
     background-image: linear-gradient(v.$thirdcolor, v.$fourthcolor);
+    height: 25vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    h3 {
+      font-size: v.$h3;
+      font-weight: 300;
+      line-height: 1.05;
+      margin-bottom: 0.8rem;
+    }
   }
 
   .link-wrapper {
@@ -52,8 +43,8 @@
     }
     section {
       background-image: linear-gradient(v.$thirdcolor, v.$fourthcolor);
-
       padding: 3.5rem 0 4.5rem 0;
+
       h3 {
         margin: 0 auto 3.5rem auto;
         font-size: v.$h1-sc;

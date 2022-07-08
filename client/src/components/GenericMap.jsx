@@ -9,7 +9,7 @@ const GenericMap = ({ children, onLoad, onMove, markerPosition, ...props }) => {
 
   return (
     (isLoaded && (
-      <div>
+      <div className="map-frame">
         <GoogleMap
           mapContainerStyle={{ width: '100vw', height: '60vh' }}
           center={
