@@ -1,74 +1,164 @@
-@use './../utils/variables.scss' as v;
-
-.basic-infos {
-  margin: 0 1rem;
-  h3 {
-    font-size: v.$h3;
-    line-height: v.$h3-lh;
-    margin-block-start: 1rem;
-    margin-block-end: 0.2rem;
-  }
-
-  h4 {
-    font-size: v.$h4;
-    line-height: v.$h4-lh;
-    margin-block-start: 0.6rem;
-    margin-block-end: 0rem;
-  }
-
-  small {
-    font-size: v.$small;
-    line-height: v.$small-lh;
-    margin-right: 1rem;
-  }
-}
-
-.tag-cloud {
-  display: flex;
-  flex-direction: row;
-  margin-left: 1rem;
-}
-
-.tag {
-  font-size: v.$small;
-  background-color: transparent;
-  color: v.$dark;
-  border: 1px solid v.$dark;
-  padding: 0.2rem 0.5rem;
-  border-radius: 1rem;
-  margin: 1rem 0.5rem 1rem 0;
-}
-
-.successdiv {
-  width: 20%;
-  position: fixed;
-  top: 40%;
-  left: 40%;
-  background-color: transparent;
-}
-
-.audio-player {
-  background-color: white;
-  display: flex;
-  justify-content: center;
-
-  audio {
-    width: 100vw;
-    max-width: 600px;
-  }
-}
-
-.edit-btn {
-  width: 9rem;
-  height: 2.5rem;
-  background-color: v.$thirdcolor;
-  text-align: center;
-  a {
-    color: black;
-  }
-}
+@use "./../utils/variables.scss" as v;
 
 .sound-detail-page {
+  .sound-top-div {
+    @media (min-width: 900px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  .basic-infos {
+    margin: 0 1rem;
+
+    @media (min-width: 900px) {
+      display: flex;
+      flex-direction: column;
+
+      max-width: 700px;
+    }
+
+    h3 {
+      font-size: v.$h1;
+      line-height: v.$h1-lh;
+
+      @media (min-width: 900px) {
+        font-size: v.$h1-sc;
+      }
+
+      font-weight: 400;
+      margin-block-start: 1rem;
+      margin-block-end: 0.2rem;
+    }
+
+    h4 {
+      font-size: v.$h4;
+      line-height: v.$h4-lh;
+      margin-block-start: 0.6rem;
+      margin-block-end: 0rem;
+    }
+
+    small {
+      font-size: v.$small;
+      line-height: v.$small-lh;
+      margin-right: 0.5rem;
+      margin-left: 0;
+    }
+  }
+
+  .tag-cloud {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    margin: 1rem;
+  }
+
+  .tag {
+    font-size: v.$small;
+    background-color: transparent;
+    color: v.$dark;
+    border: 1px solid v.$dark;
+    padding: 0.2rem 0.5rem;
+    border-radius: 1rem;
+    margin: 0.25rem 0.5rem 0.25rem 0;
+  }
+
+  .audio-player {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+
+    audio {
+      margin: 1rem;
+      width: 80vw;
+      max-width: 600px;
+    }
+  }
+
+  #sound-price-small {
+    margin: 1rem;
+  }
+
+  .edit-btn {
+    width: 9rem;
+    height: 2.5rem;
+    background-color: v.$thirdcolor;
+    text-align: center;
+    margin: 1rem 0 1rem 1rem;
+  }
+
+  .price-wide-div {
+    @media (max-width: 900px) {
+      display: none;
+    }
+  }
+
+  .price-mobile-div {
+    @media (min-width: 900px) {
+      display: none;
+    }
+  }
+
+  .map-and-player-div-wide {
+    display: flex;
+    justify-content: center;
+
+    .audio-player,
+    .library-dropdown-div {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .audio-player {
+      display: flex;
+      flex-direction: row;
+      justify-content: stretch;
+
+      audio {
+        max-width: 40vw;
+        width: 90vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: stretch;
+      }
+      div {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+    }
+
+    .library-dropdown {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 1rem;
+    }
+
+    form {
+      align-items: center;
+    }
+
+    h2 {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      display: none;
+    }
+
+    #input-sound-library {
+      margin: 0;
+    }
+  }
+
+  .map-and-player-div-mobile {
+    @media (min-width: 900px) {
+      display: none;
+    }
+  }
+
   label {
     margin: 2rem 1rem 0.25rem 1rem;
   }

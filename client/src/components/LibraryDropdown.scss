@@ -1,29 +1,34 @@
-@use './../utils/variables.scss' as v;
-
-.library-dropdown {
-  display: flex;
-  flex-direction: row;
-  justify-content: stretch;
-  margin: 0 auto;
-  max-width: 600px;
-  width: 90vw;
-  select {
-    flex-grow: 2;
-    margin-left: 0;
-  }
-
+@use "./../utils/variables.scss" as v;
+.library-dropdown-div {
   form {
     label {
-      margin-left: 1rem;
+      margin: 1rem;
+      line-height: v.$h2-lh;
     }
   }
-}
-
-.add-button {
-  button {
-    font-size: v.$h3;
-    border-radius: 50%;
-    height: 61px;
-    width: 61px;
+  .library-dropdown {
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    margin: 0 auto;
+    max-width: 40vw;
+    width: 90vw;
+    select {
+      flex-grow: 2;
+      margin-left: 0;
+    }
   }
+
+  button {
+    margin-left: 1rem;
+  }
+  // .add-button {
+  //   button {
+  //     font-size: v.$h3;
+  //     border-radius: 50%;
+  //     height: 61px;
+  //     width: 61px;
+  //     margin-left: 1rem;
+  //   }
+  // }
 }
