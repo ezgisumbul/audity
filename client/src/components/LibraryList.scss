@@ -6,8 +6,9 @@
   .library-single {
     display: flex;
     flex-direction: column;
-
+    background-image: linear-gradient(v.$thirdcolor, v.$fourthcolor);
     border-bottom: 1px solid black;
+    padding: 0.25rem 0;
 
     // .library-single-border {
     //   border-bottom: 1px solid black;
@@ -29,6 +30,7 @@
   }
 
   .library-single-header {
+    background-color: white;
     display: flex;
     flex-direction: row;
     align-items: center;

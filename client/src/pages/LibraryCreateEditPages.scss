@@ -1,9 +1,12 @@
 @use './../utils/variables.scss' as v;
 
 .library-form-wrapper {
+  background-image: linear-gradient(v.$fourthcolor, v.$thirdcolor);
+  height: 100vh;
+  flex: 1;
+  overflow: hidden;
   @media (min-width: 900px) {
     display: flex;
     width: 100vw;
-    height: 90vh;
   }
 }
