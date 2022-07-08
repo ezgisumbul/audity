@@ -6,6 +6,7 @@ import { soundList } from '../services/sound';
 import { useContext } from 'react';
 import AuthenticationContext from '../context/authentication';
 import './HomePage.scss';
+import SoundCardHomePage from '../components/SoundCardHomePage';
 
 const HomePage = () => {
   const [filters, setFilters] = useState({
@@ -30,15 +31,6 @@ const HomePage = () => {
 
   return (
     <div className="home-page">
-      {sounds && (
-        <>
-          <SoundMap sounds={sounds} onMove={handleMapMove} />
-
-          <SoundCard
-            sound={sounds[Math.floor(Math.random() * (sounds.length - 1))]}
-          />
-        </>
-      )}
       <section>
         <h3>Welcome to Audity. Create an account and listen to your city.</h3>
         {!user && (
@@ -52,6 +44,15 @@ const HomePage = () => {
           </div>
         )}
       </section>
+      {sounds && (
+        <>
+          <SoundMap sounds={sounds} onMove={handleMapMove} />
+
+          <SoundCardHomePage
+            sound={sounds[Math.floor(Math.random() * (sounds.length - 1))]}
+          />
+        </>
+      )}
       {/* <footer>Lorem ipsum dolor sit amet</footer> */}
     </div>
   );

@@ -55,24 +55,30 @@ const MessageDetailPage = () => {
       <hr />
       {/* //Shows  ALL users the person has threads with. I just want to show the onbe who is owner of the thread */}
       {profile && (
-        <div className="message-user">
-          <img src={profile.picture} alt="" width="100px" />
-          <span>{profile.name}</span>
+        <div className="message-user-wrapper">
+          <div className="message-user">
+            <img src={profile.picture} alt="" width="100px" />
+            <span>{profile.name}</span>
+          </div>
         </div>
       )}
-      <div className="message-list background">
-        {messages.map((message) => (
-          <div
-            key={message._id}
-            className={
-              message.sender === user._id ? 'message-sent' : 'message-received'
-            }
-          >
-            <small>{formateDate(message.createdAt)}</small>
-            <br />
-            <span>{message.content}</span>
-          </div>
-        ))}
+      <div className="background">
+        <div className="message-list">
+          {messages.map((message) => (
+            <div
+              key={message._id}
+              className={
+                message.sender === user._id
+                  ? 'message-sent'
+                  : 'message-received'
+              }
+            >
+              <small>{formateDate(message.createdAt)}</small>
+              <br />
+              <span>{message.content}</span>
+            </div>
+          ))}
+        </div>
       </div>
       <div className="input-fixed">
         <hr />

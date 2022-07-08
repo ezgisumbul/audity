@@ -1,8 +1,24 @@
+@use './../utils/variables.scss' as v;
+
 .message-thread-list {
+  h1 {
+    font-size: v.$h1;
+    margin: 1rem 1rem;
+    @media (min-width: 900px) {
+      font-size: v.$h1-sc;
+      letter-spacing: -1.5px;
+      margin: 2rem 33%;
+    }
+  }
+
   li {
     list-style: none;
     font-size: 2rem;
-    margin-top: 0.2rem;
+    margin: 0.1rem 0;
+    @media (min-width: 900px) {
+      margin: 0.1rem auto;
+      max-width: 600px;
+    }
   }
   a {
     color: white;
