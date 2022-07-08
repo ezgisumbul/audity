@@ -8,6 +8,7 @@ import {
 } from '../services/library';
 import AuthenticationContext from '../context/authentication';
 import SoundCard from './SoundCard';
+// import { MdRemoveCircleOutline } from 'react-icons/md';
 
 import './SingleLibraryExtended.scss';
 
@@ -19,7 +20,7 @@ const LibrarySoundList = ({ library, libraries, setLibraries }) => {
   const [libraryClone, setLibraryClone] = useState(library);
 
   const navigate = useNavigate();
- 
+
   useEffect(() => {
     loadLibrary(library._id).then((data) => {
       setLibraryUpdated(data.library);
@@ -64,21 +65,11 @@ const LibrarySoundList = ({ library, libraries, setLibraries }) => {
               sound && (
                 <div key={sound || index}>
                   <div>
-                    <SoundCard sound={sound} />
-                    {user && (
-                      <div>
-                        {libraryUpdated.user === user._id && (
-                          <button
-                            className="btn remove"
-                            onClick={() => {
-                              handleSoundRemovalFromLibrary(sound._id);
-                            }}
-                          >
-                            <p>Remove</p>
-                          </button>
-                        )}
-                      </div>
-                    )}
+                    <SoundCard
+                      sound={sound}
+                      onRemove={handleSoundRemovalFromLibrary}
+                      library={libraryUpdated}
+                    />
                   </div>
                 </div>
               )

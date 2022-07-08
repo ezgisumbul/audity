@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { unFollowUser, followedLoad } from "./../services/follow";
 import { profileLoad } from "./../services/profile";
 import ProfileCard from "../components/ProfileCard";
+import "./FollowingPage.scss";
 
 const FollowingPage = () => {
   const { id } = useParams();
@@ -32,12 +33,10 @@ const FollowingPage = () => {
   };
 
   return (
-    <div>
+    <div className="follower-div">
       {(followed.length !== 0 && profile && (
-        <>
-          <p>
-            <span>{profile.name}</span> follows:
-          </p>
+        <div className="search-results-div">
+          <h2>{`${profile.name} Following`}</h2>
           <ul>
             {followed.map((followed) => (
               <li key={followed._id}>
@@ -49,9 +48,9 @@ const FollowingPage = () => {
               </li>
             ))}
           </ul>
-        </>
+        </div>
       )) || (
-        <div>
+        <div className="search-results-div">
           {profile && (
             <p>
               <span>{profile.name}</span> is not following anyone yet.

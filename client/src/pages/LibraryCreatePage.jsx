@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import LibraryForm from '../components/LibraryForm';
 import { libraryCreate } from '../services/library';
 
+import './LibraryCreateEditPages.scss';
 const LibraryCreate = () => {
   const navigate = useNavigate();
 
@@ -26,8 +27,9 @@ const LibraryCreate = () => {
   };
 
   return (
-    <div>
+    <div className="library-form-wrapper">
       <LibraryForm
+        isCreate={true}
         library={library}
         setLibrary={setLibrary}
         onSubmit={handleFormSubmission}

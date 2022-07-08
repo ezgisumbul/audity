@@ -129,23 +129,19 @@ router.post('/create', (req, res, next) => {
     .upload(fileStr, { resource_type: 'video' })
     .then((sound) => {
       console.log('soundupload succesfull');
+      return Sound.create({
+        title,
+        description,
+        tags,
+        price,
+        position,
+        published,
+        owner: req.user._id,
+        soundFile, // <--- for dev as long sound upload does not work
+        quality,
+        recordedAt
+      });
     })
-    .catch((error) => {
-      next(error);
-    });
-
-  Sound.create({
-    title,
-    description,
-    tags,
-    price,
-    position,
-    published,
-    owner: req.user._id,
-    soundFile, // <--- for dev as long sound upload does not work
-    quality,
-    recordedAt
-  })
     .then((sound) => {
       console.log(sound);
       res.json({ sound });

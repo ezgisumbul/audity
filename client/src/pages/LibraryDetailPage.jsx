@@ -67,7 +67,14 @@ const LibraryDetailPage = () => {
         {/* </div> */}
 
         <div className="library-extended-view">
-          {libraryUpdated.sound &&
+          {(!libraryUpdated.sound.length && (
+            <div className="sound-library-empty-state">
+              <h4>Add sounds to your library</h4>
+              <Link to={'/sound/search'} className="btn">
+                <p>Search</p>
+              </Link>
+            </div>
+          )) ||
             libraryUpdated.sound.map(
               (sound, index) =>
                 sound && (
@@ -78,9 +85,13 @@ const LibraryDetailPage = () => {
                     <source src={sound.soundFile} />
                   </audio> */}
                     <div>
-                      <SoundCard sound={sound} />
+                      <SoundCard
+                        sound={sound}
+                        onRemove={handleSoundRemovalFromLibrary}
+                        library={libraryUpdated}
+                      />
 
-                      {user && (
+                      {/* {user && (
                         <div>
                           {libraryUpdated.user === user._id && (
                             <button
@@ -92,11 +103,9 @@ const LibraryDetailPage = () => {
                               <p>Remove</p>
                             </button>
                           )}
-                          {/* <Link to={`/sound/${sound._id}`} className="btn">
-                        Go to details
-                      </Link> */}
+
                         </div>
-                      )}
+                      )} */}
                     </div>
                   </div>
                 )

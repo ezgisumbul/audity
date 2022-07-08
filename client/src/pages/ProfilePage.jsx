@@ -1,17 +1,17 @@
-import { useState, useEffect, useContext } from "react";
-import { useParams, Link } from "react-router-dom";
-import AuthenticationContext from "../context/authentication";
-import { profileLoad } from "../services/profile";
+import { useState, useEffect, useContext } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import AuthenticationContext from '../context/authentication';
+import { profileLoad } from '../services/profile';
 import {
   followUser,
   unFollowUser,
   followerLoad,
-  followedLoad,
-} from "../services/follow";
-import SoundMapAndListToggle from "../components/SoundMapAndListToggle";
+  followedLoad
+} from '../services/follow';
+import SoundMapAndListToggle from '../components/SoundMapAndListToggle';
 
-import "./ProfilePage.scss";
-import { listLibraries } from "../services/library";
+import './ProfilePage.scss';
+import { listLibraries } from '../services/library';
 
 const ProfilePage = () => {
   const { id } = useParams();
@@ -71,7 +71,6 @@ const ProfilePage = () => {
         setFollower(data.follower);
         const followerIdArray = data.follower.map((document) => document._id);
         setFollowerIds(followerIdArray);
-        console.log(data.follower);
       });
   };
 
@@ -80,19 +79,16 @@ const ProfilePage = () => {
       {profile && (
         <>
           <div className="profile-header">
-            <h1>Hi, I'm {profile.name}</h1>
+            {/* <h1>Hi, I'm {profile.name}</h1> */}
             <div className="profile-header-top">
               <div className="profile-img-div">
                 <img
                   src={
                     profile.picture ||
-                    "https://images.unsplash.com/photo-1570499911518-9b95b0660755?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2346&q=80"
+                    'https://images.unsplash.com/photo-1570499911518-9b95b0660755?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2346&q=80'
                   }
                   alt={profile.name}
                 />
-                {/* <p className="profile-description-wide">
-                  {profile.description}
-                </p> */}
                 <div className="edit-profile-div">
                   <div id="follower">
                     <small>
@@ -102,16 +98,17 @@ const ProfilePage = () => {
                       </Link>
                     </small>
                     <br />
+
                     <small>
                       <Link to={`/profile/${id}/follower`}>
                         {follower.length !== 0 &&
-                          `Followers ${follower.length}`}
+                          ` ${follower.length} Followers`}
                       </Link>
                     </small>
                   </div>
                   {user && profile._id === user._id && (
                     <div>
-                      <Link className="btn edit-btn" to={"/profile/edit"}>
+                      <Link className="btn edit-btn" to={'/profile/edit'}>
                         Edit Profile
                       </Link>
                     </div>
@@ -120,6 +117,7 @@ const ProfilePage = () => {
               </div>
               <div className="profile-aside">
                 <div className="audio-description-div">
+                  <h1>Hi, I'm {profile.name}</h1>
                   <p className="profile-description-mobile">
                     {profile.description}
                   </p>
@@ -155,54 +153,53 @@ const ProfilePage = () => {
           </div>
         </>
       )}
+      <div className="profile-bottom-div">
+        {profile && (
+          <>
+            {(sounds.length !== 0 && (
+              <div id="profile-sounds-div">
+                <h3>Sounds</h3>
+                <SoundMapAndListToggle
+                  mapView={mapView}
+                  setMapView={setMapView}
+                  sounds={sounds}
+                />
+              </div>
+            )) ||
+              (user._id === profile._id && (
+                <Link to={'/sound-create'}>Create your first sound</Link>
+              ))}
 
-      {profile && (
-        <>
-          {(sounds.length !== 0 && (
-            <div id="profile-sounds-div">
-              <h3>Sounds</h3>
-              <SoundMapAndListToggle
-                mapView={mapView}
-                setMapView={setMapView}
-                sounds={sounds}
-              />
+            <div id="profile-libraries">
+              {libraries && (
+                <>
+                  <Link to={`/library/${id}/list`}>
+                    <h3>Libraries</h3>
+                  </Link>
+
+                  {libraries.map((library) => {
+                    return (
+                      <>
+                        <div>
+                          <>
+                            <Link
+                              key={library._id}
+                              to={`/library/${library._id}`}
+                            >
+                              {library.title}
+                            </Link>
+                            <small>{`${library.sound.length} sounds`}</small>
+                          </>
+                        </div>
+                      </>
+                    );
+                  })}
+                </>
+              )}
             </div>
-          )) ||
-            (user._id === profile._id && (
-              <Link to={"/sound-create"}>Create your first sound</Link>
-            ))}
-
-          <div id="profile-libraries">
-            {libraries && (
-              <>
-                <h4>
-                  <Link to={`/library/${id}/list`}>Sound Lists</Link>
-                </h4>
-                {libraries.map((library) => {
-                  return (
-                    <>
-                      <div>
-                        <>
-                          <Link
-                            key={library._id}
-                            to={`/library/${library._id}`}
-                          >
-                            {library.title}
-                          </Link>
-                          <small>{`${library.sound.length} sounds`}</small>
-                        </>
-                      </div>
-                    </>
-                  );
-                })}
-              </>
-            )}
-          </div>
-        </>
-      )}
-      {/* {user && profile._id === user._id && (
-            <Link to={"/library/list"}>See {profile.name}'s sound library</Link>
-          )} */}
+          </>
+        )}
+      </div>
     </div>
   );
 };

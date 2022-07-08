@@ -1,0 +1,23 @@
+@use "./../utils/variables.scss" as v;
+.follower-div {
+  height: 100vh;
+  background-color: v.$fourthcolor;
+  color: v.$dark;
+  padding: 2rem 1rem;
+
+  h2 {
+    font-size: v.$h2;
+    line-height: v.$h2-lh;
+    margin: 0 0 2.5rem 0;
+
+    @media (min-width: 900px) {
+      font-size: v.$h2-sc;
+    }
+  }
+
+  .search-results-div {
+    width: 92vw;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}

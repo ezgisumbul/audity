@@ -1,14 +1,15 @@
-@use './../utils/variables.scss' as v;
+@use "./../utils/variables.scss" as v;
 
 .profile-page-div {
   .profile-header {
     padding: 0 2rem;
+    margin-top: 4rem;
 
     h1 {
       font-size: v.$h1;
-
       @media (min-width: 900px) {
-        text-align: center;
+        margin-top: 0;
+        font-size: v.$h1-sc;
       }
     }
 
@@ -20,7 +21,7 @@
       }
 
       .profile-aside {
-        max-width: 40rem;
+        max-width: 35rem;
       }
     }
 
@@ -56,6 +57,12 @@
 
         #follower {
           margin-bottom: 1rem;
+          // @media (min-width: 900px) {
+          //   marg
+          //   display: flex;
+          //   justify-content: left;
+          //   gap: 1rem;
+          // }
         }
 
         small {
@@ -127,36 +134,83 @@
     font-size: 1rem;
   }
 
-  #profile-sounds-div {
+  .profile-bottom-div {
+    margin-top: 2rem;
+
+    @media (min-width: 900px) {
+      margin-top: 4rem;
+      padding: 0 1rem;
+    }
+
     h3 {
+      font-weight: 400;
+      margin-bottom: 0.8rem;
       margin-left: 2rem;
-    }
-  }
 
-  #profile-libraries {
-    h4 {
-      font-weight: 500;
+      @media (min-width: 900px) {
+        font-size: v.$h1-sc;
+        margin-bottom: 3rem;
+      }
     }
-    a {
-      line-height: 20px;
-      color: black;
-      margin: 0.75rem;
-      font-size: 1rem;
-    }
-    div {
-      border-top-style: solid;
-      border-bottom-style: solid;
-      border-width: 1px;
-      border-color: v.$thirdcolor;
+
+    @media (min-width: 900px) {
       display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
+      gap: 1rem;
+    }
 
-      small {
-        color: v.$firstcolor;
-        font-size: v.$small;
-        margin-right: 1rem;
+    #profile-sounds-div {
+      margin-top: 1rem;
+    }
+
+    audio {
+      @media (min-width: 900px) {
+        min-width: none;
+        max-width: 45vw;
+      }
+    }
+
+    .map-wrapper-div {
+      @media (min-width: 900px) {
+        display: flex;
+        justify-content: center;
+        width: 50vw;
+        object-fit: cover;
+        overflow: hidden;
+      }
+    }
+
+    #profile-libraries {
+      flex-grow: 1;
+
+      h3 {
+        margin-bottom: 0;
+        @media (min-width: 900px) {
+          margin-bottom: 4rem;
+        }
+      }
+
+      a {
+        line-height: 20px;
+        color: black;
+        margin: 0.75rem;
+        font-size: 1rem;
+      }
+      div {
+        border-top-style: solid;
+        border-bottom-style: solid;
+        border-width: 1px;
+        border-color: v.$thirdcolor;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: -1px;
+
+        small {
+          color: v.$firstcolor;
+          font-size: v.$small;
+          margin-right: 1rem;
+        }
       }
     }
   }
