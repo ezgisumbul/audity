@@ -10,6 +10,7 @@
   }
 
   .library-extended-view {
+    padding-top: 2rem;
     display: flex;
     flex-direction: column;
 
@@ -54,15 +55,35 @@
       align-items: center;
       margin: 1.8rem 1.25rem;
     }
-    .delete {
+    /*     .delete {
       background-color: v.$secondcolor;
+    } */
+    .remove-btn {
+      font-size: 1.5rem;
+      background-color: transparent;
+      color: v.$dark;
     }
-    .remove {
-      background-color: v.$secondcolor;
-      width: 2.4rem;
-      padding: 0;
-      height: 1.5rem;
-      font-size: 0.5rem;
+
+    .btn-light {
+      color: v.$dark;
+
+      border: 1px solid v.$dark;
+      font-size: v.$p;
+    }
+    .btn-light:hover {
+      color: #848484;
+      border: 1px solid #848484;
+    }
+
+    .btn-dark {
+      color: v.$thirdcolor;
+      background-color: v.$dark;
+      padding: 0.3rem 0.8rem 0.4rem 0.8rem;
+      border-radius: 2rem;
+    }
+
+    .btn-dark:hover {
+      background-color: #4f4f4f;
     }
   }
 }

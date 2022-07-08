@@ -101,7 +101,7 @@ const customMapStyle = [
     elementType: 'labels.text.fill',
     stylers: [
       {
-        color: '#000000'
+        color: 'v.$dark'
       }
     ]
   },

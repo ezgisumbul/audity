@@ -1,1 +1,44 @@
 @use './../utils/variables.scss' as v;
+
+.profile-edit-page-wrapper {
+  background-image: linear-gradient(v.$fourthcolor, v.$thirdcolor);
+  height: 100vh;
+
+  .profile-edit-page {
+    padding: 0rem 1rem 0rem 1rem;
+
+    h1 {
+      padding-top: 2rem;
+      margin-block-start: 0em;
+    }
+
+    textarea {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+}
+
+@media (min-width: 900px) {
+  .profile-edit-page-wrapper {
+    height: 100vh;
+    background-image: linear-gradient(v.$thirdcolor, v.$fourthcolor);
+
+    .profile-edit-page {
+      margin: 0 auto;
+      padding: 04.5rem 1rem 2rem 1rem;
+      max-width: 800px;
+
+      color: v.$dark;
+      h1 {
+        font-size: v.$h1-sc;
+        padding-top: 0rem;
+        margin-block-start: 0em;
+      }
+      button {
+        padding: 0.5rem 1rem;
+        color: white;
+      }
+    }
+  }
+}

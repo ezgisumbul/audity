@@ -5,7 +5,7 @@
   background-image: linear-gradient(v.$thirdcolor, v.$fourthcolor);
   .login-form {
     padding: 0 1rem 2rem 1rem;
-    color: black;
+    color: v.$dark;
     h1 {
       padding-top: 2rem;
       margin-block-start: 0em;
@@ -27,7 +27,7 @@
       padding: 04.5rem 1rem 2rem 1rem;
       max-width: 800px;
 
-      color: black;
+      color: v.$dark;
       h1 {
         font-size: v.$h1-sc;
         padding-top: 2rem;

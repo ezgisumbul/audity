@@ -1,17 +1,17 @@
-import { soundLoad, addBookmark } from "./../services/sound";
-import { useContext, useState, useEffect } from "react";
-import AuthenticationContext from "../context/authentication";
-import { useParams, Link } from "react-router-dom";
-import formatPrice from "../utils/format-price";
+import { soundLoad, addBookmark } from './../services/sound';
+import { useContext, useState, useEffect } from 'react';
+import AuthenticationContext from '../context/authentication';
+import { useParams, Link } from 'react-router-dom';
+import formatPrice from '../utils/format-price';
 // import formateDate from '../utils/format-date';
 // import { addBookmark } from '../services/item';
-import { listMyLibraries } from "../services/library";
+import { listMyLibraries } from '../services/library';
 
-import React from "react";
-import SoundMap from "./../components/SoundMap";
-import LibraryDropdown from "../components/LibraryDropdown";
-import "./SoundDetailPage.scss";
-import CustomPlayer from "../components/CustomPlayer";
+import React from 'react';
+import SoundMap from './../components/SoundMap';
+import LibraryDropdown from '../components/LibraryDropdown';
+import './SoundDetailPage.scss';
+import CustomPlayer from '../components/CustomPlayer';
 
 // import AudioPlayer from '../components/AudioPlayer';
 
@@ -79,13 +79,16 @@ const SoundDetailPage = () => {
               <div>
                 <small>
                   {sound[0].recordedAt &&
-                    new Date(sound[0].recordedAt).toLocaleDateString("de-DE")}
+                    new Date(sound[0].recordedAt).toLocaleDateString('de-DE')}
                 </small>
                 <small>
-                  recorded by{" "}
+                  recorded by{' '}
                   <Link to={`/profile/${sound[0].owner._id}`}>
                     {sound[0].owner.name}
                   </Link>
+                </small>
+                <small>
+                  recording quality: <i>{sound[0].quality}</i>{' '}
                 </small>
               </div>
 
@@ -96,8 +99,8 @@ const SoundDetailPage = () => {
                 {sound[0].owner._id !== user._id && (
                   <small id="sound-price-small">
                     {sound[0].price === 0
-                      ? "You can use this sound for free."
-                      : "You can use this sound for your project for " +
+                      ? 'You can use this sound for free.'
+                      : 'You can use this sound for your project for ' +
                         formatPrice(sound[0].price)}
                   </small>
                 )}
@@ -152,8 +155,8 @@ const SoundDetailPage = () => {
               {sound[0].owner._id !== user._id && (
                 <small id="sound-price-small">
                   {sound[0].price === 0
-                    ? "You can use this sound for free."
-                    : "You can use this sound for your project for " +
+                    ? 'You can use this sound for free.'
+                    : 'You can use this sound for your project for ' +
                       formatPrice(sound[0].price)}
                 </small>
               )}

@@ -31,7 +31,7 @@ const MyLibrariesPage = () => {
       {(!libraries.length && (
         <div className="library-empty-state-wrapper">
           <div className="library-empty-state">
-            <h1>Start creating sound libraries now</h1>
+            <h1>Start creating sound libraries now 🎤</h1>
             <Link to={'/library/create'} className="btn">
               Create library
             </Link>
