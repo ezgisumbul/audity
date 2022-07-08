@@ -1,7 +1,7 @@
 @use './../utils/variables.scss' as v;
 
 .sound-edit-page {
-  background-color: v.$thirdcolor;
+  background-image: linear-gradient(v.$fourthcolor, v.$thirdcolor);
   h1 {
     line-height: v.$h1-lh;
     padding: 2rem 1rem 0 1rem;

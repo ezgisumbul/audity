@@ -1,9 +1,15 @@
 @use './../utils/variables.scss' as v;
 
 .sound-ceate-page {
-  background-color: v.$thirdcolor;
+  background-image: linear-gradient(v.$fourthcolor, v.$thirdcolor);
+
   h1 {
-    line-height: v.$h1-lh;
-    padding: 0 1rem;
+    padding: 2rem 1rem 0 1rem;
+    @media (min-width: 900px) {
+      font-size: v.$h1-sc;
+      line-height: v.$h1-lh;
+      max-width: 800px;
+    }
+    margin: 0 auto 2rem auto;
   }
 }

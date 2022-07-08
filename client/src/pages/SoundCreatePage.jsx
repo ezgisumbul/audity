@@ -28,8 +28,8 @@ const SoundCreatePage = () => {
 
   return (
     <div className="sound-ceate-page">
-      <hr />
       <h1>Add a new sound to your Archive</h1>
+
       <SoundForm
         sound={sound}
         onSoundChange={setSound}

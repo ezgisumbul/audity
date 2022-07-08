@@ -66,105 +66,135 @@ const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
   return (
     <div className="sound-form">
       <form onSubmit={(event) => handleFormSubmit(event)}>
-        <label htmlFor="titleInput" className="custom-name-label">
-          Title
-        </label>
-        <input
-          type="text"
-          id="titleInput"
-          onChange={(event) =>
-            onSoundChange({ ...sound, title: event.target.value })
-          }
-          value={sound.title}
-          placeholder="A title for your sound"
-        />
+        <main>
+          <div className="name-and-date">
+            <div className="label-and-input name-input">
+              <label htmlFor="titleInput" className="custom-name-label">
+                Title
+              </label>
+              <input
+                type="text"
+                id="titleInput"
+                onChange={(event) =>
+                  onSoundChange({ ...sound, title: event.target.value })
+                }
+                value={sound.title}
+                placeholder="A title for your sound"
+              />
+            </div>
 
-        <label htmlFor="dateInput" className="custom-name-label">
-          Recorded at
-        </label>
-        <input
-          type="date"
-          id="dateInput"
-          onChange={(event) =>
-            onSoundChange({ ...sound, recordedAt: event.target.value })
-          }
-          value={sound.recordedAt}
-          placeholder="A title for your sound"
-        />
+            <div className="label-and-input date-input">
+              <label htmlFor="dateInput" className="custom-name-label">
+                Recorded at
+              </label>
+              <input
+                type="date"
+                id="dateInput"
+                onChange={(event) =>
+                  onSoundChange({ ...sound, recordedAt: event.target.value })
+                }
+                value={sound.recordedAt}
+                placeholder="A title for your sound"
+              />
+            </div>
+          </div>
 
-        <label htmlFor="descriptionInput" className="custom-name-label">
-          Description
-        </label>
-        <textarea
-          rows="3"
-          className="textarea"
-          id="descriptionInput"
-          onChange={(event) =>
-            onSoundChange({ ...sound, description: event.target.value })
-          }
-          value={sound.description}
-          placeholder="A short description"
-        />
-        <label htmlFor="descriptionInput" className="custom-name-label">
-          Choose loaction
-        </label>
-        <SoundInputMap
-          position={sound.position}
-          onPositionChange={(position) => onSoundChange({ ...sound, position })}
-        />
-        <br sound-input-map />
-        <label htmlFor="input-picture" className="custom-name-label">
-          Upload Audio File
-        </label>
-        <label htmlFor="uploadInput" className="custom-file-upload">
-          <input
-            id="uploadInput"
-            type="file"
-            // accept="audio/*"
-            // accept=".wav,.aif,.aiff,.flac,.alac,.aac,.ogg,.mp3,.mp4"
-            accept="audio/wav, audio/mp3"
-            // , audio/aiff, audio/flac, audio/alac, aduio/aac, audio/ogg, audio/mp3, audio/*, .wav,.aif,.aiff,.flac,.alac,.aac,.ogg,.mp3"
-            name="soundFile"
-            //value={sound.soundFile}  // <-- when I uncomment this it throws in error: Has to do with type: file (but there is a string stored in the db still)
-            onChange={handleFileInputChange}
+          <div className="label-and-input">
+            <label className="custom-name-label">Description</label>
+            <label
+              htmlFor="descriptionInput"
+              className="custom-name-label"
+            ></label>
+            <textarea
+              rows="3"
+              className="textarea"
+              id="descriptionInput"
+              onChange={(event) =>
+                onSoundChange({ ...sound, description: event.target.value })
+              }
+              value={sound.description}
+              placeholder="A short description"
+            />
+          </div>
+        </main>
+        <div>
+          <div className="map-label sound-map">
+            <label htmlFor="descriptionInput" className="custom-name-label">
+              Choose loaction
+            </label>
+          </div>
+        </div>
+        <div>
+          <SoundInputMap
+            position={sound.position}
+            onPositionChange={(position) =>
+              onSoundChange({ ...sound, position })
+            }
           />
-        </label>
-        <div className="headline">
-          <label>Add Tags</label>
+        </div>
+        <br sound-input-map />
+
+        <div className="label-and-input sound-upload-input">
+          <label htmlFor="input-picture" className="custom-name-label">
+            Upload Audio File
+          </label>
+          <label htmlFor="uploadInput" className="custom-file-upload">
+            <input
+              id="uploadInput"
+              type="file"
+              // accept="audio/*"
+              // accept=".wav,.aif,.aiff,.flac,.alac,.aac,.ogg,.mp3,.mp4"
+              accept="audio/wav, audio/mp3"
+              // , audio/aiff, audio/flac, audio/alac, aduio/aac, audio/ogg, audio/mp3, audio/*, .wav,.aif,.aiff,.flac,.alac,.aac,.ogg,.mp3"
+              name="soundFile"
+              //value={sound.soundFile}  // <-- when I uncomment this it throws in error: Has to do with type: file (but there is a string stored in the db still)
+              onChange={handleFileInputChange}
+            />
+          </label>
         </div>
 
-        <TagsCheckboxComponent
-          checkedStateArray={checkedState}
-          onhandleTagListChange={handleTagListChange}
-        />
+        <div className="label-and-input checkbox-input">
+          <div className="headline">
+            <label>Add Tags</label>
+          </div>
 
-        <label htmlFor="qualityInput" className="custom-name-label">
-          Quality of the Recording
-        </label>
-        <select
-          id="qualityInput"
-          onChange={(event) =>
-            onSoundChange({ ...sound, quality: event.target.value })
-          }
-          value={sound.quality}
-        >
-          <option value="low">low</option>
-          <option value="medium">medium</option>
-          <option value="high">high</option>
-        </select>
-
-        <label htmlFor="priceInput" className="custom-name-label">
-          Price
-        </label>
-        <input
-          type="number"
-          min="0"
-          id="priceInput"
-          onChange={(event) =>
-            onSoundChange({ ...sound, price: event.target.value })
-          }
-          value={sound.price}
-        />
+          <TagsCheckboxComponent
+            checkedStateArray={checkedState}
+            onhandleTagListChange={handleTagListChange}
+          />
+        </div>
+        <main className="quality-and-price">
+          <div className="label-and-input quality-input">
+            <label htmlFor="qualityInput" className="custom-name-label">
+              Quality of the Recording
+            </label>
+            <select
+              id="qualityInput"
+              onChange={(event) =>
+                onSoundChange({ ...sound, quality: event.target.value })
+              }
+              value={sound.quality}
+            >
+              <option value="low">low</option>
+              <option value="medium">medium</option>
+              <option value="high">high</option>
+            </select>
+          </div>
+          <div className="label-and-input price-input">
+            <label htmlFor="priceInput" className="custom-name-label">
+              Price
+            </label>
+            <input
+              type="number"
+              min="0"
+              id="priceInput"
+              onChange={(event) =>
+                onSoundChange({ ...sound, price: event.target.value })
+              }
+              value={sound.price}
+            />
+          </div>
+        </main>
 
         <div className="tags-list-item" id="publish-button">
           <div className="publish-button">
@@ -183,7 +213,7 @@ const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
             </label>
           </div>
         </div>
-        <div className="send-button">
+        <div className="create-button">
           <button>{buttonLabel}</button>
         </div>
       </form>

@@ -1,6 +1,62 @@
 @use './../utils/variables.scss' as v;
 
 .sound-form {
+  @media (min-width: 900px) {
+    .label-and-input {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .name-and-date {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      justify-content: stretch;
+
+      .name-input {
+        flex-grow: 1;
+      }
+    }
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .custom-file-upload {
+      background-color: white;
+      padding: 1.2rem;
+      border-radius: 1rem;
+      border: 1px solid v.$fifthcolor;
+      width: 560px;
+    }
+    .sound-upload-input {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .map-label {
+      max-width: 487px;
+      margin: 0 auto;
+    }
+    .checkbox-input {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .quality-and-price {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      justify-content: stretch;
+    }
+    .quality-input {
+      width: 450px;
+    }
+    .price-input {
+      width: 150px;
+    }
+  }
+
   .headline {
     padding-left: 1rem;
   }
@@ -51,9 +107,49 @@
     margin-left: 1rem;
   }
 
+  .create-button {
+    margin: 1rem auto 2rem auto;
+  }
+
   // use this style only for widescreen
   /* #ck-button input:hover + span {
   background-color: v.$firstcolor;
   color: #fff;
   } */
+}
+
+@media (max-width: 900px) {
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .label-and-input {
+    display: flex;
+    flex-direction: column;
+  }
+  .name-and-date {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .custom-file-upload {
+    background-color: white;
+    padding: 1.2rem;
+    border-radius: 1rem;
+    border: 1px solid v.$fifthcolor;
+  }
+  .map-label {
+    max-width: 487px;
+    margin: 0 auto;
+  }
+  .checkbox-input {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .quality-and-price {
+    display: flex;
+    flex-direction: column;
+  }
 }
