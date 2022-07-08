@@ -3,6 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import LibraryForm from '../components/LibraryForm';
 import { libraryEdit, loadLibrary } from '../services/library';
 
+import './LibraryCreateEditPages.scss';
+
 const LibraryEditPage = () => {
   const { id } = useParams();
 
@@ -26,10 +28,10 @@ const LibraryEditPage = () => {
   }, [id]);
 
   return (
-    <div>
-      <h1>Edit library name</h1>
+    <div className="library-form-wrapper">
       {library && (
         <LibraryForm
+          isCreate={false}
           library={library}
           setLibrary={setLibrary}
           onSubmit={handleFormSubmission}

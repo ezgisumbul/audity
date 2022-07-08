@@ -2,7 +2,7 @@ import { useState } from 'react';
 import SoundInputMap from './SoundInputMap';
 import { tags } from './../utils/tags';
 import TagsCheckboxComponent from './TagsCheckboxComponent';
-import './SoundForm.scss';
+import './LibraryForm.scss';
 
 const SoundForm = ({ sound, onSoundChange, onSoundSubmit, buttonLabel }) => {
   const [checkedState, setCheckedState] = useState(

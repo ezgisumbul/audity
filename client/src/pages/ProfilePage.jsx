@@ -1,17 +1,17 @@
-import { useState, useEffect, useContext } from "react";
-import { useParams, Link } from "react-router-dom";
-import AuthenticationContext from "../context/authentication";
-import { profileLoad } from "../services/profile";
+import { useState, useEffect, useContext } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import AuthenticationContext from '../context/authentication';
+import { profileLoad } from '../services/profile';
 import {
   followUser,
   unFollowUser,
   followerLoad,
-  followedLoad,
-} from "../services/follow";
-import SoundMapAndListToggle from "../components/SoundMapAndListToggle";
+  followedLoad
+} from '../services/follow';
+import SoundMapAndListToggle from '../components/SoundMapAndListToggle';
 
-import "./ProfilePage.scss";
-import { listLibraries } from "../services/library";
+import './ProfilePage.scss';
+import { listLibraries } from '../services/library';
 
 const ProfilePage = () => {
   const { id } = useParams();
@@ -86,7 +86,7 @@ const ProfilePage = () => {
                 <img
                   src={
                     profile.picture ||
-                    "https://images.unsplash.com/photo-1570499911518-9b95b0660755?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2346&q=80"
+                    'https://images.unsplash.com/photo-1570499911518-9b95b0660755?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2346&q=80'
                   }
                   alt={profile.name}
                 />
@@ -111,7 +111,7 @@ const ProfilePage = () => {
                   </div>
                   {user && profile._id === user._id && (
                     <div>
-                      <Link className="btn edit-btn" to={"/profile/edit"}>
+                      <Link className="btn edit-btn" to={'/profile/edit'}>
                         Edit Profile
                       </Link>
                     </div>
@@ -169,14 +169,14 @@ const ProfilePage = () => {
             </div>
           )) ||
             (user._id === profile._id && (
-              <Link to={"/sound-create"}>Create your first sound</Link>
+              <Link to={'/sound-create'}>Create your first sound</Link>
             ))}
 
           <div id="profile-libraries">
             {libraries && (
               <>
                 <h4>
-                  <Link to={`/library/${id}/list`}>Sound Lists</Link>
+                  <Link to={`/library/${id}/list`}>Sound Libraries</Link>
                 </h4>
                 {libraries.map((library) => {
                   return (

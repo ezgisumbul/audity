@@ -1,8 +1,12 @@
 import { Link } from 'react-router-dom';
-import LibraryDropdown from './LibraryDropdown';
+import AuthenticationContext from '../context/authentication';
+import { MdRemoveCircleOutline } from 'react-icons/md';
 import './SoundCard.scss';
+import { useContext } from 'react';
 
-const SoundCard = ({ sound }) => {
+const SoundCard = ({ sound, onRemove, library }) => {
+  const { user } = useContext(AuthenticationContext);
+
   return (
     <div className="sound-card">
       {sound && (
@@ -17,6 +21,18 @@ const SoundCard = ({ sound }) => {
                   new Date(sound.recordedAt).toLocaleDateString('de-DE')}
               </small>
               <small>by {sound.owner && sound.owner.name}</small> */}
+
+              {user && library && library.user === user._id && (
+                <button
+                  className="btn remove"
+                  onClick={() => {
+                    onRemove(sound._id);
+                  }}
+                >
+                  Remove
+                  {/* <MdRemoveCircleOutline /> */}
+                </button>
+              )}
             </div>
 
             <audio controls>
