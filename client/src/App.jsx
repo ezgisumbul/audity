@@ -57,7 +57,10 @@ const App = () => {
           <Route path="/library/:id/edit" element={<LibraryEditPage />} />
           <Route path="/library/:id" element={<LibraryDetailPage />} />
           <Route path="/library/:userId/list" element={<UserLibrariesPage />} />
-          <Route path="/library/my-libraries" element={<MyLibrariesPage />} />
+          <Route
+            path="/library/:userId/my-libraries"
+            element={<MyLibrariesPage />}
+          />
           <Route path="/sound/:id/edit" element={<SoundEditPage />} />
           <Route path="/sound/:id" element={<SoundDetailPage />} />
           <Route path="/sound/search" element={<SoundSearchPage />} />

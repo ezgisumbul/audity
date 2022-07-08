@@ -17,9 +17,9 @@ router.get('/:userId/list', (req, res, next) => {
   }
 });
 
-router.get('/my-libraries', routeGuard, (req, res, next) => {
+router.get('/:userId/my-libraries', routeGuard, (req, res, next) => {
   if (req.user) {
-    Library.find({ user: String(req.user._id) })
+    Library.find({ user: String(req.params.userId) })
       .populate('sound')
       .then((libraries) => {
         res.json({ libraries });

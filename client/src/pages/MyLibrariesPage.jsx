@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { listMyLibraries } from '../services/library';
 import AuthenticationContext from '../context/authentication';
 import LibraryList from '../components/LibraryList';
@@ -12,13 +12,14 @@ const MyLibrariesPage = () => {
   const [profile, setProfile] = useState(null);
 
   //   const [selectedLibraryName, setSelectedLibraryName] = useState('');
+  const { userId } = useParams();
 
   useEffect(() => {
-    profileLoad(user._id).then((data) => {
+    profileLoad(userId).then((data) => {
       // console.log(data);
       setProfile(data.profile);
     });
-    listMyLibraries().then((data) => {
+    listMyLibraries(userId).then((data) => {
       setLibraries(data.libraries);
     });
   }, []);

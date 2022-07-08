@@ -4,8 +4,10 @@ export const listLibraries = (userId) => {
   return api.get(`/library/${userId}/list`).then((response) => response.data);
 };
 
-export const listMyLibraries = () => {
-  return api.get('/library/my-libraries').then((response) => response.data);
+export const listMyLibraries = (userId) => {
+  return api
+    .get(`/library/${userId}/my-libraries`)
+    .then((response) => response.data);
 };
 
 export const libraryCreate = (library) => {
