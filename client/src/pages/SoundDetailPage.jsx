@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { soundLoad, addBookmark } from './../services/sound';
 import { useContext, useState, useEffect } from 'react';
 import AuthenticationContext from '../context/authentication';
@@ -17,6 +18,19 @@ import CustomPlayer from '../components/CustomPlayer';
 
 // import AudioPlayer from '../components/AudioPlayer';
 // import MyPlayer from './../components/MyPlayer';
+=======
+import { soundLoad, addBookmark } from "./../services/sound";
+import { useContext, useState, useEffect } from "react";
+import AuthenticationContext from "../context/authentication";
+import { useParams, Link } from "react-router-dom";
+import formatPrice from "../utils/format-price";
+import { listMyLibraries } from "../services/library";
+
+import React from "react";
+import SoundMap from "./../components/SoundMap";
+import LibraryDropdown from "../components/LibraryDropdown";
+import "./SoundDetailPage.scss";
+>>>>>>> d9682b155fb5174a6decb0df4d4b3a07b7f25e37
 
 const SoundDetailPage = () => {
   // @Johanna I couldn't understand why you are pushing sounds into an array
@@ -35,8 +49,6 @@ const SoundDetailPage = () => {
 
   const { id } = useParams();
 
-  //const [sounds, setSounds] = useState();
-
   useEffect(() => {
     setIsLoading(true);
     soundLoad(id)
@@ -45,26 +57,9 @@ const SoundDetailPage = () => {
         arr.push(response.sound);
         setSound(arr);
         setIsLoading(false);
-
-        /*       console.log(response.sound.position.coordinates); */
       })
       .catch(() => setIsError(true));
   }, [id]);
-
-  // const handleAddBookmark = (event) => {
-  //   event.preventDefault();
-
-  //   addBookmark(id, selectedLibraryName);
-  // };
-
-  // useEffect(() => {
-  //   setIsLoading(true);
-  //   listMyLibraries().then((data) => {
-  //     // console.log(data);
-  //     setLibraries(data.libraries);
-  //     setIsLoading(false);
-  //   });
-  // }, []);
 
   const { user } = useContext(AuthenticationContext);
 
@@ -95,14 +90,26 @@ const SoundDetailPage = () => {
               <div className="profile-description">
                 <h4>{sound[0].description}</h4>
               </div>
+
               <div className="price-wide-div">
-                {sound[0].owner._id !== user._id && (
+                {(!user && (
                   <small id="sound-price-small">
                     {sound[0].price === 0
                       ? 'You can use this sound for free.'
                       : 'You can use this sound for your project for ' +
                         formatPrice(sound[0].price)}
                   </small>
+                )) || (
+                  <>
+                    {sound[0].owner._id !== user._id && (
+                      <small id="sound-price-small">
+                        {sound[0].price === 0
+                          ? "You can use this sound for free."
+                          : "You can use this sound for your project for " +
+                            formatPrice(sound[0].price)}
+                      </small>
+                    )}
+                  </>
                 )}
               </div>
             </div>
@@ -146,19 +153,25 @@ const SoundDetailPage = () => {
               </div>
             </div>
 
-            {/* <CustomPlayer source={sound[0]} /> */}
-            {/* <Player source={sound[0]} /> */}
-            {/* <AudioPlayer /> */}
-            {/* <audio-player /> */}
-
             <div className="price-mobile-div">
-              {sound[0].owner._id !== user._id && (
+              {(!user && (
                 <small id="sound-price-small">
                   {sound[0].price === 0
                     ? 'You can use this sound for free.'
                     : 'You can use this sound for your project for ' +
                       formatPrice(sound[0].price)}
                 </small>
+              )) || (
+                <>
+                  {sound[0].owner._id !== user._id && (
+                    <small id="sound-price-small">
+                      {sound[0].price === 0
+                        ? "You can use this sound for free."
+                        : "You can use this sound for your project for " +
+                          formatPrice(sound[0].price)}
+                    </small>
+                  )}
+                </>
               )}
             </div>
 
@@ -166,38 +179,11 @@ const SoundDetailPage = () => {
             <LibraryDropdown />
           </div>
 
-          {sound[0].owner._id === user._id && (
+          {user && sound[0].owner._id === user._id && (
             <div className=" btn send-button edit-btn">
               <Link to={`/sound/${id}/edit`}>Edit Sound</Link>
             </div>
           )}
-          {/* <form onSubmit={handleAddBookmark}>
-            <label htmlFor="input-sound-library">
-              Choose a library to add:
-            </label> */}
-          {/* <ul>
-              {libraries.map((library) => (
-                <li key={library._id}>{library.title}</li>
-              ))}
-            </ul> */}
-          {/* <select
-              id="input-sound-library"
-              // onChange={handleLibraryToAdd}
-              // onFocus={(this.selectedIndex = -1)}
-              onChange={(event) => {
-                // console.log(event.target.value);
-                setSelectedLibraryName(event.target.value);
-              }}
-              value={selectedLibraryName}
-            >
-              <option>Add to library</option>
-              {(isLoading && <option>... Loading</option>) ||
-                libraries.map((library) => (
-                  <option key={library._id}>{library.title}</option>
-                ))}
-            </select> */}
-          {/* <button>+</button>
-          </form> */}
         </>
       )}
     </div>

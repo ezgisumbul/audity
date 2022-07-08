@@ -46,7 +46,7 @@ const ProfileSearchPage = () => {
 
       <div className="search-results">
         <div>
-          {(term.length !== 0 && (
+          {term.length !== 0 && (
             <>
               {(!isLoading && profiles.length !== 0 && (
                 <>
@@ -59,10 +59,6 @@ const ProfileSearchPage = () => {
                   <p>No users found.</p>
                 </>
               )}
-            </>
-          )) || (
-            <>
-              <p>Type in something to find other AUDITY Users.</p>
             </>
           )}
         </div>
