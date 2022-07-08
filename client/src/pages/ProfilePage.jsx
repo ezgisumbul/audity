@@ -1,17 +1,17 @@
-import { useState, useEffect, useContext } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import AuthenticationContext from '../context/authentication';
-import { profileLoad } from '../services/profile';
+import { useState, useEffect, useContext } from "react";
+import { useParams, Link } from "react-router-dom";
+import AuthenticationContext from "../context/authentication";
+import { profileLoad } from "../services/profile";
 import {
   followUser,
   unFollowUser,
   followerLoad,
-  followedLoad
-} from '../services/follow';
-import SoundMapAndListToggle from '../components/SoundMapAndListToggle';
+  followedLoad,
+} from "../services/follow";
+import SoundMapAndListToggle from "../components/SoundMapAndListToggle";
 
-import './ProfilePage.scss';
-import { listLibraries } from '../services/library';
+import "./ProfilePage.scss";
+import { listLibraries } from "../services/library";
 
 const ProfilePage = () => {
   const { id } = useParams();
@@ -85,7 +85,7 @@ const ProfilePage = () => {
                 <img
                   src={
                     profile.picture ||
-                    'https://images.unsplash.com/photo-1570499911518-9b95b0660755?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2346&q=80'
+                    "https://images.unsplash.com/photo-1570499911518-9b95b0660755?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2346&q=80"
                   }
                   alt={profile.name}
                 />
@@ -108,7 +108,7 @@ const ProfilePage = () => {
                   </div>
                   {user && profile._id === user._id && (
                     <div>
-                      <Link className="btn edit-btn" to={'/profile/edit'}>
+                      <Link className="btn edit-btn" to={"/profile/edit"}>
                         Edit Profile
                       </Link>
                     </div>
@@ -157,7 +157,7 @@ const ProfilePage = () => {
         {profile && (
           <>
             {(sounds.length !== 0 && (
-              <div id="profile-sounds-div">
+              <div className="profile-sounds-div">
                 <h3>Sounds</h3>
                 <SoundMapAndListToggle
                   mapView={mapView}
@@ -167,33 +167,58 @@ const ProfilePage = () => {
               </div>
             )) ||
               (user._id === profile._id && (
-                <Link to={'/sound-create'}>Create your first sound</Link>
-              ))}
+                <div className="library-empty-state map-wrapper-div">
+                  <h1>Start uploading your sounds now</h1>
+                  <Link className="btn" to={"/sound-create"}>
+                    Create your first sound
+                  </Link>
+                </div>
+              )) || (
+                <div className="library-empty-state map-wrapper-div">
+                  <h1>No sounds uploaded yet.</h1>
+                </div>
+              )}
 
-            <div id="profile-libraries">
+            <div className="profile-libraries">
               {libraries && (
                 <>
-                  <Link to={`/library/${id}/list`}>
-                    <h3>Libraries</h3>
-                  </Link>
+                  {(libraries.length !== 0 && (
+                    <>
+                      <Link to={`/library/${id}/list`}>
+                        <h3>Libraries</h3>
+                      </Link>
 
-                  {libraries.map((library) => {
-                    return (
-                      <>
-                        <div>
+                      {libraries.map((library) => {
+                        return (
                           <>
-                            <Link
-                              key={library._id}
-                              to={`/library/${library._id}`}
-                            >
-                              {library.title}
-                            </Link>
-                            <small>{`${library.sound.length} sounds`}</small>
+                            <div className="profile-libraries-list-div">
+                              <>
+                                <Link
+                                  key={library._id}
+                                  to={`/library/${library._id}`}
+                                >
+                                  {library.title}
+                                </Link>
+                                <small>{`${library.sound.length} sounds`}</small>
+                              </>
+                            </div>
                           </>
-                        </div>
-                      </>
-                    );
-                  })}
+                        );
+                      })}
+                    </>
+                  )) ||
+                    (user._id === profile._id && (
+                      <div className="library-empty-state">
+                        <h1>Start creating sound libraries now</h1>
+                        <Link to={"/library/create"} className="btn">
+                          Create library
+                        </Link>
+                      </div>
+                    )) || (
+                      <div className="library-empty-state">
+                        <h1>No libraries created yet.</h1>
+                      </div>
+                    )}
                 </>
               )}
             </div>
