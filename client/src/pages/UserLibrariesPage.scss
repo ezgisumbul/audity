@@ -49,12 +49,11 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
-    margin-left: 0.7rem;
-    gap: 0.7rem;
+    justify-content: center;
+    gap: 1rem;
 
     h4 {
-      font-size: v.$h4;
+      font-size: v.$h3;
       padding-bottom: v.$h4;
     }
 
