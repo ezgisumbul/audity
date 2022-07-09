@@ -80,6 +80,9 @@
       width: 80vw;
       max-width: 600px;
       border: 1px solid v.$dark;
+      @media (max-width: 900px) {
+        border: 0px solid v.$dark;
+      }
     }
   }
 
