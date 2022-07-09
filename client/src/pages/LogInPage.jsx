@@ -1,27 +1,31 @@
-import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import AuthenticationContext from '../context/authentication';
-import AuthenticationForm from '../components/AuthenticationForm';
-import { logInUser } from '../services/authentication';
-import './LogInPage.scss';
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import AuthenticationContext from "../context/authentication";
+import AuthenticationForm from "../components/AuthenticationForm";
+import { logInUser } from "../services/authentication";
+import "./LogInPage.scss";
 const LogInPage = () => {
   const navigate = useNavigate();
 
   const [user, setUserState] = useState({
-    name: '',
-    email: '',
-    password: '',
-    description: '',
-    picture: '',
-    sound: ''
+    name: "",
+    email: "",
+    password: "",
+    description: "",
+    picture: "",
+    sound: "",
   });
 
   const { setUser } = useContext(AuthenticationContext);
 
   const handleLogIn = () => {
     logInUser(user).then((data) => {
-      setUser(data.user);
-      navigate('/');
+      if (data.user) {
+        setUser(data.user);
+        navigate("/");
+      } else {
+        alert(data.message);
+      }
     });
   };
 
@@ -32,7 +36,7 @@ const LogInPage = () => {
         <AuthenticationForm
           user={user}
           buttonLabel="Log in"
-          displayInputs={['email', 'password']}
+          displayInputs={["email", "password"]}
           onUserChange={setUserState}
           onAuthenticationSubmit={handleLogIn}
         />
