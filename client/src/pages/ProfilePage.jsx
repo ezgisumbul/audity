@@ -102,7 +102,9 @@ const ProfilePage = () => {
                     <small>
                       <Link to={`/profile/${id}/follower`}>
                         {follower.length !== 0 &&
-                          ` ${follower.length} Followers`}
+                          ` ${follower.length} Follower${
+                            follower.length > 1 ? "s" : ""
+                          }`}
                       </Link>
                     </small>
                   </div>

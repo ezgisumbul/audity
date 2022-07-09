@@ -1,23 +1,26 @@
-import { Link } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
-import AuthenticationContext from './../context/authentication';
-import { profileLoad } from './../services/profile';
-import { followerLoad } from './../services/follow';
-import './ProfileCard.scss';
+import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import AuthenticationContext from "./../context/authentication";
+import { profileLoad } from "./../services/profile";
+import { followerLoad } from "./../services/follow";
+import "./ProfileCard.scss";
 
 const ProfileCard = ({ handleUnfollowUser, unfollowBtn, profile }) => {
   const [sounds, setSounds] = useState([]);
   const [following, setFollowing] = useState(false);
 
+  const { user } = useContext(AuthenticationContext);
+
   useEffect(() => {
     profileLoad(profile._id).then((data) => setSounds(data.sounds));
     followerLoad(profile._id).then((data) => {
       const followers = data.follower.map((doc) => doc._id);
-      if (followers.includes(user._id)) setFollowing(true); // checks if loged-in user follows this profile
+      if (user) {
+        // checks if user is loged-in
+        if (followers.includes(user._id)) setFollowing(true);
+      } // checks if loged-in user follows this profile
     });
   }, [profile]);
-
-  const { user } = useContext(AuthenticationContext);
 
   const handleUnfollowButton = (id) => {
     handleUnfollowUser(profile._id);
@@ -32,7 +35,7 @@ const ProfileCard = ({ handleUnfollowUser, unfollowBtn, profile }) => {
               <img
                 src={
                   profile.picture ||
-                  'https://images.unsplash.com/photo-1570499911518-9b95b0660755?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2346&q=80'
+                  "https://images.unsplash.com/photo-1570499911518-9b95b0660755?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2346&q=80"
                 }
                 alt={profile.name}
               />
