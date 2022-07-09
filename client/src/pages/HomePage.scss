@@ -18,9 +18,10 @@
   }
 
   section {
-    padding: 0.5rem 1rem 3rem 1rem;
+    padding: 1rem 1rem 2rem 1rem;
     background-image: linear-gradient(v.$thirdcolor, v.$fourthcolor);
-    height: 25vh;
+    // height: 25vh;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -29,7 +30,6 @@
       font-size: v.$h3;
       font-weight: 300;
       line-height: 1.05;
-      margin-bottom: 0.8rem;
       span {
         margin-left: 0.5rem;
         font-size: v.$small;
@@ -42,18 +42,23 @@
   .about-text {
     line-height: v.$p-lh;
     font-size: v.$p;
+    p {
+      margin: 0 0 1rem 0;
+    }
   }
 
   .hide {
     display: none;
   }
   .link-wrapper {
+    margin-top: 0.5rem;
     display: flex;
     justify-content: center;
     gap: 1rem;
   }
   .unfolded {
-    height: 84vh;
+    //height: 84vh;
+    height: fit-content;
     font-size: v.$small;
     color: v.$dark;
   }
@@ -71,7 +76,7 @@
       padding: 3.5rem 0 4.5rem 0;
 
       h3 {
-        margin: 0 auto 3.5rem auto;
+        margin: 0 auto 2rem auto;
         font-size: v.$h1-sc;
         font-weight: 300;
         letter-spacing: -2.4px;
@@ -95,11 +100,12 @@
       margin: 0 auto;
       justify-content: center;
       max-width: 800px;
-      margin-bottom: 3rem;
+      margin-bottom: 2rem;
     }
 
     .unfolded {
-      height: 40rem;
+      // height: 40rem;
+      height: fit-content;
       font-size: v.$small-sc;
       color: v.$dark;
     }
@@ -112,6 +118,10 @@
       color: v.$fifthcolor;
       padding: 0;
       margin: -1.5px;
+    }
+
+    .link-wrapper {
+      margin-top: 3rem;
     }
   }
 }
