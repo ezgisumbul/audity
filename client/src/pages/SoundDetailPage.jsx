@@ -61,7 +61,7 @@ const SoundDetailPage = () => {
                   </Link>
                 </small>
                 <small>
-                  recording quality: <i>{sound[0].quality}</i>{' '}
+                  recording quality: <i className="tag">{sound[0].quality}</i>{' '}
                 </small>
               </div>
 

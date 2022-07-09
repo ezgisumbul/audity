@@ -6,8 +6,10 @@
   .library-single {
     display: flex;
     flex-direction: column;
+
     border-bottom: 1px solid black;
     padding: 0 0;
+    width: 100vw;
 
     // .library-single-border {
     //   border-bottom: 1px solid black;
@@ -37,7 +39,7 @@
     margin: 0rem 1.1rem;
     @media (min-width: 900px) {
       // margin: 0 18vw;
-      margin: 0 16vw;
+      margin: 0 10vw;
     }
     //   padding-bottom: 0.6rem;
     h4 {

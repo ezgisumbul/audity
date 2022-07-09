@@ -66,14 +66,13 @@
     }
 
     .btn-light {
-      color: v.$dark;
-
-      border: 1px solid v.$dark;
+      color: white;
+      background-color: #848484;
       font-size: v.$p;
     }
     .btn-light:hover {
-      color: #848484;
-      border: 1px solid #848484;
+      color: black;
+      background-color: v.$fifthcolor;
     }
 
     .btn-dark {
