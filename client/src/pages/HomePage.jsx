@@ -39,7 +39,7 @@ const HomePage = () => {
         <h3>
           Welcome to Audity. Create an account and listen to your city.
           <span onClick={handleAboutExpand}>
-            {aboutExpanded ? "Read less →" : "Read more →"}
+            {aboutExpanded ? "Show less →" : "Read more →"}
           </span>
         </h3>
         <div className={`about-text ${aboutExpanded ? "" : "hide"}`}>
