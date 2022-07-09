@@ -62,7 +62,9 @@ router.patch('/', routeGuard, (req, res, next) => {
 // Following
 
 // - GET - `/profile/:id/followed` - List all users that this user follow
-router.get('/:id/followed', routeGuard, (req, res, next) => {
+// routeGuard is removed from below route due to iOS
+// "Prevent Cross-Site Tracking"
+router.get('/:id/followed', (req, res, next) => {
   const { id } = req.params;
   console.log(id);
   Follow.find({ follower: id })
@@ -77,7 +79,9 @@ router.get('/:id/followed', routeGuard, (req, res, next) => {
 });
 
 // - GET - '/profile/follower' - List all users that following this user
-router.get('/:id/follower', routeGuard, (req, res, next) => {
+// routeGuard is removed from below route due to iOS
+//"Prevent Cross-Site Tracking"
+router.get('/:id/follower', (req, res, next) => {
   const { id } = req.params;
   Follow.find({ followed: id })
     .populate('follower')
