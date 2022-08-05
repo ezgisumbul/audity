@@ -2,6 +2,8 @@
 
 Link: https://audity-app.netlify.app/
 
+A project by: Ezgi Sumbul, Martin Kaumanns & Johanna Michel
+
 Full-Stack Application using React.js, SASS, MongoDB, REST-API, Axios, GoogleMaps API
 
 About: Audity is not just an app, but a collective sound memory. On this platform you can upload your field recordings, share them with others, or listen to recordings of others and collect them in different libraries. On Audity you can network globally: You can follow your favorite users and view their sound collections. Use tags, keyword search or the interactive map, to find and download sounds for your projects! Audity is a low hierarchy platform open to all ears - from sound engineers, artists, radio producers to hobby sound lovers. Audity's sound topographies grow continuously - as does its community. Become part of this collective, artistic and non-commercial project now!
