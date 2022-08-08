@@ -9,7 +9,6 @@
   }
 
   margin: 0.1rem auto;
-  /* border-bottom: 2px solid v.$fourthcolor; */
 
   background-color: white;
 
@@ -24,7 +23,7 @@
       font-size: v.$p;
     }
 
-    // (Martin) added max with to player when less then 900 px :)
+    // (Martin) added max width to player when less then 900 px :)
 
     @media (min-width: 900px) {
       .soundcard-left {

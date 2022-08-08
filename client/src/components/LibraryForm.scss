@@ -17,15 +17,10 @@
     label {
       font-size: v.$small-sc;
     }
-
-    // input[type='text'] {
-
-    // }
   }
   button {
     @media (min-width: 900px) {
       margin: 0 auto;
-      //   font-size: v.$h4-sc;
     }
   }
 }

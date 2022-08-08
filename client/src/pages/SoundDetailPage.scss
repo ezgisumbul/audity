@@ -97,6 +97,16 @@
     background-color: white;
     text-align: center;
     margin: 1rem 0 1rem 1rem;
+    border: none;
+    padding: 0.5rem 1rem;
+    width: fit-content;
+    font-size: v.$h4;
+    color: white;
+    border-radius: 4rem;
+  }
+
+  .edit-btn:hover {
+    background-color: v.$fourthcolor;
   }
 
   .price-wide-div {

@@ -158,7 +158,7 @@ const SoundDetailPage = () => {
           </div>
 
           {user && sound[0].owner._id === user._id && (
-            <div className=" btn send-button edit-btn">
+            <div className="edit-btn">
               <Link to={`/sound/${id}/edit`}>Edit Sound</Link>
             </div>
           )}
