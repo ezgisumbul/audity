@@ -17,8 +17,6 @@ import FollowingPage from './pages/FollowingPage';
 import Navbar from './components/Navbar';
 import AuthenticationContext from './context/authentication';
 import { loadUserInformation } from './services/authentication';
-import ItemCreate from './pages/ItemCreate';
-import ItemPage from './pages/ItemPage';
 
 import LibraryCreatePage from './pages/LibraryCreatePage';
 import LibraryDetailPage from './pages/LibraryDetailPage';
@@ -51,8 +49,6 @@ const App = () => {
           <Route path="/profile/:id/follower" element={<FollowerPage />} />
           <Route path="/profile/:id/following" element={<FollowingPage />} />
           <Route path="/sound-create" element={<SoundCreatePage />} />
-          <Route path="/item/create" element={<ItemCreate />} />
-          <Route path="/item/:id" element={<ItemPage />} />
           <Route path="/library/create" element={<LibraryCreatePage />} />
           <Route path="/library/:id/edit" element={<LibraryEditPage />} />
           <Route path="/library/:id" element={<LibraryDetailPage />} />
