@@ -123,12 +123,12 @@ router.post('/create', (req, res, next) => {
 
   const fileStr = soundFile; // <-- works: there is this long file string stored in sound File
 
-  console.log('FileString before transform', soundFile, 'here');
+  // console.log('FileString before transform', soundFile, 'here');
 
   cloudinary.uploader
     .upload(fileStr, { resource_type: 'video' })
     .then((sound) => {
-      console.log('soundupload succesfull');
+      // console.log('soundupload succesfull');
       return Sound.create({
         title,
         description,
@@ -143,7 +143,7 @@ router.post('/create', (req, res, next) => {
       });
     })
     .then((sound) => {
-      console.log(sound);
+      // console.log(sound);
       res.json({ sound });
     })
     .catch((error) => {
@@ -252,7 +252,7 @@ router.post('/:id/bookmark', (req, res, next) => {
         Library.find({ user: req.user._id })
           .then((result) => {
             libraryIndex = result.length;
-            console.log('libraryIndex:', libraryIndex);
+            // console.log('libraryIndex:', libraryIndex);
           })
           .then(() => {
             Library.create({
@@ -261,7 +261,7 @@ router.post('/:id/bookmark', (req, res, next) => {
               sound: id
             })
               .then((result) => {
-                console.log('Library sound push result', result);
+                // console.log('Library sound push result', result);
                 res.json({});
               })
               .catch((error) => {
@@ -272,26 +272,5 @@ router.post('/:id/bookmark', (req, res, next) => {
     }
   );
 });
-
-// router.post('/:id/bookmark', (req, res, next) => {
-//   const { id } = req.params;
-//   // console.log('id:' + id);
-//   const { selectedLibraryName } = req.body;
-
-//   Library.findOne({
-//     title: selectedLibraryName,
-//     user: req.user._id,
-//     sound: { $ne: id }
-//   })
-//     .populate('sound')
-//     .then(() => {
-//       res.json({});
-//     })
-//     .catch((error) => {
-//       next(error);
-//     });
-// });
-
-// router.delete('/:id/bookmark', (req, res, next) => {});
 
 module.exports = router;

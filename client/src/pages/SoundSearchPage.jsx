@@ -74,7 +74,7 @@ const SoundSearchPage = () => {
 
   const handleTermInputChange = (event) => {
     setQuery({ ...query, term: event.target.value });
-    console.log(event.target.value);
+    // console.log(event.target.value);
   };
 
   return (

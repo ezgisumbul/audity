@@ -26,7 +26,7 @@ const SoundEditPage = () => {
 
   const handleSoundEdit = () => {
     soundEdit(id, sound).then((data) => {
-      console.log(data.sound);
+      // console.log(data.sound);
       navigate(`/sound/${id}`);
     });
   };

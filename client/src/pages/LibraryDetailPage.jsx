@@ -36,7 +36,7 @@ const LibraryDetailPage = () => {
   // to the library/:id. How can I re-render but not make many requests?
 
   const handleSoundRemovalFromLibrary = (soundToRemove) => {
-    console.log(soundToRemove);
+    // console.log(soundToRemove);
     removeFromLibrary(id, soundToRemove)
       .then((res) => {
         setLibrary(res);

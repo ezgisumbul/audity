@@ -62,7 +62,7 @@ router.patch('/:id/my-libraries', routeGuard, (req, res, next) => {
       res.json({ library });
     })
     .catch((error) => {
-      console.log(error);
+      // console.log(error);
       next(error);
     });
 });
@@ -72,7 +72,7 @@ router.delete('/:id', routeGuard, (req, res, next) => {
 
   Library.findOneAndDelete({ _id: id, user: req.user._id }, { new: true })
     .then((result) => {
-      console.log('deletion result backend', result);
+      // console.log('deletion result backend', result);
       res.json({});
     })
     .catch((error) => {
@@ -89,7 +89,7 @@ router.patch('/:id', routeGuard, (req, res, next) => {
       res.json({ library });
     })
     .catch((error) => {
-      console.log(error);
+      // console.log(error);
       next(error);
     });
 });

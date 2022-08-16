@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import ProfileCard from "../components/ProfileCard";
-import { profileSearch } from "../services/profile";
-import "./ProfileSearchPage.scss";
+import React, { useEffect, useState } from 'react';
+import ProfileCard from '../components/ProfileCard';
+import { profileSearch } from '../services/profile';
+import './ProfileSearchPage.scss';
 
 const ProfileSearchPage = () => {
-  const [term, setTerm] = useState("");
+  const [term, setTerm] = useState('');
 
   const [profiles, setProfiles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -15,13 +15,13 @@ const ProfileSearchPage = () => {
       profileSearch(term).then((data) => {
         setProfiles(data.profiles);
         setIsLoading(false);
-        console.log("Profiles", data.profiles);
-        console.log("Profiles", data.profiles);
+        // console.log("Profiles", data.profiles);
+        // console.log("Profiles", data.profiles);
       });
     } else {
       setProfiles([]);
       setIsLoading(false);
-      console.log("Profiles", profiles);
+      // console.log("Profiles", profiles);
     }
   }, [term]);
 

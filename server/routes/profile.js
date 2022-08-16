@@ -66,7 +66,7 @@ router.patch('/', routeGuard, (req, res, next) => {
 // "Prevent Cross-Site Tracking"
 router.get('/:id/followed', (req, res, next) => {
   const { id } = req.params;
-  console.log(id);
+  // console.log(id);
   Follow.find({ follower: id })
     .populate('followed')
     .then((documents) => {
