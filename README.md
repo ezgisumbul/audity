@@ -7,11 +7,11 @@ Full-Stack Application using React.js, SASS, MongoDB, REST-API, Axios, GoogleMap
 
 ## Table of content
 
-- [General Info](https://github.com/ezgisumbul/audity/edit/master/README.md#general-info)
-- [Demo](https://github.com/ezgisumbul/audity/edit/master/README.md#demo)
-- [Overview](https://github.com/ezgisumbul/audity/edit/master/README.md#overview)
-- [Features](https://github.com/ezgisumbul/audity/edit/master/README.md#features)
-- [Setup](https://github.com/ezgisumbul/audity/edit/master/README.md#setup)
+- [General Info](https://github.com/ezgisumbul/audity#general-info)
+- [Demo](https://github.com/ezgisumbul/audity#demo)
+- [Overview](https://github.com/ezgisumbul/audity#overview)
+- [Features](https://github.com/ezgisumbul/audity#features)
+- [Setup](https://github.com/ezgisumbul/audity#setup)
 
 ## General Info
 
